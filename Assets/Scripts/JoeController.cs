@@ -13,7 +13,9 @@ public class JoeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.eulerAngles = new Vector3(0.0f, 0.0f, transform.eulerAngles.z + 90.0f * Time.deltaTime);
-        transform.Rotate(Vector3.forward);
+        Vector2 position = transform.position;
+        position = new Vector2(Mathf.Cos(Time.realtimeSinceStartup), Mathf.Sin(Time.realtimeSinceStartup));
+        position *= 3.0f;
+        transform.position = position;
     }
 }
