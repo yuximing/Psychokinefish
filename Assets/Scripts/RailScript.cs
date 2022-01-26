@@ -6,7 +6,7 @@ public class RailScript : MonoBehaviour
 {
     // Start is called before the first frame update
     public List<NodeScript> Nodes { get; protected set; }
-    void Start()
+    void Awake()
     {
         Nodes = new List<NodeScript>(GetComponentsInChildren<NodeScript>());
     }
