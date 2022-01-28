@@ -22,23 +22,18 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (Input.GetKey(KeyCode.A))
-        {
             moveDirection = -1;
-        }
         else if (Input.GetKey(KeyCode.D))
-        {
             moveDirection = 1;
-        } else
-        {
+        else
             moveDirection = 0;
-        }
+
     }
 
     private void FixedUpdate()
     {
         if (moveDirection == -1) MoveLeft(speed);
         else if (moveDirection == 1) MoveRight(speed);
-
     }
 
     /*
@@ -56,6 +51,7 @@ public class PlayerController : MonoBehaviour
             if (currentNodeIndex == 0) return;
 
             currentNodeIndex--;
+
             Vector2 newCurNodePos = rail.Nodes[currentNodeIndex].transform.position;
             Vector2 nextNodePos = rail.Nodes[currentNodeIndex + 1].transform.position;
 
@@ -63,7 +59,7 @@ public class PlayerController : MonoBehaviour
             Vector2 railLineProj = newCurNodePos - nextNodePos;
 
             // Get t val for Lerp
-            float t = railLineProj.normalized.sqrMagnitude * speed * Time.fixedDeltaTime / railLineProj.sqrMagnitude;
+            float t = railLineProj.normalized.magnitude * speed * Time.fixedDeltaTime / railLineProj.magnitude;
 
             rbody.MovePosition(Vector2.Lerp(nextNodePos, newCurNodePos, t));
         } 
@@ -93,7 +89,7 @@ public class PlayerController : MonoBehaviour
 
         Vector2 nextNodePosition = rail.Nodes[currentNodeIndex + 1].transform.position;
 
-        // Player is exactly on the node
+        // Player is on the node
         if (nextNodePosition == (Vector2)transform.position)
         {
             Vector2 newCurNodePos = rail.Nodes[currentNodeIndex].transform.position;
@@ -103,7 +99,7 @@ public class PlayerController : MonoBehaviour
             Vector2 railLineProj = nextNodePos - newCurNodePos;
 
             // Get t value for Lerp
-            float t = railLineProj.normalized.sqrMagnitude * speed * Time.fixedDeltaTime / railLineProj.sqrMagnitude;
+            float t = railLineProj.normalized.magnitude * speed * Time.fixedDeltaTime / railLineProj.magnitude;
 
             rbody.MovePosition(Vector2.Lerp(newCurNodePos, nextNodePos, t));
         }
@@ -121,7 +117,7 @@ public class PlayerController : MonoBehaviour
             rbody.MovePosition(Vector2.Lerp(currentNodePosition, nextNodePosition, t));
 
             // If player reached the next node, increment node index
-            if (t >= 1.0f) ++currentNodeIndex;
+            if (t >= 0.999f) ++currentNodeIndex;
         }
     }
 }
