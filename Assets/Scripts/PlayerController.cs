@@ -114,10 +114,11 @@ public class PlayerController : MonoBehaviour
             // Vector projection to get t value for Lerp
             float t = Vector2.Dot(playerProj, railLineProj) / railLineProj.sqrMagnitude;
 
-            rbody.MovePosition(Vector2.Lerp(currentNodePosition, nextNodePosition, t));
+            Vector2 targetPos = Vector2.Lerp(currentNodePosition, nextNodePosition, t);
+            rbody.MovePosition(targetPos);
 
             // If player reached the next node, increment node index
-            if (t >= 0.999f) ++currentNodeIndex;
+            if (nextNodePosition == targetPos) ++currentNodeIndex;
         }
     }
 }
