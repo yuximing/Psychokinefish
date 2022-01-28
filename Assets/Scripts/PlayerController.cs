@@ -1,20 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PathCreation;
 
 public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject railPrefab;
+    public PathCreator pathCreator;
 
     public float speed;
     private int currentNodeIndex = 3;  // If player is between node n and n + 1, then currentNode = n
     Rigidbody2D rbody;
     int moveDirection = 0;             // normalized value where -1 = left, 1 = right
+
     void Start()
     {
-        RailScript rail = railPrefab.GetComponent<RailScript>();
-        transform.position = rail.Nodes[currentNodeIndex].transform.position;
+        transform.position = pathCreator.path.GetPoint(currentNodeIndex);
         rbody = GetComponent<Rigidbody2D>();
     }
 
@@ -27,7 +28,6 @@ public class PlayerController : MonoBehaviour
             moveDirection = 1;
         else
             moveDirection = 0;
-
     }
 
     private void FixedUpdate()
@@ -41,19 +41,19 @@ public class PlayerController : MonoBehaviour
      */
     void MoveLeft(float speed)
     {
-        RailScript rail = railPrefab.GetComponent<RailScript>();
-        Vector2 currentNodePosition = rail.Nodes[currentNodeIndex].transform.position;
+        //Vector2 currentNodePosition = rail.Nodes[currentNodeIndex].transform.position;
+        Vector2 currentNodePosition = pathCreator.path.GetPoint(currentNodeIndex);
 
         // Player is exactly on the node
-        if(currentNodePosition == (Vector2) transform.position)
+        if (currentNodePosition == rbody.position)
         {
             // Return if player is at the left most node
             if (currentNodeIndex == 0) return;
 
             currentNodeIndex--;
 
-            Vector2 newCurNodePos = rail.Nodes[currentNodeIndex].transform.position;
-            Vector2 nextNodePos = rail.Nodes[currentNodeIndex + 1].transform.position;
+            Vector2 newCurNodePos = pathCreator.path.GetPoint(currentNodeIndex);
+            Vector2 nextNodePos = pathCreator.path.GetPoint(currentNodeIndex + 1);
 
             // Vector from nextNode to curNode
             Vector2 railLineProj = newCurNodePos - nextNodePos;
@@ -65,12 +65,12 @@ public class PlayerController : MonoBehaviour
         } 
         else // Player is between two nodes
         {
-            Vector2 nextNodePos = rail.Nodes[currentNodeIndex + 1].transform.position;
+            Vector2 nextNodePos = pathCreator.path.GetPoint(currentNodeIndex + 1);
 
             // Vector from nextNode to curNode;
             Vector2 railLineProj = currentNodePosition - nextNodePos;
             // Vector from nextNode to playerPos after moving
-            Vector2 playerProj = ((Vector2)transform.position + railLineProj.normalized * speed * Time.fixedDeltaTime) - nextNodePos;
+            Vector2 playerProj = (rbody.position + railLineProj.normalized * speed * Time.fixedDeltaTime) - nextNodePos;
 
             // Vector projection to get the t value
             float t = Vector2.Dot(playerProj, railLineProj) / railLineProj.sqrMagnitude;
@@ -84,16 +84,15 @@ public class PlayerController : MonoBehaviour
      */
     void MoveRight(float speed)
     {
-        RailScript rail = railPrefab.GetComponent<RailScript>();
-        if (currentNodeIndex == rail.Nodes.Count - 1) return;
+        if (currentNodeIndex == pathCreator.path.NumPoints - 1) return;
 
-        Vector2 nextNodePosition = rail.Nodes[currentNodeIndex + 1].transform.position;
+        Vector2 nextNodePosition = pathCreator.path.GetPoint(currentNodeIndex + 1);
 
         // Player is on the node
-        if (nextNodePosition == (Vector2)transform.position)
+        if (nextNodePosition == rbody.position)
         {
-            Vector2 newCurNodePos = rail.Nodes[currentNodeIndex].transform.position;
-            Vector2 nextNodePos = rail.Nodes[currentNodeIndex + 1].transform.position;
+            Vector2 newCurNodePos = pathCreator.path.GetPoint(currentNodeIndex);
+            Vector2 nextNodePos = pathCreator.path.GetPoint(currentNodeIndex + 1);
 
             // Vector from curNode to nextNode;
             Vector2 railLineProj = nextNodePos - newCurNodePos;
@@ -105,11 +104,11 @@ public class PlayerController : MonoBehaviour
         }
         else // Player is between two nodes
         {
-            Vector2 currentNodePosition = rail.Nodes[currentNodeIndex].transform.position;
+            Vector2 currentNodePosition = pathCreator.path.GetPoint(currentNodeIndex);
             
 
             Vector2 railLineProj = nextNodePosition - currentNodePosition;
-            Vector2 playerProj = ((Vector2)transform.position + railLineProj.normalized * speed * Time.fixedDeltaTime) - currentNodePosition;
+            Vector2 playerProj = (rbody.position + railLineProj.normalized * speed * Time.fixedDeltaTime) - currentNodePosition;
 
             // Vector projection to get t value for Lerp
             float t = Vector2.Dot(playerProj, railLineProj) / railLineProj.sqrMagnitude;
