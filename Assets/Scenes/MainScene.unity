@@ -265,6 +265,7 @@ GameObject:
   - component: {fileID: 1457706936}
   - component: {fileID: 1457706935}
   - component: {fileID: 1457706937}
+  - component: {fileID: 1457706938}
   m_Layer: 0
   m_Name: Path
   m_TagString: Untagged
@@ -288,13 +289,13 @@ MonoBehaviour:
     _bezierPath:
       points:
       - {x: -6.8052497, y: -2.4576807, z: 0}
-      - {x: -3.7560494, y: -2.8314831, z: 0}
-      - {x: -0.70684904, y: -3.2052855, z: 0}
-      - {x: -0.6448202, y: -3.2035136, z: 0}
-      - {x: -0.60834324, y: -3.2024715, z: 0}
-      - {x: 2.9226642, y: -2.5860364, z: 0}
+      - {x: -4.522121, y: -2.7655554, z: 0}
+      - {x: -2.238992, y: -3.0734303, z: 0}
+      - {x: -2.1924603, y: -3.0741963, z: 0}
+      - {x: -2.1408153, y: -3.0750465, z: 0}
+      - {x: 2.911098, y: -2.5959811, z: 0}
       - {x: 2.9469671, y: -2.5588148, z: 0}
-      - {x: 2.958923, y: -2.5454228, z: 0}
+      - {x: 2.959434, y: -2.545897, z: 0}
       - {x: 3.0726135, y: -0.7821626, z: 0}
       - {x: 3.062549, y: -0.7672965, z: 0}
       - {x: 3.0534308, y: -0.7538277, z: 0}
@@ -304,22 +305,25 @@ MonoBehaviour:
       - {x: 1.1131492, y: 1.8595281, z: 0}
       - {x: 1.1265545, y: 1.8766375, z: 0}
       - {x: 1.1396775, y: 1.8933867, z: 0}
-      - {x: 3.2298672, y: 2.0123541, z: 0}
+      - {x: 3.2299483, y: 2.0126383, z: 0}
       - {x: 3.250371, y: 2.006667, z: 0}
-      - {x: 3.2692933, y: 2.0014184, z: 0}
-      - {x: 4.856419, y: 0.9096623, z: 0}
-      - {x: 4.868515, y: 0.8941934, z: 0}
-      - {x: 4.883723, y: 0.8747451, z: 0}
-      - {x: 5.733424, y: -1.3928324, z: 0}
+      - {x: 3.2711616, y: 2.0005877, z: 0}
+      - {x: 4.987652, y: 0.74777335, z: 0}
+      - {x: 5.000552, y: 0.7303724, z: 0}
+      - {x: 5.0055566, y: 0.72362214, z: 0}
+      - {x: 5.2742143, y: -0.055216365, z: 0}
+      - {x: 5.276943, y: -0.06316376, z: 0}
+      - {x: 5.2815866, y: -0.07668634, z: 0}
+      - {x: 5.734478, y: -1.4031739, z: 0}
       - {x: 5.735379, y: -1.4174432, z: 0}
-      - {x: 5.737479, y: -1.4438766, z: 0}
-      - {x: 5.2260175, y: -3.9966888, z: 0}
+      - {x: 5.737051, y: -1.4439071, z: 0}
+      - {x: 5.2270813, y: -3.9977317, z: 0}
       - {x: 5.207996, y: -4.0161405, z: 0}
-      - {x: 5.1712236, y: -4.055831, z: 0}
-      - {x: 0.056616195, y: -5.4870872, z: 0}
-      - {x: 0.0028642416, y: -5.493273, z: 0}
-      - {x: -0.051235832, y: -5.4994984, z: 0}
-      - {x: -2.7439845, y: -5.3674297, z: 0}
+      - {x: 5.1691847, y: -4.0535755, z: 0}
+      - {x: -0.0582624, y: -4.891097, z: 0}
+      - {x: -0.11183679, y: -4.8972187, z: 0}
+      - {x: -0.16484804, y: -4.903276, z: 0}
+      - {x: -2.8007905, y: -5.069319, z: 0}
       - {x: -5.4367332, y: -5.235361, z: 0}
       isClosed: 0
       space: 1
@@ -342,11 +346,12 @@ MonoBehaviour:
       - 0
       - 0
       - 0
+      - 0
       globalNormalsAngle: 0
       flipNormals: 0
     vertexPathUpToDate: 0
-    vertexPathMaxAngleError: 45
-    vertexPathMinVertexSpacing: 0
+    vertexPathMaxAngleError: 5
+    vertexPathMinVertexSpacing: 1
     showTransformTool: 1
     showPathBounds: 0
     showPerSegmentBounds: 0
@@ -359,7 +364,7 @@ MonoBehaviour:
     showBezierPathInVertexMode: 0
     showDisplayOptions: 1
     showPathOptions: 1
-    showVertexPathDisplayOptions: 1
+    showVertexPathDisplayOptions: 0
     showVertexPathOptions: 1
     showNormals: 0
     showNormalsHelpInfo: 0
@@ -391,6 +396,106 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76d78a13b1966094b9fe7815ddd9a44a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineWidth: 0.02
+  lineColor: {r: 0.14901961, g: 0.8313726, b: 0.14901961, a: 1}
+--- !u!120 &1457706938
+LineRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457706934}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 1
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_UseWorldSpace: 1
+  m_Loop: 0
 --- !u!1 &1840076063
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,6 +586,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 396582790, guid: 477cb47f0f33d2349a4bd6477a747568, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 396582792, guid: 477cb47f0f33d2349a4bd6477a747568, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1236424087, guid: 477cb47f0f33d2349a4bd6477a747568, type: 3}
       propertyPath: m_Mass
       value: 1000000

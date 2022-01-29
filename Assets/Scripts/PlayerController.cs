@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public PathCreator pathCreator;
 
     public float speed;
-    private int currentNodeIndex = 3;  // If player is between node n and n + 1, then currentNode = n
+    private int currentNodeIndex = 1;  // If player is between node n and n + 1, then currentNode = n
     Rigidbody2D rbody;
     int moveDirection = 0;             // normalized value where -1 = left, 1 = right
 
