@@ -34,7 +34,30 @@ public class PlayerController : MonoBehaviour
     {
         if (moveDirection == -1) MoveLeft(speed);
         else if (moveDirection == 1) MoveRight(speed);
+        else ClampDown();
 
+    }
+
+    void ClampDown()
+    {
+        if (currentNodeIndex == pathCreator.path.NumPoints - 1)
+        {
+            rbody.MovePosition(pathCreator.path.GetPoint(currentNodeIndex));
+            return;
+        }
+
+        Vector2 currentNodePosition = pathCreator.path.GetPoint(currentNodeIndex);
+        Vector2 nextNodePosition = pathCreator.path.GetPoint(currentNodeIndex + 1);
+
+        // Vector from nextNode to curNode;
+        Vector2 railLineProj = nextNodePosition - currentNodePosition;
+
+        Vector2 playerProj = rbody.position - currentNodePosition;
+
+        // Vector projection to get the t value
+        float t = Vector2.Dot(playerProj, railLineProj) / railLineProj.sqrMagnitude;
+        Vector2 targetPos = Vector2.Lerp(currentNodePosition, nextNodePosition, t);
+        rbody.MovePosition(targetPos);
     }
 
     /*
