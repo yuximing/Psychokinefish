@@ -35,7 +35,6 @@ public class PlayerController : MonoBehaviour
         if (moveDirection == -1) MoveLeft(speed);
         else if (moveDirection == 1) MoveRight(speed);
 
-        if(moveDirection != 0)Debug.Log(currentNodeIndex);
     }
 
     /*
