@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
     {
         if (moveDirection == -1) MoveLeft(speed);
         else if (moveDirection == 1) MoveRight(speed);
+
+        if(moveDirection != 0)Debug.Log(currentNodeIndex);
     }
 
     /*
@@ -42,41 +44,51 @@ public class PlayerController : MonoBehaviour
     void MoveLeft(float speed)
     {
         //Vector2 currentNodePosition = rail.Nodes[currentNodeIndex].transform.position;
+        if (currentNodeIndex == pathCreator.path.NumPoints - 1) --currentNodeIndex;
         Vector2 currentNodePosition = pathCreator.path.GetPoint(currentNodeIndex);
+        Vector2 nextNodePosition = pathCreator.path.GetPoint(currentNodeIndex + 1);
 
-        // Player is exactly on the node
-        if (currentNodePosition == rbody.position)
+        // Vector from nextNode to curNode;
+        Vector2 railLineProj = currentNodePosition - nextNodePosition;
+        // Vector from nextNode to playerPos after moving
+        Vector2 playerProj = (rbody.position + speed * Time.fixedDeltaTime * railLineProj.normalized) - nextNodePosition;
+
+        // Vector projection to get the t value
+        float t = Vector2.Dot(playerProj, railLineProj) / railLineProj.sqrMagnitude;
+        Vector2 targetPos = Vector2.Lerp(nextNodePosition, currentNodePosition, t);
+
+        if (t > 1.0f && nextNodePosition != targetPos)
         {
-            // Return if player is at the left most node
-            if (currentNodeIndex == 0) return;
+            float remainingDist = speed * Time.fixedDeltaTime;
+            Vector2 distVec = rbody.position - currentNodePosition;
 
-            currentNodeIndex--;
+            while (remainingDist - distVec.magnitude > 0.0f && currentNodeIndex != 0)
+            {
+                --currentNodeIndex;
 
-            Vector2 newCurNodePos = pathCreator.path.GetPoint(currentNodeIndex);
-            Vector2 nextNodePos = pathCreator.path.GetPoint(currentNodeIndex + 1);
+                remainingDist -= distVec.magnitude;
 
-            // Vector from nextNode to curNode
-            Vector2 railLineProj = newCurNodePos - nextNodePos;
+                currentNodePosition = pathCreator.path.GetPoint(currentNodeIndex);
+                nextNodePosition = pathCreator.path.GetPoint(currentNodeIndex + 1);
 
-            // Get t val for Lerp
-            float t = railLineProj.normalized.magnitude * speed * Time.fixedDeltaTime / railLineProj.magnitude;
+                distVec = currentNodePosition - nextNodePosition;
+            }
 
-            rbody.MovePosition(Vector2.Lerp(nextNodePos, newCurNodePos, t));
-        } 
-        else // Player is between two nodes
-        {
-            Vector2 nextNodePos = pathCreator.path.GetPoint(currentNodeIndex + 1);
-
-            // Vector from nextNode to curNode;
-            Vector2 railLineProj = currentNodePosition - nextNodePos;
-            // Vector from nextNode to playerPos after moving
-            Vector2 playerProj = (rbody.position + railLineProj.normalized * speed * Time.fixedDeltaTime) - nextNodePos;
-
-            // Vector projection to get the t value
-            float t = Vector2.Dot(playerProj, railLineProj) / railLineProj.sqrMagnitude;
-
-            rbody.MovePosition(Vector2.Lerp(nextNodePos, currentNodePosition, t));
+            if (remainingDist - distVec.magnitude > 0.0f)
+            {
+                rbody.MovePosition(pathCreator.path.GetPoint(0));
+            }
+            else
+            {
+                rbody.MovePosition(nextNodePosition + distVec.normalized * remainingDist);
+            }
         }
+        else
+        {
+            rbody.MovePosition(targetPos);
+        }
+
+        
     }
 
     /*
@@ -88,36 +100,48 @@ public class PlayerController : MonoBehaviour
 
         Vector2 nextNodePosition = pathCreator.path.GetPoint(currentNodeIndex + 1);
 
-        // Player is on the node
-        if (nextNodePosition == rbody.position)
-        {
-            Vector2 newCurNodePos = pathCreator.path.GetPoint(currentNodeIndex);
-            Vector2 nextNodePos = pathCreator.path.GetPoint(currentNodeIndex + 1);
-
-            // Vector from curNode to nextNode;
-            Vector2 railLineProj = nextNodePos - newCurNodePos;
-
-            // Get t value for Lerp
-            float t = railLineProj.normalized.magnitude * speed * Time.fixedDeltaTime / railLineProj.magnitude;
-
-            rbody.MovePosition(Vector2.Lerp(newCurNodePos, nextNodePos, t));
-        }
-        else // Player is between two nodes
-        {
-            Vector2 currentNodePosition = pathCreator.path.GetPoint(currentNodeIndex);
+        Vector2 currentNodePosition = pathCreator.path.GetPoint(currentNodeIndex);
             
 
-            Vector2 railLineProj = nextNodePosition - currentNodePosition;
-            Vector2 playerProj = (rbody.position + railLineProj.normalized * speed * Time.fixedDeltaTime) - currentNodePosition;
+        Vector2 railLineProj = nextNodePosition - currentNodePosition;
+        Vector2 playerProj = (rbody.position + speed * Time.fixedDeltaTime * railLineProj.normalized) - currentNodePosition;
 
-            // Vector projection to get t value for Lerp
-            float t = Vector2.Dot(playerProj, railLineProj) / railLineProj.sqrMagnitude;
+        // Vector projection to get t value for Lerp
+        float t = Vector2.Dot(playerProj, railLineProj) / railLineProj.sqrMagnitude;
 
-            Vector2 targetPos = Vector2.Lerp(currentNodePosition, nextNodePosition, t);
+        Vector2 targetPos = Vector2.Lerp(currentNodePosition, nextNodePosition, t);
+
+        if (t >= 1.0f || nextNodePosition == targetPos)
+        {
+            float remainingDist =  speed * Time.fixedDeltaTime;
+            Vector2 distVec = nextNodePosition - rbody.position;
+
+            while (remainingDist - distVec.magnitude > 0.0f && currentNodeIndex != pathCreator.path.NumPoints - 1)
+            {
+                ++currentNodeIndex;
+                if (currentNodeIndex == pathCreator.path.NumPoints - 1) break;
+
+                remainingDist -= distVec.magnitude;
+
+                currentNodePosition = pathCreator.path.GetPoint(currentNodeIndex);
+                nextNodePosition = pathCreator.path.GetPoint(currentNodeIndex + 1);
+
+                distVec = nextNodePosition - currentNodePosition;
+            }
+
+            if(currentNodeIndex == pathCreator.path.NumPoints - 1)
+            {
+                rbody.MovePosition(pathCreator.path.GetPoint(currentNodeIndex));
+            } else
+            {
+                Vector2 movePos = currentNodePosition + distVec.normalized * remainingDist;
+                rbody.MovePosition(movePos);
+                if (movePos == nextNodePosition) ++currentNodeIndex;
+            }
+        } else
+        {
             rbody.MovePosition(targetPos);
-
-            // If player reached the next node, increment node index
-            if (nextNodePosition == targetPos) ++currentNodeIndex;
         }
+
     }
 }
