@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraScroll : MonoBehaviour
 {
+    float speed = 1.5f;
+    Vector2 direction = Vector2.right;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,9 +15,9 @@ public class CameraScroll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float step = 0.002f;
+        
         var cameraPos = Camera.main.gameObject.transform.position;
-        cameraPos.x += step;
+        cameraPos += speed * Time.deltaTime * (Vector3) direction;
         Camera.main.gameObject.transform.position = cameraPos;
     }
 }
