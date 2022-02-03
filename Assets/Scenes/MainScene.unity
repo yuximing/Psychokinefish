@@ -606,7 +606,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  isMoving: 1
 --- !u!212 &1130955595
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -706,26 +705,29 @@ MonoBehaviour:
   editorData:
     _bezierPath:
       points:
-      - {x: -6.8052497, y: -2.4576807, z: 0}
-      - {x: -4.522121, y: -2.7655554, z: 0}
-      - {x: -2.238992, y: -3.0734303, z: 0}
-      - {x: -2.1924603, y: -3.0741963, z: 0}
-      - {x: -2.1408153, y: -3.0750465, z: 0}
-      - {x: 2.911098, y: -2.5959811, z: 0}
-      - {x: 2.9469671, y: -2.5588148, z: 0}
-      - {x: 2.959434, y: -2.545897, z: 0}
-      - {x: 3.0726135, y: -0.7821626, z: 0}
-      - {x: 3.062549, y: -0.7672965, z: 0}
-      - {x: 3.0534308, y: -0.7538277, z: 0}
-      - {x: 1.5273371, y: -0.27388036, z: 0}
-      - {x: 1.5166421, y: -0.261626, z: 0}
-      - {x: 1.50235, y: -0.24525012, z: 0}
-      - {x: 1.1131492, y: 1.8595281, z: 0}
-      - {x: 1.1265545, y: 1.8766375, z: 0}
-      - {x: 1.1396775, y: 1.8933867, z: 0}
-      - {x: 3.2299483, y: 2.0126383, z: 0}
+      - {x: -7.814726, y: 0.8104837, z: 0}
+      - {x: -7.054142, y: -1.0692587, z: 0}
+      - {x: -6.293558, y: -2.949001, z: 0}
+      - {x: -6.259719, y: -2.9719663, z: 0}
+      - {x: -6.2449384, y: -2.981997, z: 0}
+      - {x: -4.4912686, y: -2.9953392, z: 0}
+      - {x: -4.4735622, y: -2.99298, z: 0}
+      - {x: -4.456023, y: -2.9906433, z: 0}
+      - {x: -2.7891417, y: -2.5090208, z: 0}
+      - {x: -2.7714596, y: -2.509667, z: 0}
+      - {x: -2.7524598, y: -2.5103612, z: 0}
+      - {x: -1.0042561, y: -3.1625836, z: 0}
+      - {x: -0.98530257, y: -3.161089, z: 0}
+      - {x: -0.9658915, y: -3.1595583, z: 0}
+      - {x: 0.6973342, y: -2.2159503, z: 0}
+      - {x: 0.71679974, y: -2.2154765, z: 0}
+      - {x: 0.734838, y: -2.2150376, z: 0}
+      - {x: 2.318728, y: -3.022101, z: 0}
+      - {x: 2.3348477, y: -3.0139937, z: 0}
+      - {x: 2.3804407, y: -2.9910634, z: 0}
+      - {x: 3.2029803, y: 1.987729, z: 0}
       - {x: 3.250371, y: 2.006667, z: 0}
-      - {x: 3.2711616, y: 2.0005877, z: 0}
+      - {x: 3.2704856, y: 2.014705, z: 0}
       - {x: 4.987652, y: 0.74777335, z: 0}
       - {x: 5.000552, y: 0.7303724, z: 0}
       - {x: 5.0055566, y: 0.72362214, z: 0}
@@ -752,6 +754,7 @@ MonoBehaviour:
         m_Center: {x: 0, y: 0, z: 0}
         m_Extent: {x: 2, y: 0.14433756, z: 0}
       perAnchorNormalsAngle:
+      - 0
       - 0
       - 0
       - 0
@@ -925,7 +928,8 @@ GameObject:
   - component: {fileID: 1840076066}
   - component: {fileID: 1840076065}
   - component: {fileID: 1840076064}
-  m_Layer: 0
+  - component: {fileID: 1840076067}
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -997,6 +1001,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1840076067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840076063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec827d641490bcd4cbe29f1384912e71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1939622990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1212,6 +1228,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 396582789, guid: 477cb47f0f33d2349a4bd6477a747568, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 396582790, guid: 477cb47f0f33d2349a4bd6477a747568, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
@@ -1231,6 +1251,10 @@ PrefabInstance:
     - target: {fileID: 5657305377758006218, guid: 477cb47f0f33d2349a4bd6477a747568, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5657305377758006218, guid: 477cb47f0f33d2349a4bd6477a747568, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5657305377758006220, guid: 477cb47f0f33d2349a4bd6477a747568, type: 3}
       propertyPath: m_RootOrder
