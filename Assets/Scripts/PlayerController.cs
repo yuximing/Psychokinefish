@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public PathCreator pathCreator;
 
     public float speed;
-    private int currentNodeIndex = 1;  // If player is between node n and n + 1, then currentNode = n
+    private int currentNodeIndex = 0;  // If player is between node n and n + 1, then currentNode = n
     Rigidbody2D rbody;
     int moveDirection = 0;             // normalized value where -1 = left, 1 = right
 
@@ -22,9 +22,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.A))
+        var hitbox = GetComponentInChildren<CircleCollider2D>();
+        if (Input.GetKey(KeyCode.A) && transform.position.x > Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).x + hitbox.radius)
             moveDirection = -1;
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D) && transform.position.x < Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x - hitbox.radius)
             moveDirection = 1;
         else
             moveDirection = 0;
@@ -32,10 +33,10 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         if (moveDirection == -1) MoveLeft(speed);
         else if (moveDirection == 1) MoveRight(speed);
         else ClampDown();
-
     }
 
     void ClampDown()
@@ -109,8 +110,6 @@ public class PlayerController : MonoBehaviour
         {
             rbody.MovePosition(targetPos);
         }
-
-        
     }
 
     /*
@@ -138,12 +137,14 @@ public class PlayerController : MonoBehaviour
             float remainingDist =  speed * Time.fixedDeltaTime;
             Vector2 distVec = nextNodePosition - rbody.position;
 
-            while (remainingDist - distVec.magnitude > 0.0f && currentNodeIndex != pathCreator.path.NumPoints - 1)
+
+            while (remainingDist - distVec.magnitude >= -0.001f && currentNodeIndex != pathCreator.path.NumPoints - 1)
             {
+                remainingDist -= distVec.magnitude;
                 ++currentNodeIndex;
+
                 if (currentNodeIndex == pathCreator.path.NumPoints - 1) break;
 
-                remainingDist -= distVec.magnitude;
 
                 currentNodePosition = pathCreator.path.GetPoint(currentNodeIndex);
                 nextNodePosition = pathCreator.path.GetPoint(currentNodeIndex + 1);
@@ -158,12 +159,72 @@ public class PlayerController : MonoBehaviour
             {
                 Vector2 movePos = currentNodePosition + distVec.normalized * remainingDist;
                 rbody.MovePosition(movePos);
-                if (movePos == nextNodePosition) ++currentNodeIndex;
+
+                nextNodePosition = pathCreator.path.GetPoint(currentNodeIndex + 1);
+
+                 currentNodePosition = pathCreator.path.GetPoint(currentNodeIndex);
+
+
+                 railLineProj = nextNodePosition - currentNodePosition;
+                 playerProj = (rbody.position + speed * Time.fixedDeltaTime * railLineProj.normalized) - currentNodePosition;
+
+                // Vector projection to get t value for Lerp
+                 t = Vector2.Dot(playerProj, railLineProj) / railLineProj.sqrMagnitude;
+
+                if (movePos == nextNodePosition || t >= 1.0f) ++currentNodeIndex;
             }
         } else
         {
             rbody.MovePosition(targetPos);
         }
 
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        var obj = collision.collider.gameObject;
+        if (obj.GetComponent<Camera>() != null)
+        {
+            CollideWithEdge();
+        }
+    }
+
+    private void CollideWithEdge()
+    {
+        if (currentNodeIndex == pathCreator.path.NumPoints - 1) return;
+        else
+        {
+            Vector2 currentNodePosition = pathCreator.path.GetPoint(currentNodeIndex);
+            Vector2 nextNodePosition = pathCreator.path.GetPoint(currentNodeIndex + 1);
+
+            Vector2 railLineProj = nextNodePosition - currentNodePosition;
+            Vector2 playerProj = (rbody.position) - currentNodePosition;
+
+            float t;
+            Vector2 chooseDirVec = Camera.main.WorldToViewportPoint((Vector3)rbody.position);
+
+            chooseDirVec -= new Vector2(0.5f, 0.5f);
+
+            if (Mathf.Abs(chooseDirVec.x) - Mathf.Abs(chooseDirVec.y) > 0.0f) t = railLineProj.x != 0.0f ? playerProj.x / railLineProj.x : 1.0f;
+            else t = railLineProj.y != 0.0f ? playerProj.y / railLineProj.y : 1.0f;
+
+            Vector2 targetPos = Vector2.Lerp(currentNodePosition, nextNodePosition, t);
+            if (t < 0.0f && targetPos != currentNodePosition && currentNodeIndex != 0)
+            {
+                --currentNodeIndex;
+                currentNodePosition = pathCreator.path.GetPoint(currentNodeIndex);
+                if ((currentNodePosition - (Vector2)transform.position).sqrMagnitude > 0.5f) ++currentNodeIndex;
+            }
+            else if (t >= 1.0f || targetPos == nextNodePosition)
+            {
+                ++currentNodeIndex;
+                currentNodePosition = pathCreator.path.GetPoint(currentNodeIndex);
+                if ((currentNodePosition - (Vector2)transform.position).sqrMagnitude > 0.5f) --currentNodeIndex;
+            }
+
+            if (currentNodeIndex > pathCreator.path.NumPoints - 1) currentNodeIndex = pathCreator.path.NumPoints - 1;
+            if (currentNodeIndex < 0) currentNodeIndex = 0;
+            transform.position = targetPos;
+        }
     }
 }
