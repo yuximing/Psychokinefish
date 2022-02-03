@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class TurretScript : ClickableGameObject
 {
-
+    [SerializeField]
+    GameObject projectile;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +32,16 @@ public class TurretScript : ClickableGameObject
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.rotation = Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, mousePosition - (Vector2)transform.position));
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            FireProjectile(mousePosition- (Vector2) transform.position, 1000.0f);
+        }
+
+    }
+
+    void FireProjectile(Vector2 direction, float force) {
+        var projectileObj = Instantiate(projectile, transform.position, Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, direction)));
+        projectileObj.GetComponent<Rigidbody2D>().AddForce(force * direction.normalized);
     }
 
     protected override void OnInactive()
