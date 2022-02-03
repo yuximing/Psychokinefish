@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using PathCreation;
 public class CameraScroll : MonoBehaviour
 {
-    float speed = 1.5f;
+    [SerializeField]
+    float speed = 1.0f;
     Vector2 direction = Vector2.right;
     BoxCollider2D[] borders = new BoxCollider2D[4];
+    public PathCreator cameraRail;
+
+    float railDistance = 0.0f;
 
     void Start()
     {
@@ -26,9 +30,12 @@ public class CameraScroll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        railDistance += speed * Time.deltaTime;
+
         var cameraPos = Camera.main.gameObject.transform.position;
-        cameraPos += speed * Time.deltaTime * (Vector3) direction;
+        //cameraPos += speed * Time.deltaTime * (Vector3) direction;
+        Vector2 railPosition = cameraRail.path.GetPointAtDistance(railDistance);
+        cameraPos = new Vector3(railPosition.x, railPosition.y, cameraPos.z);
         Camera.main.gameObject.transform.position = cameraPos;
         // Camera.main.orthographicSize -= Time.deltaTime * 0.1f;
         UpdateCollisionBorders();
