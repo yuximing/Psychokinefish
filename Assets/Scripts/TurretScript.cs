@@ -2,60 +2,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurretScript : MonoBehaviour
+public class TurretScript : ClickableGameObject
 {
-    public float speed = 5;
-
-    private Rigidbody2D rb;
-
-    private bool toRight = true;
-
-    public bool isMoving = true;
-
+    [SerializeField]
+    GameObject projectile;
     // Start is called before the first frame update
     void Start()
     {
-        //Spawn();
-        //rb = GetComponent<Rigidbody2D>();
-        transform.position = new Vector3(-4, 2, 0);
+        
     }
 
     // Update is called once per frame
-    void Update()
+
+    public override void ToggleActive()
     {
-        if (isMoving) Move();
-
-
-    }
-
-    void Move()
-    {
-        if (toRight)
+        base.ToggleActive();
+        var spriteRenderer = GetComponent<SpriteRenderer>();
+        if (isActive)
         {
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
-        }
-        else
+            spriteRenderer.color = Color.green;
+        } else
         {
-            transform.Translate(-Vector2.right * speed * Time.deltaTime);
-        }
-
-        if (transform.position.x >= 4.0f)
-        {
-            toRight = false;
-        }
-        if (transform.position.x <= -4.0f)
-        {
-            toRight = true;
+            spriteRenderer.color = Color.cyan;
         }
     }
 
-    //void Spawn()
-    //{
-    //    float yPos = Random.Range
-    //        (Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y, Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)).y);
-    //    float xPos = Random.Range
-    //        (Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).x, Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0)).x);
-    //    Vector2 spawnPos = new Vector2(xPos, yPos);
-    //    transform.position = spawnPos;
-    //}
+    protected override void OnActive()
+    {
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.rotation = Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, mousePosition - (Vector2)transform.position));
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            FireProjectile(mousePosition- (Vector2) transform.position, 1000.0f);
+        }
+
+    }
+
+    void FireProjectile(Vector2 direction, float force) {
+        var projectileObj = Instantiate(projectile, transform.position, Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, direction)));
+        projectileObj.GetComponent<Rigidbody2D>().AddForce(force * direction.normalized);
+    }
+
+    protected override void OnInactive()
+    {
+        
+    }
 }

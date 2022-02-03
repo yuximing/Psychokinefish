@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 using PathCreation;
-public class RailBlockScript : MonoBehaviour
+public class RailBlockScript : ClickableGameObject
 {
     public PathCreator pathCreator;
 
@@ -16,13 +16,15 @@ public class RailBlockScript : MonoBehaviour
         transform.position = pathCreator.path.GetPoint(0);
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    public override void ToggleActive()
     {
-        OnActive();
-    }
+        base.ToggleActive();
 
-    void OnActive()
+        var spriteRenderer = GetComponent<SpriteRenderer>();
+        if (isActive) spriteRenderer.color = Color.green;
+        else spriteRenderer.color = Color.white;
+    }
+    protected override void OnActive()
     {
         float pathDist = pathCreator.path.GetClosestDistanceAlongPath(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         float pathLength = pathCreator.path.length;
@@ -30,16 +32,16 @@ public class RailBlockScript : MonoBehaviour
         if (pathDist > distance)
         {
             if (pathDist - distance < pathLength * 0.5f)
-                distance = Mathf.Clamp(distance + speed * Time.fixedDeltaTime, distance, pathDist);
+                distance = Mathf.Clamp(distance + speed * Time.deltaTime, distance, pathDist);
             else
-                distance = Mathf.Clamp(distance - speed * Time.fixedDeltaTime, pathDist - pathLength, distance);
+                distance = Mathf.Clamp(distance - speed * Time.deltaTime, pathDist - pathLength, distance);
         }
         else if (pathDist < distance)
         {
             if (distance - pathDist < pathLength * 0.5f)
-                distance = Mathf.Clamp(distance - speed * Time.fixedDeltaTime, pathDist, distance);
+                distance = Mathf.Clamp(distance - speed * Time.deltaTime, pathDist, distance);
             else
-                distance = Mathf.Clamp(distance + speed * Time.fixedDeltaTime, distance, pathDist + pathLength);
+                distance = Mathf.Clamp(distance + speed * Time.deltaTime, distance, pathDist + pathLength);
         }
 
         while (distance < 0.0f)
@@ -53,5 +55,9 @@ public class RailBlockScript : MonoBehaviour
         }
 
         transform.position = pathCreator.path.GetPointAtDistance(distance);
+    }
+
+    protected override void OnInactive()
+    {
     }
 }

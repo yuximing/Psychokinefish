@@ -12,10 +12,20 @@ public abstract class ClickableGameObject : MonoBehaviour
         else OnInactive();
     }
 
+    protected virtual void FixedUpdate()
+    {
+        if (isActive) OnActiveFixed();
+        else OnInactiveFixed();
+    }
+
     public virtual void ToggleActive()
     {
         isActive = !isActive;
     }
     protected abstract void OnActive();
     protected abstract void OnInactive();
+
+    protected virtual void OnActiveFixed() { }
+
+    protected virtual void OnInactiveFixed() { }
 }
