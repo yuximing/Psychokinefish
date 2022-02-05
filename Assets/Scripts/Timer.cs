@@ -14,16 +14,16 @@ public class Timer
      * To have the timer initially count down from coolDownTime, 
      * use the second constructor.
      */
-    public Timer(float coolDownTime)
+    public Timer(float coolDownTime) : this(coolDownTime, true)
+    {
+        
+    }
+
+    public Timer(float coolDownTime, bool initiallyActive)
     {
         Debug.Assert(coolDownTime >= 0.0f);
         this.coolDownTime = coolDownTime;
-        timeLeft = 0.0f;
-    }
-
-    public Timer(float coolDownTime, bool initiallyActive) : this(coolDownTime)
-    {
-        if (!initiallyActive) timeLeft = coolDownTime;
+        timeLeft = initiallyActive ? 0.0f : coolDownTime;
     }
 
     /*
@@ -71,5 +71,12 @@ public class Timer
         Debug.Assert(newTime >= 0.0f);
         coolDownTime = newTime;
         timeLeft = Mathf.Min(timeLeft, coolDownTime);
+    }
+    public float TimeRatio
+    {
+        get
+        {
+            return timeLeft / coolDownTime;
+        }
     }
 }
