@@ -6,10 +6,11 @@ public class TurretScript : ClickableGameObject
 {
     [SerializeField]
     GameObject projectile;
+    Timer projectileTimer;
     // Start is called before the first frame update
     void Start()
     {
-        
+        projectileTimer = new Timer(0.1f);
     }
 
     // Update is called once per frame
@@ -29,12 +30,13 @@ public class TurretScript : ClickableGameObject
 
     protected override void OnActive()
     {
+        projectileTimer.Tick();
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.rotation = Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, mousePosition - (Vector2)transform.position));
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
-            FireProjectile(mousePosition- (Vector2) transform.position, 1000.0f);
+            if(projectileTimer.ResetTimer())FireProjectile(mousePosition- (Vector2) transform.position, 1000.0f);
         }
 
     }
