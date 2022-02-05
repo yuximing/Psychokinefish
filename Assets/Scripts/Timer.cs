@@ -7,6 +7,13 @@ public class Timer
     float timeLeft;
     float coolDownTime;
 
+    /*
+     * Timer constructor
+     * 
+     * This constructor sets the initial timeLeft to 0.
+     * To have the timer initially count down from coolDownTime, 
+     * use the second constructor.
+     */
     public Timer(float coolDownTime)
     {
         Debug.Assert(coolDownTime >= 0.0f);
@@ -19,16 +26,27 @@ public class Timer
         if (!initiallyActive) timeLeft = coolDownTime;
     }
 
+    /*
+     * Steps the timer forward
+     * 
+     * Call this at the <strong>very</strong> start of Update()
+     */
     public void Tick()
     {
         timeLeft = Mathf.Max(0.0f, timeLeft - Time.deltaTime);
     }
+
 
     public bool IsReady()
     {
         return timeLeft == 0.0f;
     }
 
+    /*
+     * Resets Timer if timer is ready.
+     * 
+     * Returns true if reset was successful, else return false.
+     */
     public bool ResetTimer()
     {
         if (IsReady())
@@ -40,6 +58,9 @@ public class Timer
         
     }
 
+    /*
+     * Reset timer regardless of whether it is ready or not.
+     */
     public void ResetTimerUnsafe()
     {
         timeLeft = coolDownTime;
