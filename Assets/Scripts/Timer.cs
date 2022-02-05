@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Timer : MonoBehaviour
+public class Timer
 {
     float timeLeft;
     float coolDownTime;
@@ -19,7 +19,7 @@ public class Timer : MonoBehaviour
         if (!initiallyActive) timeLeft = coolDownTime;
     }
 
-    private void Update()
+    public void Tick()
     {
         timeLeft = Mathf.Max(0.0f, timeLeft - Time.deltaTime);
     }
