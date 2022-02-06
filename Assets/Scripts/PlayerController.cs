@@ -217,13 +217,13 @@ public class PlayerController : MonoBehaviour
             {
                 --currentNodeIndex;
                 currentNodePosition = pathCreator.path.GetPoint(currentNodeIndex);
-                if ((currentNodePosition - (Vector2)transform.position).sqrMagnitude > 0.5f) ++currentNodeIndex;
+                if ((currentNodePosition - (Vector2)transform.position).sqrMagnitude > 0.5f * 0.5f) ++currentNodeIndex;
             }
             else if (t >= 1.0f || targetPos == nextNodePosition)
             {
                 ++currentNodeIndex;
                 currentNodePosition = pathCreator.path.GetPoint(currentNodeIndex);
-                if ((currentNodePosition - (Vector2)transform.position).sqrMagnitude > 0.5f) --currentNodeIndex;
+                if ((currentNodePosition - (Vector2)transform.position).sqrMagnitude > 0.5f * 0.5f) --currentNodeIndex;
             }
 
             if (currentNodeIndex > pathCreator.path.NumPoints - 1) currentNodeIndex = pathCreator.path.NumPoints - 1;
