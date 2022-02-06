@@ -13,7 +13,7 @@ public class RailBlockScript : ClickableGameObject
 
     void Start()
     {
-        transform.position = pathCreator.path.GetPoint(0);
+        transform.position = pathCreator.path.GetClosestPointOnPath(transform.position);
     }
 
     public override void ToggleActive()
@@ -25,6 +25,34 @@ public class RailBlockScript : ClickableGameObject
         else spriteRenderer.color = Color.white;
     }
     protected override void OnActive()
+    {
+        if (pathCreator.path.isClosedLoop) ClosedLoopUpdate();
+        else OpenLoopUpdate();
+    }
+
+    
+
+    protected override void OnInactive()
+    {
+    }
+
+    void OpenLoopUpdate()
+    {
+        float pathDist = pathCreator.path.GetClosestDistanceAlongPath(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        float pathLength = pathCreator.path.length;
+
+        if (pathDist > distance)
+        {
+                distance = Mathf.Clamp(distance + speed * Time.deltaTime, Mathf.Max(distance, 0.0f), pathDist);
+        }
+        else if (pathDist < distance)
+        {
+                distance = Mathf.Clamp(distance - speed * Time.deltaTime, Mathf.Min(pathDist, pathLength), distance);
+        }
+
+        transform.position = pathCreator.path.GetPointAtDistance(distance, endOfPathInstruction: EndOfPathInstruction.Stop);
+    }
+    void ClosedLoopUpdate()
     {
         float pathDist = pathCreator.path.GetClosestDistanceAlongPath(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         float pathLength = pathCreator.path.length;
@@ -55,9 +83,5 @@ public class RailBlockScript : ClickableGameObject
         }
 
         transform.position = pathCreator.path.GetPointAtDistance(distance);
-    }
-
-    protected override void OnInactive()
-    {
     }
 }
