@@ -40,6 +40,36 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 2304318919
+    locked: 0
+  - name: Player
+    uniqueID: 2234058951
+    locked: 0
+  - name: Towers
+    uniqueID: 854130003
+    locked: 0
+  - name: FriendlyProjectiles
+    uniqueID: 1984891751
+    locked: 0
+  - name: Obstacles
+    uniqueID: 3403929059
+    locked: 0
+  - name: Enemies
+    uniqueID: 556737737
+    locked: 0
+  - name: EnemyProjectiles
+    uniqueID: 2330200527
+    locked: 0
+  - name: Pickups
+    uniqueID: 1358722439
+    locked: 0
+  - name: Poppables
+    uniqueID: 1675555923
+    locked: 0
+  - name: Foreground
+    uniqueID: 2705636071
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
