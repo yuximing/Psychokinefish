@@ -234,8 +234,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 374b9d43733fa4fde82f0b6df936faa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turret: {fileID: 0}
-  orb: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 58112
 --- !u!4 &1023485524
 Transform:
   m_ObjectHideFlags: 0
@@ -485,7 +486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82aa8e4a5ec2d463392ece1d56447f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 3
 --- !u!212 &1130955595
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -545,7 +546,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1130955592}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.1796865, y: 1.6733663, z: 0}
+  m_LocalPosition: {x: -1.68, y: 4.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
