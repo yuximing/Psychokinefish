@@ -23,12 +23,16 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         var hitbox = GetComponentInChildren<CircleCollider2D>();
-        if (Input.GetKey(KeyCode.A) && transform.position.x > Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).x + hitbox.radius)
-            moveDirection = -1;
-        else if (Input.GetKey(KeyCode.D) && transform.position.x < Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x - hitbox.radius)
-            moveDirection = 1;
-        else
-            moveDirection = 0;
+
+        moveDirection = 0;
+        if (Input.GetKey(KeyCode.A))
+        {
+            if (transform.position.x > Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).x + hitbox.radius) moveDirection = -1;
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            if (transform.position.x < Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x - hitbox.radius) moveDirection = 1;
+        }
     }
 
     private void FixedUpdate()
@@ -213,13 +217,13 @@ public class PlayerController : MonoBehaviour
             {
                 --currentNodeIndex;
                 currentNodePosition = pathCreator.path.GetPoint(currentNodeIndex);
-                if ((currentNodePosition - (Vector2)transform.position).sqrMagnitude > 0.5f) ++currentNodeIndex;
+                if ((currentNodePosition - (Vector2)transform.position).sqrMagnitude > 0.5f * 0.5f) ++currentNodeIndex;
             }
             else if (t >= 1.0f || targetPos == nextNodePosition)
             {
                 ++currentNodeIndex;
                 currentNodePosition = pathCreator.path.GetPoint(currentNodeIndex);
-                if ((currentNodePosition - (Vector2)transform.position).sqrMagnitude > 0.5f) --currentNodeIndex;
+                if ((currentNodePosition - (Vector2)transform.position).sqrMagnitude > 0.5f * 0.5f) --currentNodeIndex;
             }
 
             if (currentNodeIndex > pathCreator.path.NumPoints - 1) currentNodeIndex = pathCreator.path.NumPoints - 1;

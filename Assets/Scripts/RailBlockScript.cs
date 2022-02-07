@@ -14,6 +14,7 @@ public class RailBlockScript : ClickableGameObject
     void Start()
     {
         transform.position = pathCreator.path.GetClosestPointOnPath(transform.position);
+        distance = pathCreator.path.GetClosestDistanceAlongPath(transform.position);
     }
 
     public override void ToggleActive()
