@@ -66,10 +66,10 @@ public class CameraScroll : MonoBehaviour
         borders[3].size = new Vector2(2, height);
     }
 
-    public bool IsSpriteOffScreen(GameObject obj, float extraDistance)
+    public bool IsSpriteOffScreen(GameObject obj, float errorFactor = 1.0f)
     {
-        Debug.Assert(extraDistance >= 0.0f);
-        var sprite = obj.GetComponent<SpriteRenderer>().sprite;
+        Debug.Assert(errorFactor >= 1.0f);
+        var sprite = obj.GetComponent<Renderer>();
         Vector2 center = sprite.bounds.center;
         Vector2 extends = sprite.bounds.extents;
 
@@ -77,12 +77,12 @@ public class CameraScroll : MonoBehaviour
         Vector2 topRight = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         Vector2 topLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height, Camera.main.transform.position.z));
         Vector2 bottomRight = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, Camera.main.transform.position.z));
-        Vector2 pos = obj.transform.position;
-        pos += center;
+        Vector2 pos = center;
+
         Debug.Log($"{pos} {center}");
-        return pos.x < bottomLeft.x - extends.x - extraDistance ||
-            pos.x > topRight.x + extends.x + extraDistance ||
-            pos.y < bottomLeft.y - extends.y - extraDistance ||
-            pos.y > topRight.y + extends.y + extraDistance;
+        return pos.x < bottomLeft.x - extends.x * errorFactor ||
+            pos.x > topRight.x + extends.x * errorFactor ||
+            pos.y < bottomLeft.y - extends.y * errorFactor ||
+            pos.y > topRight.y + extends.y * errorFactor;
     }
 }
