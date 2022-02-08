@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//We're gonna need another script to add damage etc, this should work for when the bar has to
+//be moved, but it won't do anything until damage is added
+//ex: one hit would set the bar size to 0.5f, which is half the health bar
+
 public class HealthBarScript : MonoBehaviour
 {
     private Transform bar;
