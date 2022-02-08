@@ -7,6 +7,8 @@ public class OrbScript : ClickableGameObject
     public float speed = 5;
 
     private Rigidbody2D rb;
+    [SerializeField]
+    GameObject explosionPrefab;
 
     private Vector2 direction = Vector2.zero;
     private float launchSpeed = 10.0f;
@@ -79,6 +81,15 @@ public class OrbScript : ClickableGameObject
         if (transform.position.x <= -4.10f)
         {
             toRight = true;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (isActive && hasLaunched)
+        {
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
     }
 }
