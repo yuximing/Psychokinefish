@@ -64,6 +64,25 @@ public class CameraScroll : MonoBehaviour
 
         borders[3].offset = new Vector2(bottomLeft.x - 1, 0);
         borders[3].size = new Vector2(2, height);
+    }
 
+    public bool IsSpriteOffScreen(GameObject obj, float errorFactor = 1.0f)
+    {
+        Debug.Assert(errorFactor >= 1.0f);
+        var sprite = obj.GetComponent<Renderer>();
+        Vector2 center = sprite.bounds.center;
+        Vector2 extends = sprite.bounds.extents;
+
+        Vector2 bottomLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, Camera.main.transform.position.z));
+        Vector2 topRight = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        Vector2 topLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height, Camera.main.transform.position.z));
+        Vector2 bottomRight = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, Camera.main.transform.position.z));
+        Vector2 pos = center;
+
+        Debug.Log($"{pos} {center}");
+        return pos.x < bottomLeft.x - extends.x * errorFactor ||
+            pos.x > topRight.x + extends.x * errorFactor ||
+            pos.y < bottomLeft.y - extends.y * errorFactor ||
+            pos.y > topRight.y + extends.y * errorFactor;
     }
 }

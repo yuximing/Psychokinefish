@@ -36,7 +36,7 @@ public class TurretScript : ClickableGameObject
 
         if (Input.GetMouseButton(0))
         {
-            if(projectileTimer.ResetTimer())FireProjectile(mousePosition- (Vector2) transform.position, 1000.0f);
+            if(projectileTimer.ResetTimer())FireProjectile(mousePosition- (Vector2) transform.position, 20.0f / Time.fixedDeltaTime);
         }
 
     }
