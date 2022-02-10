@@ -39,6 +39,9 @@ public class ChaserController : MonoBehaviour
         {
             rbody.velocity = rbody.velocity.normalized * (maxSpeed + (rbody.velocity.magnitude - maxSpeed) * 0.015f / Time.fixedDeltaTime) ;
         }
-        rbody.MoveRotation(Vector2.SignedAngle(Vector2.right, rbody.velocity));
+        if (rbody.bodyType != RigidbodyType2D.Static)
+        {
+            rbody.MoveRotation(Vector2.SignedAngle(Vector2.right, rbody.velocity));
+        }
     }
 }
