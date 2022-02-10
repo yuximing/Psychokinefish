@@ -19,7 +19,6 @@ public class FreezeExplosionScript : MonoBehaviour
     {
         explosionTimer.Tick();
         Collider2D[] frozen = Freeze();
-        Debug.Log(frozen);
         if (explosionTimer.IsReady())
         {
             UnFreeze(frozen);
