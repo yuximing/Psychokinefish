@@ -6,20 +6,14 @@ public class OrbScript : ClickableGameObject
 {
     public float speed = 5;
 
-    private Rigidbody2D rb;
     [SerializeField]
     GameObject explosionPrefab;
 
     private Vector2 direction = Vector2.zero;
-    private float launchSpeed = 10.0f;
+    readonly private float launchSpeed = 10.0f;
     private bool hasLaunched = false;
 
     private bool toRight = true;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
 
     // Update is called once per frame
     public override void ToggleActive()
@@ -55,7 +49,7 @@ public class OrbScript : ClickableGameObject
         }
 
         if (!hasLaunched) Debug.DrawLine(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        if(hasLaunched) transform.position += (Vector3) direction * launchSpeed * Time.deltaTime;
+        if(hasLaunched) transform.position += launchSpeed * Time.deltaTime * (Vector3)direction;
     }
 
     protected override void OnInactive()
@@ -67,11 +61,11 @@ public class OrbScript : ClickableGameObject
     {
         if (toRight)
         {
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
+            transform.Translate(speed * Time.deltaTime * Vector2.right);
         }
         else
         {
-            transform.Translate(-Vector2.right * speed * Time.deltaTime);
+            transform.Translate(speed * Time.deltaTime * -Vector2.right);
         }
 
         if (transform.position.x >= 4.0f)
