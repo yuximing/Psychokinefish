@@ -7,7 +7,7 @@ public class ChaserController : MonoBehaviour
     GameObject targetObject;
 
     Rigidbody2D rbody;
-    public int hp = 5;
+    private int hp = 5;
     readonly float maxSpeed = 5.0f;
     readonly float seekForce = 10.0f;
     // Start is called before the first frame update
@@ -36,6 +36,15 @@ public class ChaserController : MonoBehaviour
         if (rbody.bodyType != RigidbodyType2D.Static)
         {
             rbody.MoveRotation(Vector2.SignedAngle(Vector2.right, rbody.velocity));
+        }
+    }
+
+    public void InflictDamage(int dmg)
+    {
+        hp -= dmg;
+        if(hp <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }
