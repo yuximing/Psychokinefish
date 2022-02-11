@@ -18,17 +18,6 @@ public class OrbScript : ClickableGameObject
     // Update is called once per frame
     public override void ToggleActive()
     {
-        /* base.ToggleActive() would be what you would call to activate/deactivate the object
-         * and do something else with it after such as change a variable (speed, color, size, etc.)
-         * 
-         * In this case, we don't want to go from on to off so it is overriden to set
-         * isActive to true.
-         */
-        // base.ToggleActive();
-        //
-        // Do something here. For ex.
-        // speed = 3.0f;
-
         isActive = true;
     }
 
