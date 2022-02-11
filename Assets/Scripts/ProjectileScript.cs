@@ -12,6 +12,12 @@ public class ProjectileScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        var enemyScript = collision.gameObject.GetComponent<ChaserController>();
         Destroy(gameObject);
+
+        if (enemyScript != null)
+        {
+            enemyScript.InflictDamage(1);
+        }
     }
 }
