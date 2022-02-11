@@ -19,11 +19,11 @@ public class Timer
         
     }
 
-    public Timer(float coolDownTime, bool initiallyActive)
+    public Timer(float coolDownTime, bool initiallyReady)
     {
         Debug.Assert(coolDownTime >= 0.0f);
         this.coolDownTime = coolDownTime;
-        timeLeft = initiallyActive ? 0.0f : coolDownTime;
+        timeLeft = initiallyReady ? 0.0f : coolDownTime;
     }
 
     /*
