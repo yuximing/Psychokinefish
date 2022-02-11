@@ -79,7 +79,6 @@ public class CameraScroll : MonoBehaviour
         Vector2 bottomRight = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, Camera.main.transform.position.z));
         Vector2 pos = center;
 
-        Debug.Log($"{pos} {center}");
         return pos.x < bottomLeft.x - extends.x * errorFactor ||
             pos.x > topRight.x + extends.x * errorFactor ||
             pos.y < bottomLeft.y - extends.y * errorFactor ||
