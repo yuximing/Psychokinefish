@@ -6,8 +6,8 @@ public class CameraScroll : MonoBehaviour
 {
     [SerializeField]
     float speed = 1.0f;
-    Vector2 direction = Vector2.right;
-    BoxCollider2D[] borders = new BoxCollider2D[4];
+
+    readonly BoxCollider2D[] borders = new BoxCollider2D[4];
     public PathCreator cameraRail;
 
     float railDistance = 0.0f;
@@ -75,8 +75,6 @@ public class CameraScroll : MonoBehaviour
 
         Vector2 bottomLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, Camera.main.transform.position.z));
         Vector2 topRight = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-        Vector2 topLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height, Camera.main.transform.position.z));
-        Vector2 bottomRight = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, Camera.main.transform.position.z));
         Vector2 pos = center;
 
         return pos.x < bottomLeft.x - extends.x * errorFactor ||
