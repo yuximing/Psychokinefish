@@ -36,20 +36,4 @@ public class PathDrawer : MonoBehaviour
         //lrenderer.startWidth = (int) (Time.realtimeSinceStartup * 2) % 2 == 0 ? 0.03f : 0.1f;
         //lrenderer.endWidth = (int) ( Time.realtimeSinceStartup * 2) % 2 == 0 ? 0.03f : 0.1f;
     }
-
-    //void DrawLines()
-    //{
-    //    int numPoints = pathCreator.path.NumPoints;
-    //    if (numPoints < 2) return;
-
-    //    for (int i = 0; i < numPoints - 1; ++i)
-    //    {
-    //        Vector2 fromPoint = pathCreator.path.GetPoint(i);
-    //        Vector2 toPoint = pathCreator.path.GetPoint(i + 1);
-
-    //        Debug.DrawLine(fromPoint, toPoint, Color.green);
-    //    }
-    //}
-
-
 }
