@@ -63,4 +63,10 @@ public class ChaserController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        var playerScript = collision.gameObject.GetComponent<PlayerController>();
+        playerScript?.ChangeHealth(-1);
+    }
 }
