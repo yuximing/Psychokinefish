@@ -26,5 +26,10 @@ public class ForceExplosionScript : MonoBehaviour
         {
             rbody.AddForce(50.0f / Time.fixedDeltaTime * (rbody.position - (Vector2)transform.position).normalized);
         }
+        var enemyScript = collision.gameObject.GetComponent<ChaserController>();
+        if(enemyScript != null)
+        {
+            enemyScript.InflictDamage(10);
+        }
     }
 }
