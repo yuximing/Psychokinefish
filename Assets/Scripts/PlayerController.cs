@@ -13,15 +13,32 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rbody;
     int moveDirection = 0;             // normalized value where -1 = left, 1 = right
 
+    int hp = 2;
+    Timer invincibleTimer;
+    SpriteRenderer spriteRenderer;
+
     void Start()
     {
         transform.position = pathCreator.path.GetPoint(currentNodeIndex);
         rbody = GetComponent<Rigidbody2D>();
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        invincibleTimer = new Timer(2.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
+        invincibleTimer.Tick();
+
+        if (invincibleTimer.IsReady())
+        {
+            spriteRenderer.color = Color.white;
+        } else
+        {
+            spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+        }
         var hitbox = GetComponentInChildren<CircleCollider2D>();
 
         moveDirection = 0;
@@ -41,6 +58,17 @@ public class PlayerController : MonoBehaviour
         if (moveDirection == -1) MoveLeft(speed);
         else if (moveDirection == 1) MoveRight(speed);
         else ClampDown();
+    }
+
+    public void ChangeHealth(int healthChange)
+    {
+        if(healthChange < 0)
+        {
+            if (invincibleTimer.ResetTimer()) hp += healthChange;
+        } else
+        {
+            hp += healthChange;
+        }
     }
 
     void ClampDown()
