@@ -10,13 +10,28 @@ public class ChaserController : MonoBehaviour
     private int hp = 5;
     readonly float maxSpeed = 5.0f;
     readonly float seekForce = 10.0f;
+
+    Timer damagedTimer;
+    SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
     void Start()
     {
         rbody = GetComponent<Rigidbody2D>();
         targetObject = GameObject.FindWithTag("Player");
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        damagedTimer = new Timer(0.1f);
     }
-
+    private void Update()
+    {
+        damagedTimer.Tick();
+        if (damagedTimer.IsReady())
+        {
+            spriteRenderer.material.SetColor("_Color", Color.black);
+        } else
+        {
+            spriteRenderer.material.SetColor("_Color", Color.Lerp(Color.blue,Color.grey,Random.value));
+        }
+    }
     private void FixedUpdate()
     {
         Vector2 target = targetObject.transform.position;
@@ -42,7 +57,8 @@ public class ChaserController : MonoBehaviour
     public void InflictDamage(int dmg)
     {
         hp -= dmg;
-        if(hp <= 0)
+        damagedTimer.ResetTimer();
+        if (hp <= 0)
         {
             Destroy(gameObject);
         }
