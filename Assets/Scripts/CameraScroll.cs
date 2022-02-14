@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using PathCreation;
 public class CameraScroll : MonoBehaviour
 {
@@ -39,6 +40,17 @@ public class CameraScroll : MonoBehaviour
         Camera.main.gameObject.transform.position = cameraPos;
         // Camera.main.orthographicSize -= Time.deltaTime * 0.1f;
         UpdateCollisionBorders();
+        CheckEndOfLevel();
+    }
+
+    void CheckEndOfLevel()
+    {
+        // Get second last vertex
+        float endlength = cameraRail.path.cumulativeLengthAtEachVertex[cameraRail.path.NumPoints - 2];
+        if (railDistance > endlength)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
     void UpdateCollisionBorders()
