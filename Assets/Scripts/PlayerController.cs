@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using PathCreation;
 
 public class PlayerController : MonoBehaviour
@@ -69,6 +70,8 @@ public class PlayerController : MonoBehaviour
         {
             hp += healthChange;
         }
+        if(hp <= 0) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
     }
 
     void ClampDown()
