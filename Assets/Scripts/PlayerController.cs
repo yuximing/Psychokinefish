@@ -33,6 +33,10 @@ public class PlayerController : MonoBehaviour
     {
         invincibleTimer.Tick();
 
+        #if UNITY_EDITOR
+            if (Input.GetKeyDown(KeyCode.Space)) hp += 1;
+        #endif
+
         if (invincibleTimer.IsReady())
         {
             spriteRenderer.color = Color.white;
