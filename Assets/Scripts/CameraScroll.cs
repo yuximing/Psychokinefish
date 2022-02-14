@@ -49,7 +49,14 @@ public class CameraScroll : MonoBehaviour
         float endlength = cameraRail.path.cumulativeLengthAtEachVertex[cameraRail.path.NumPoints - 2];
         if (railDistance > endlength)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            int levelIndex = SceneManager.GetActiveScene().buildIndex;
+            int totalIndex = SceneManager.sceneCountInBuildSettings;
+
+            if (++levelIndex >= totalIndex)
+            {
+                levelIndex = 0;
+            }
+            SceneManager.LoadScene(levelIndex);
         }
     }
 
