@@ -10,9 +10,12 @@ public class ChaserController : MonoBehaviour
     private int hp = 5;
     readonly float maxSpeed = 5.0f;
     readonly float seekForce = 10.0f;
+    CameraScroll cameraScript;
 
     Timer damagedTimer;
     SpriteRenderer spriteRenderer;
+
+    bool isActive = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,9 +23,13 @@ public class ChaserController : MonoBehaviour
         targetObject = GameObject.FindWithTag("Player");
         spriteRenderer = GetComponent<SpriteRenderer>();
         damagedTimer = new Timer(0.1f);
+        cameraScript = Camera.main.GetComponent<CameraScroll>();
     }
     private void Update()
     {
+
+        if (!cameraScript.IsSpriteOffScreen(gameObject, 2.0f)) isActive = true;
+        if (!isActive) return;
         damagedTimer.Tick();
         if (damagedTimer.IsReady())
         {
@@ -34,6 +41,7 @@ public class ChaserController : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (!isActive) return;
         Vector2 target = targetObject.transform.position;
         Seek(target);
     }
@@ -54,8 +62,11 @@ public class ChaserController : MonoBehaviour
         }
     }
 
+
+
     public void InflictDamage(int dmg)
     {
+        if (!isActive) return;
         hp -= dmg;
         damagedTimer.ResetTimer();
         if (hp <= 0)
@@ -67,6 +78,6 @@ public class ChaserController : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
         var playerScript = collision.gameObject.GetComponent<PlayerController>();
-        playerScript?.ChangeHealth(-1);
+        playerScript?.ChangeHealth(-1); // Basically says: if playerScript not null, change health
     }
 }
