@@ -18,12 +18,15 @@ public class PlayerController : MonoBehaviour
     Timer invincibleTimer;
     SpriteRenderer spriteRenderer;
 
+    CircleCollider2D hitbox;
+
     void Start()
     {
         transform.position = pathCreator.path.GetPoint(currentNodeIndex);
         rbody = GetComponent<Rigidbody2D>();
 
         spriteRenderer = GetComponent<SpriteRenderer>();
+        hitbox = GetComponentInChildren<CircleCollider2D>();
 
         invincibleTimer = new Timer(2.0f);
     }
@@ -44,7 +47,7 @@ public class PlayerController : MonoBehaviour
         {
             spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
         }
-        var hitbox = GetComponentInChildren<CircleCollider2D>();
+        
 
         moveDirection = 0;
         if (Input.GetKey(KeyCode.A))
@@ -58,6 +61,7 @@ public class PlayerController : MonoBehaviour
 
         var cameraScript = Camera.main.GetComponent<CameraScroll>();
         if (cameraScript.IsSpriteOffScreen(hitbox.gameObject)) SceneManager.LoadScene(SceneManager.GetActiveScene().name); // reset level
+        if (IsDerailed()) Die();
     }
 
     private void FixedUpdate()
@@ -77,8 +81,21 @@ public class PlayerController : MonoBehaviour
         {
             hp += healthChange;
         }
-        if(hp <= 0) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if(hp <= 0) Die();
 
+    }
+
+    public void Die()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private bool IsDerailed()
+    {
+        Vector2 pathPos = pathCreator.path.GetClosestPointOnPath(transform.position);
+        float radius = hitbox.radius;
+        Vector2 diffVec = pathPos - (Vector2)transform.position;
+        return (diffVec.sqrMagnitude > radius * radius);
     }
 
     void ClampDown()
