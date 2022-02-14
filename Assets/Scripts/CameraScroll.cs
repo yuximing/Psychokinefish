@@ -34,7 +34,7 @@ public class CameraScroll : MonoBehaviour
 
         var cameraPos = Camera.main.gameObject.transform.position;
         //cameraPos += speed * Time.deltaTime * (Vector3) direction;
-        Vector2 railPosition = cameraRail.path.GetPointAtDistance(railDistance);
+        Vector2 railPosition = cameraRail.path.GetPointAtDistance(railDistance, endOfPathInstruction: EndOfPathInstruction.Stop);
         cameraPos = new Vector3(railPosition.x, railPosition.y, cameraPos.z);
         Camera.main.gameObject.transform.position = cameraPos;
         // Camera.main.orthographicSize -= Time.deltaTime * 0.1f;
