@@ -11,6 +11,7 @@ public class HealthBarScript : MonoBehaviour
 {
 
     private Transform bar;
+    private Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
@@ -23,8 +24,13 @@ public class HealthBarScript : MonoBehaviour
     {
         bar.localScale = new Vector3(sizeNormal, 1f);
     }
-    public void Update()
-    {
-        
-    }
+
+    //public void Awake()
+    //{
+        //rb = GetComponent<Rigidbody2D>();
+    //}
+    //public void Update()
+    //{
+        //rb.velocity = new Vector2(2f, 0f);
+    //}
 }
