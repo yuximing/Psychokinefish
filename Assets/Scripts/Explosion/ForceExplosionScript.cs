@@ -31,5 +31,7 @@ public class ForceExplosionScript : MonoBehaviour
         {
             enemyScript.InflictDamage(10);
         }
+        var blockadeScript = collision.gameObject.GetComponent<BlockadeScript>();
+        blockadeScript?.InflictDamage(10);
     }
 }
