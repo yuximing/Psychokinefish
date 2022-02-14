@@ -51,6 +51,9 @@ public class PlayerController : MonoBehaviour
         {
             if (transform.position.x < Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x - hitbox.radius) moveDirection = 1;
         }
+
+        var cameraScript = Camera.main.GetComponent<CameraScroll>();
+        if (cameraScript.IsSpriteOffScreen(hitbox.gameObject)) SceneManager.LoadScene(SceneManager.GetActiveScene().name); // reset level
     }
 
     private void FixedUpdate()
