@@ -46,8 +46,8 @@ public class CameraScroll : MonoBehaviour
     void CheckEndOfLevel()
     {
         // Get second last vertex
-        float endlength = cameraRail.path.cumulativeLengthAtEachVertex[cameraRail.path.NumPoints - 2];
-        if (railDistance > endlength)
+        float endlength = cameraRail.path.cumulativeLengthAtEachVertex[cameraRail.path.NumPoints - 1];
+        if (railDistance >= endlength)
         {
             int levelIndex = SceneManager.GetActiveScene().buildIndex;
             int totalIndex = SceneManager.sceneCountInBuildSettings;
