@@ -2351,6 +2351,10 @@ PrefabInstance:
       propertyPath: laserLength
       value: 5.61
       objectReference: {fileID: 0}
+    - target: {fileID: 8913410842517109292, guid: aa33621c3269f164aabb7f12775992d4, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 36225
+      objectReference: {fileID: 0}
     - target: {fileID: 8913410842517109294, guid: aa33621c3269f164aabb7f12775992d4, type: 3}
       propertyPath: m_RootOrder
       value: 25
@@ -2396,6 +2400,10 @@ PrefabInstance:
       value: 276.24
       objectReference: {fileID: 0}
     - target: {fileID: 8913410842517109295, guid: aa33621c3269f164aabb7f12775992d4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 8913410842517109295, guid: aa33621c3269f164aabb7f12775992d4, type: 3}
       propertyPath: m_Positions.Array.data[1].x
       value: 12.699768
       objectReference: {fileID: 0}
@@ -2403,9 +2411,53 @@ PrefabInstance:
       propertyPath: m_Positions.Array.data[1].y
       value: -3.116763
       objectReference: {fileID: 0}
+    - target: {fileID: 8913410842517109295, guid: aa33621c3269f164aabb7f12775992d4, type: 3}
+      propertyPath: m_Parameters.colorGradient.atime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8913410842517109295, guid: aa33621c3269f164aabb7f12775992d4, type: 3}
+      propertyPath: m_Parameters.colorGradient.atime1
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 8913410842517109295, guid: aa33621c3269f164aabb7f12775992d4, type: 3}
+      propertyPath: m_Parameters.colorGradient.ctime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8913410842517109295, guid: aa33621c3269f164aabb7f12775992d4, type: 3}
+      propertyPath: m_Parameters.colorGradient.ctime1
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 8913410842517109295, guid: aa33621c3269f164aabb7f12775992d4, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 0.16509432
+      objectReference: {fileID: 0}
+    - target: {fileID: 8913410842517109295, guid: aa33621c3269f164aabb7f12775992d4, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 0.5591867
+      objectReference: {fileID: 0}
+    - target: {fileID: 8913410842517109295, guid: aa33621c3269f164aabb7f12775992d4, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8913410842517109295, guid: aa33621c3269f164aabb7f12775992d4, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 0.41037738
+      objectReference: {fileID: 0}
+    - target: {fileID: 8913410842517109295, guid: aa33621c3269f164aabb7f12775992d4, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0.90887237
+      objectReference: {fileID: 0}
+    - target: {fileID: 8913410842517109295, guid: aa33621c3269f164aabb7f12775992d4, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8913410842517109296, guid: aa33621c3269f164aabb7f12775992d4, type: 3}
       propertyPath: m_Name
       value: EnemyLaserTurret
+      objectReference: {fileID: 0}
+    - target: {fileID: 8913410842517109296, guid: aa33621c3269f164aabb7f12775992d4, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa33621c3269f164aabb7f12775992d4, type: 3}

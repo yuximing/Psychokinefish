@@ -97,6 +97,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserLength: 5.9
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!120 &8913410842517109295
 LineRenderer:
   m_ObjectHideFlags: 0
