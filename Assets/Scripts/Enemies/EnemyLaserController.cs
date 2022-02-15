@@ -8,6 +8,8 @@ public class EnemyLaserController : MonoBehaviour
     [SerializeField]
     float laserLength = 5.0f;
     [SerializeField]
+    float spinRate = 90.0f;
+    [SerializeField]
     private LayerMask layerMask;
     LineRenderer lineRenderer;
     // Start is called before the first frame update
@@ -19,6 +21,7 @@ public class EnemyLaserController : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
+        transform.Rotate(new Vector3(0, 0, spinRate) * Time.fixedDeltaTime);
         var rotVec = Quaternion.Euler(0, 0, transform.eulerAngles.z) * (laserLength * Vector3.right);
         RaycastHit2D hit = Physics2D.Raycast(transform.position, rotVec, laserLength, layerMask);
         lineRenderer.SetPosition(0, transform.position);
