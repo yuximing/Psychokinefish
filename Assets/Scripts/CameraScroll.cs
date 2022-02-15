@@ -13,7 +13,7 @@ public class CameraScroll : MonoBehaviour
 
     float railDistance = 0.0f;
 
-    void Start()
+    void Awake()
     {
         BoxCollider2D up = gameObject.AddComponent<BoxCollider2D>();
         BoxCollider2D right = gameObject.AddComponent<BoxCollider2D>();
@@ -85,7 +85,7 @@ public class CameraScroll : MonoBehaviour
         borders[3].size = new Vector2(2, height);
     }
 
-    public bool IsSpriteOffScreen(GameObject obj, float errorFactor = 1.0f)
+    public static bool IsSpriteOffScreen(GameObject obj, float errorFactor = 1.0f)
     {
         Debug.Assert(errorFactor >= 1.0f);
         var sprite = obj.GetComponent<Renderer>();

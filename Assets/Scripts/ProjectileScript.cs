@@ -6,7 +6,7 @@ public class ProjectileScript : MonoBehaviour
 {
     private void Update()
     {
-        if (Camera.main.GetComponent<CameraScroll>().IsSpriteOffScreen(gameObject))
+        if (CameraScroll.IsSpriteOffScreen(gameObject))
             Destroy(gameObject);
     }
 

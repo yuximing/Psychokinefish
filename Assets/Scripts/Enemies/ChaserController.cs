@@ -28,7 +28,7 @@ public class ChaserController : MonoBehaviour
     private void Update()
     {
 
-        if (!cameraScript.IsSpriteOffScreen(gameObject, 2.0f)) isActive = true;
+        if (!CameraScroll.IsSpriteOffScreen(gameObject, 2.0f)) isActive = true;
         if (!isActive) return;
         damagedTimer.Tick();
         if (damagedTimer.IsReady())

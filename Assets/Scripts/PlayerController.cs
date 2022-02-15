@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
         }
 
         var cameraScript = Camera.main.GetComponent<CameraScroll>();
-        if (cameraScript.IsSpriteOffScreen(hitbox.gameObject)) SceneManager.LoadScene(SceneManager.GetActiveScene().name); // reset level
+        if (CameraScroll.IsSpriteOffScreen(hitbox.gameObject)) SceneManager.LoadScene(SceneManager.GetActiveScene().name); // reset level
         if (IsDerailed()) Die();
     }
 
