@@ -9,7 +9,7 @@ public class PathDrawer : MonoBehaviour
     PathCreator pathCreator;
     LineRenderer lrenderer;
     public float lineWidth;
-    public Color lineColor;
+    public Color lineColor = Color.green;
     // Start is called before the first frame update
     void Start()
     {
