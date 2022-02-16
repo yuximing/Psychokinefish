@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
 
     CircleCollider2D hitbox;
 
+    bool isAlive = true;
+
+
     void Start()
     {
         transform.position = pathCreator.path.GetPoint(currentNodeIndex);
@@ -36,6 +39,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isAlive) return;
         invincibleTimer.Tick();
 
         #if UNITY_EDITOR
@@ -64,12 +68,13 @@ public class PlayerController : MonoBehaviour
         animator.SetInteger("Move X", moveDirection);
 
         var cameraScript = Camera.main.GetComponent<CameraScroll>();
-        if (CameraScroll.IsSpriteOffScreen(hitbox.gameObject)) SceneManager.LoadScene(SceneManager.GetActiveScene().name); // reset level
+        if (CameraScroll.IsSpriteOffScreen(hitbox.gameObject)) Die();
         if (IsDerailed()) Die();
     }
 
     private void FixedUpdate()
     {
+        if (!isAlive) return;
 
         if (moveDirection == -1) MoveLeft(speed);
         else if (moveDirection == 1) MoveRight(speed);
@@ -91,6 +96,15 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
+
+        animator.SetBool("Alive", false);
+        if(isAlive) StartCoroutine(DieCoroutine());
+        isAlive = false;
+    }
+
+    IEnumerator DieCoroutine()
+    {
+        yield return new WaitForSeconds(5.0f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
