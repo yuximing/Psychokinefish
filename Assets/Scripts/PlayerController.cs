@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
     public PathCreator pathCreator;
+    Animator animator;
 
     public float speed;
     private int currentNodeIndex = 0;  // If player is between node n and n + 1, then currentNode = n
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         hitbox = GetComponentInChildren<CircleCollider2D>();
+        animator = GetComponent<Animator>();
 
         invincibleTimer = new Timer(2.0f);
     }
@@ -58,6 +60,8 @@ public class PlayerController : MonoBehaviour
         {
             if (transform.position.x < Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x - hitbox.radius) moveDirection = 1;
         }
+
+        animator.SetInteger("Move X", moveDirection);
 
         var cameraScript = Camera.main.GetComponent<CameraScroll>();
         if (CameraScroll.IsSpriteOffScreen(hitbox.gameObject)) SceneManager.LoadScene(SceneManager.GetActiveScene().name); // reset level
