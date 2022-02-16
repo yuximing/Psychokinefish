@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 5657305377758006223}
   - component: {fileID: 1236424087}
   - component: {fileID: 1279727714336076858}
+  - component: {fileID: 80787510}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -198,7 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathCreator: {fileID: 0}
-  speed: 10
+  speed: 5
 --- !u!50 &1236424087
 Rigidbody2D:
   serializedVersion: 4
@@ -239,3 +240,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &80787510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5657305377758006218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374b9d43733fa4fde82f0b6df936faa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 58112

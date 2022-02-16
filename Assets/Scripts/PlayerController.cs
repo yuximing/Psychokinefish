@@ -104,6 +104,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator DieCoroutine()
     {
+        GetComponent<ClickManager>().enabled = false;
         yield return new WaitForSeconds(5.0f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
