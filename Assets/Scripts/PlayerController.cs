@@ -58,14 +58,12 @@ public class PlayerController : MonoBehaviour
         moveDirection = 0;
         if (Input.GetKey(KeyCode.A))
         {
-            if (transform.position.x > Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).x + hitbox.radius) moveDirection = -1;
+            if (transform.position.x > Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).x + hitbox.radius * hitbox.transform.localScale.x) moveDirection = -1;
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            if (transform.position.x < Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x - hitbox.radius) moveDirection = 1;
+            if (transform.position.x < Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x - hitbox.radius * hitbox.transform.localScale.x) moveDirection = 1;
         }
-
-        animator.SetInteger("Move X", moveDirection);
 
         var cameraScript = Camera.main.GetComponent<CameraScroll>();
         if (CameraScroll.IsSpriteOffScreen(hitbox.gameObject)) Die();
@@ -79,6 +77,8 @@ public class PlayerController : MonoBehaviour
         if (moveDirection == -1) MoveLeft(speed);
         else if (moveDirection == 1) MoveRight(speed);
         else ClampDown();
+
+        animator.SetInteger("Move X", moveDirection);
     }
 
     public void ChangeHealth(int healthChange)
@@ -96,7 +96,6 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
-
         animator.SetBool("Alive", false);
         if(isAlive) StartCoroutine(DieCoroutine());
         isAlive = false;
