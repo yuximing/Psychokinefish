@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer spriteRenderer;
 
     CircleCollider2D hitbox;
+    Timer colorBlinkTimer;
 
     bool isAlive = true;
 
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
 
         invincibleTimer = new Timer(2.0f);
+        colorBlinkTimer = new Timer(1.5f, false);
     }
 
     // Update is called once per frame
@@ -41,6 +43,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isAlive) return;
         invincibleTimer.Tick();
+        colorBlinkTimer.Tick();
 
         #if UNITY_EDITOR
             if (Input.GetKeyDown(KeyCode.Space)) hp += 1;
@@ -68,6 +71,22 @@ public class PlayerController : MonoBehaviour
         var cameraScript = Camera.main.GetComponent<CameraScroll>();
         if (CameraScroll.IsSpriteOffScreen(hitbox.gameObject)) Die();
         if (IsDerailed()) Die();
+
+        ColorBlink();
+    }
+
+    void ColorBlink()
+    {
+        if(hp == 1)
+        {
+            if (colorBlinkTimer.TimeRatio < 0.05f) spriteRenderer.material.SetColor("_ColorSub", new Color(0.0f, 1.0f, 1.0f, 1.0f));
+            else spriteRenderer.material.SetColor("_ColorSub", new Color(0.0f, 0.1f, 0.25f, 1.0f));
+        } else
+        {
+             spriteRenderer.material.SetColor("_ColorSub", Color.black);
+        }
+        colorBlinkTimer.ResetTimer();
+
     }
 
     private void FixedUpdate()
@@ -90,6 +109,15 @@ public class PlayerController : MonoBehaviour
         {
             hp += healthChange;
         }
+
+        if(hp > 1)
+        {
+            spriteRenderer.material.SetColor("_Color", Color.black);
+        } else if(hp == 1)
+        {
+            spriteRenderer.material.SetColor("_Color", new Color(0.5f, 0.0f, 0.0f));
+        }
+
         if(hp <= 0) Die();
 
     }
