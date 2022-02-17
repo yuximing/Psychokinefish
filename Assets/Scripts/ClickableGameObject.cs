@@ -16,8 +16,14 @@ public abstract class ClickableGameObject : MonoBehaviour
     {
         if (isActive) OnActiveFixed();
         else OnInactiveFixed();
-        if (CameraScroll.IsSpriteOffScreen(gameObject)) isActive = false;
+        if (CameraScroll.IsSpriteOffScreen(gameObject)) OnOffScreen();
     }
+
+    protected virtual void OnOffScreen()
+    {
+        isActive = false;
+    }
+    
 
     public virtual void ToggleActive()
     {
