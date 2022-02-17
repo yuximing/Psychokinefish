@@ -7,7 +7,7 @@ public class TurretScript : ClickableGameObject
     [SerializeField]
     GameObject projectile;
     Timer projectileTimer;
-    AudioSource audioSource;
+    static AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +38,7 @@ public class TurretScript : ClickableGameObject
 
         if (Input.GetMouseButton(0))
         {
-            if(projectileTimer.ResetTimer())FireProjectile(mousePosition- (Vector2) transform.position, 20.0f / Time.fixedDeltaTime);
+            if (projectileTimer.ResetTimer())FireProjectile(mousePosition- (Vector2) transform.position, 20.0f / Time.fixedDeltaTime);
         }
 
     }
