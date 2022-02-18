@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class ShooterController : MonoBehaviour
 {
+    // start shooting only when in camera
     [SerializeField]
     GameObject projectile;
-
     [SerializeField]
     Transform firePoint;
 
-    private float speed = 15.0f;
+    private float bulletSpeed = 15.0f;
 
-    // For changing testing values easily in the inspector
-    public float timeBetweenSeries = 2f;
-    public float timeBetweenBullets = 0.2f;
-    public int bulletsInSeries = 5;
+    private float timeBetweenSeries = 1.5f;
+    private float timeBetweenBullets = 0.1f;
+    private int bulletsInSeries = 5;
 
-    // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("Shoot", 0f, timeBetweenSeries);
@@ -35,8 +33,8 @@ public class ShooterController : MonoBehaviour
         int i = 0;
         while (i < bulletsInSeries)
         {
-            GameObject projectileObj = Instantiate(projectile, transform.position, transform.rotation);
-            projectileObj.GetComponent<Rigidbody2D>().velocity = -transform.right * speed;
+            GameObject projectileObj = Instantiate(projectile, firePoint.position, firePoint.rotation);
+            projectileObj.GetComponent<Rigidbody2D>().velocity = -transform.right * bulletSpeed;
             yield return new WaitForSeconds(timeBetweenBullets);
             i++;
         }
