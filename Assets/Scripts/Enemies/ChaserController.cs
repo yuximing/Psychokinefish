@@ -5,6 +5,7 @@ using UnityEngine;
 public class ChaserController : MonoBehaviour
 {
     GameObject targetObject;
+    public GameObject destroyParticle;
 
     Rigidbody2D rbody;
     private int hp = 5;
@@ -71,6 +72,7 @@ public class ChaserController : MonoBehaviour
         damagedTimer.ResetTimer();
         if (hp <= 0)
         {
+            Instantiate(destroyParticle, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

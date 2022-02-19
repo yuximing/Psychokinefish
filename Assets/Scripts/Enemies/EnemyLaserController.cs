@@ -35,6 +35,7 @@ public class EnemyLaserController : MonoBehaviour
         {
             lineRenderer.SetPosition(1, transform.position + rotVec);
         }
+        lineRenderer.enabled = Random.value > 0.1f;
     }
     void OnValidate()
     {

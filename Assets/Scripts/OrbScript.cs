@@ -21,6 +21,11 @@ public class OrbScript : ClickableGameObject
         isActive = true;
     }
 
+    protected override void OnOffScreen()
+    {
+        Destroy(gameObject);
+    }
+
     // MAKE SURE TO OVERRIDE USING 'override'!!!
     protected override void OnActive()
     {

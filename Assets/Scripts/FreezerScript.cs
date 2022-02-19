@@ -18,6 +18,11 @@ public class FreezerScript : ClickableGameObject
         
     }
 
+    protected override void OnOffScreen()
+    {
+        Destroy(gameObject);
+    }
+
     public override void ToggleActive()
     {
         isActive = true;

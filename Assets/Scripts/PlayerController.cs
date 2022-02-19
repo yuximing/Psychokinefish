@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
     public PathCreator pathCreator;
+    Animator animator;
 
     public float speed;
     private int currentNodeIndex = 0;  // If player is between node n and n + 1, then currentNode = n
@@ -19,6 +20,10 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer spriteRenderer;
 
     CircleCollider2D hitbox;
+    Timer colorBlinkTimer;
+
+    bool isAlive = true;
+
 
     void Start()
     {
@@ -27,14 +32,18 @@ public class PlayerController : MonoBehaviour
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         hitbox = GetComponentInChildren<CircleCollider2D>();
+        animator = GetComponent<Animator>();
 
         invincibleTimer = new Timer(2.0f);
+        colorBlinkTimer = new Timer(1.5f, false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!isAlive) return;
         invincibleTimer.Tick();
+        colorBlinkTimer.Tick();
 
         #if UNITY_EDITOR
             if (Input.GetKeyDown(KeyCode.Space)) hp += 1;
@@ -52,24 +61,43 @@ public class PlayerController : MonoBehaviour
         moveDirection = 0;
         if (Input.GetKey(KeyCode.A))
         {
-            if (transform.position.x > Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).x + hitbox.radius) moveDirection = -1;
+            if (transform.position.x > Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).x + hitbox.radius * hitbox.transform.localScale.x) moveDirection = -1;
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            if (transform.position.x < Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x - hitbox.radius) moveDirection = 1;
+            if (transform.position.x < Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x - hitbox.radius * hitbox.transform.localScale.x) moveDirection = 1;
         }
 
         var cameraScript = Camera.main.GetComponent<CameraScroll>();
-        if (CameraScroll.IsSpriteOffScreen(hitbox.gameObject)) SceneManager.LoadScene(SceneManager.GetActiveScene().name); // reset level
+        if (CameraScroll.IsSpriteOffScreen(hitbox.gameObject)) Die();
         if (IsDerailed()) Die();
+
+        ColorBlink();
+    }
+
+    void ColorBlink()
+    {
+        if(hp == 1)
+        {
+            if (colorBlinkTimer.TimeRatio < 0.05f) spriteRenderer.material.SetColor("_ColorSub", new Color(0.0f, 1.0f, 1.0f, 1.0f));
+            else spriteRenderer.material.SetColor("_ColorSub", new Color(0.0f, 0.1f, 0.25f, 1.0f));
+        } else
+        {
+             spriteRenderer.material.SetColor("_ColorSub", Color.black);
+        }
+        colorBlinkTimer.ResetTimer();
+
     }
 
     private void FixedUpdate()
     {
+        if (!isAlive) return;
 
         if (moveDirection == -1) MoveLeft(speed);
         else if (moveDirection == 1) MoveRight(speed);
         else ClampDown();
+
+        animator.SetInteger("Move X", moveDirection);
     }
 
     public void ChangeHealth(int healthChange)
@@ -81,12 +109,30 @@ public class PlayerController : MonoBehaviour
         {
             hp += healthChange;
         }
+
+        if(hp > 1)
+        {
+            spriteRenderer.material.SetColor("_Color", Color.black);
+        } else if(hp == 1)
+        {
+            spriteRenderer.material.SetColor("_Color", new Color(0.5f, 0.0f, 0.0f));
+        }
+
         if(hp <= 0) Die();
 
     }
 
     public void Die()
     {
+        animator.SetBool("Alive", false);
+        if(isAlive) StartCoroutine(DieCoroutine());
+        isAlive = false;
+    }
+
+    IEnumerator DieCoroutine()
+    {
+        GetComponent<ClickManager>().enabled = false;
+        yield return new WaitForSeconds(5.0f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
