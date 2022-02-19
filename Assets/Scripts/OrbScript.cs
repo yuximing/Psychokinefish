@@ -9,16 +9,25 @@ public class OrbScript : ClickableGameObject
     [SerializeField]
     GameObject explosionPrefab;
 
+    LineRenderer lineRenderer;
+
     private Vector2 direction = Vector2.zero;
     readonly private float launchSpeed = 10.0f;
     private bool hasLaunched = false;
 
     private bool toRight = true;
 
+    private void Start()
+    {
+        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.enabled = false;
+    }
+
     // Update is called once per frame
     public override void ToggleActive()
     {
         isActive = true;
+        lineRenderer.enabled = true;
     }
 
     protected override void OnOffScreen()
@@ -42,8 +51,17 @@ public class OrbScript : ClickableGameObject
             hasLaunched = true;
         }
 
-        if (!hasLaunched) Debug.DrawLine(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        if(hasLaunched) transform.position += launchSpeed * Time.deltaTime * (Vector3)direction;
+        if (!hasLaunched)
+        {
+            lineRenderer.SetPosition(0, (Vector2) transform.position);
+            lineRenderer.SetPosition(1, (Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            //Debug.DrawLine(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        }
+        if (hasLaunched)
+        {
+            lineRenderer.enabled = false;
+            transform.position += launchSpeed * Time.deltaTime * (Vector3)direction;
+        }
     }
 
     protected override void OnInactive()
