@@ -4,32 +4,56 @@ using UnityEngine;
 
 public class ShooterController : MonoBehaviour
 {
-    // start shooting only when in camera
     [SerializeField]
     GameObject projectile;
     [SerializeField]
     Transform firePoint;
 
     private float bulletSpeed = 15.0f;
+    private float moveSpeed = 1.5f;
 
     private float timeBetweenSeries = 1.5f;
     private float timeBetweenBullets = 0.1f;
     private int bulletsInSeries = 5;
+    private float timestamp;
+
+    bool isActive = false;
+    CameraScroll cameraScript;
 
     void Start()
     {
-        InvokeRepeating("Shoot", 0f, timeBetweenSeries);
+        cameraScript = Camera.main.GetComponent<CameraScroll>();
+        timestamp = Time.time + timeBetweenSeries;
     }
+    private void Update()
+    {
+        if (!CameraScroll.IsSpriteOffScreen(gameObject, 2.0f))
+        {
+            isActive = true;
+        }
+        else
+        {
+            isActive = false;
+        }
 
+        if (!isActive) return; // out of screen
+        
+        if (timestamp <= Time.time)
+        {
+            Shoot();
+            timestamp += timeBetweenSeries;
+        }
+        Move();
+    }
 
     void Shoot()
     {
         StartCoroutine(ShootCorutine());
+        
     }
 
     IEnumerator ShootCorutine()
     {
-        //var dir = new Vector2(transform.position.x - 10, transform.position.y) - (Vector2)transform.position;
         int i = 0;
         while (i < bulletsInSeries)
         {
@@ -38,5 +62,10 @@ public class ShooterController : MonoBehaviour
             yield return new WaitForSeconds(timeBetweenBullets);
             i++;
         }
+    }
+
+    void Move()
+    {
+        transform.Translate(moveSpeed * Time.deltaTime * -Vector2.right);
     }
 }
