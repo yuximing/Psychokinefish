@@ -7,6 +7,8 @@ public class FreezerScript : ClickableGameObject
     [SerializeField]
     GameObject explosionPrefab;
 
+    LineRenderer lineRenderer;
+
     private Vector2 direction = Vector2.zero;
     private float launchSpeed = 10.0f;
     private bool hasLaunched = false;
@@ -15,7 +17,8 @@ public class FreezerScript : ClickableGameObject
     // Start is called before the first frame update
     void Start()
     {
-        
+        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.enabled = false;
     }
 
     protected override void OnOffScreen()
@@ -26,6 +29,7 @@ public class FreezerScript : ClickableGameObject
     public override void ToggleActive()
     {
         isActive = true;
+        lineRenderer.enabled = true;
     }
 
     protected override void OnActive()
@@ -42,10 +46,18 @@ public class FreezerScript : ClickableGameObject
                 direction = Vector2.right;
             }
             hasLaunched = true;
+            lineRenderer.enabled = false;
         }
 
-        if (!hasLaunched) Debug.DrawLine(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        if (hasLaunched) transform.position += (Vector3)direction * launchSpeed * Time.deltaTime;
+        if (!hasLaunched)
+        {
+            lineRenderer.SetPosition(0, (Vector2)transform.position);
+            lineRenderer.SetPosition(1, (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        }
+        if (hasLaunched)
+        {
+            transform.position += (Vector3)direction * launchSpeed * Time.deltaTime;
+        }
     }
 
     protected override void OnInactive()
