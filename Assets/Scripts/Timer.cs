@@ -6,6 +6,7 @@ public class Timer
 {
     float timeLeft;
     float coolDownTime;
+    public bool Paused { get; set; }
 
     /*
      * Timer constructor
@@ -14,17 +15,26 @@ public class Timer
      * To have the timer initially count down from coolDownTime, 
      * use the second constructor.
      */
-    public Timer(float coolDownTime) : this(coolDownTime, true)
+    public Timer(float coolDownTime) : this(coolDownTime, 0.0f)
     {
         
     }
 
-    public Timer(float coolDownTime, bool initiallyReady)
+    public Timer(float coolDownTime, bool initiallyReady) : this(coolDownTime, initiallyReady ? 0.0f : coolDownTime)
+    {
+
+    }
+
+    public Timer (float coolDownTime, float initialTimeLeft)
     {
         Debug.Assert(coolDownTime >= 0.0f);
+        Debug.Assert(initialTimeLeft >= 0.0f);
+        Paused = false;
         this.coolDownTime = coolDownTime;
-        timeLeft = initiallyReady ? 0.0f : coolDownTime;
+        timeLeft = initialTimeLeft;
     }
+
+    
 
     /*
      * Steps the timer forward
@@ -33,6 +43,7 @@ public class Timer
      */
     public void Tick()
     {
+        if (Paused) return;
         timeLeft = Mathf.Max(0.0f, timeLeft - Time.deltaTime);
     }
 
