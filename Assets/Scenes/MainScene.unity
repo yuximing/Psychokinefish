@@ -1993,14 +1993,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freezer
       objectReference: {fileID: 0}
-    - target: {fileID: 2815826998788534447, guid: 97dcc5e32289543c7b8652510f374981, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8929062921239292195, guid: 97dcc5e32289543c7b8652510f374981, type: 3}
-      propertyPath: explosionPrefab
-      value: 
-      objectReference: {fileID: 8930567715816309760, guid: 26ecf3ba0111a43c5bd9adab3bcc779b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97dcc5e32289543c7b8652510f374981, type: 3}
 --- !u!1001 &3665509711102673839
@@ -2010,26 +2002,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2885417695779981364, guid: c1424f6a609dd9b4caa8273a511cab7b, type: 3}
-      propertyPath: m_SpriteTilingProperty.drawMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2885417695779981364, guid: c1424f6a609dd9b4caa8273a511cab7b, type: 3}
-      propertyPath: m_SpriteTilingProperty.newSize.x
-      value: 1.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 2885417695779981364, guid: c1424f6a609dd9b4caa8273a511cab7b, type: 3}
-      propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 3.27
-      objectReference: {fileID: 0}
-    - target: {fileID: 2885417695779981364, guid: c1424f6a609dd9b4caa8273a511cab7b, type: 3}
-      propertyPath: m_SpriteTilingProperty.adaptiveTiling
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2885417695779981364, guid: c1424f6a609dd9b4caa8273a511cab7b, type: 3}
-      propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
-      value: 0.339
-      objectReference: {fileID: 0}
     - target: {fileID: 2885417695779981365, guid: c1424f6a609dd9b4caa8273a511cab7b, type: 3}
       propertyPath: m_Name
       value: SpikyPlank
@@ -2037,14 +2009,6 @@ PrefabInstance:
     - target: {fileID: 2885417695779981366, guid: c1424f6a609dd9b4caa8273a511cab7b, type: 3}
       propertyPath: m_RootOrder
       value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 2885417695779981366, guid: c1424f6a609dd9b4caa8273a511cab7b, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 4.93
-      objectReference: {fileID: 0}
-    - target: {fileID: 2885417695779981366, guid: c1424f6a609dd9b4caa8273a511cab7b, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.36995152
       objectReference: {fileID: 0}
     - target: {fileID: 2885417695779981366, guid: c1424f6a609dd9b4caa8273a511cab7b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2086,26 +2050,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -39.8
       objectReference: {fileID: 0}
-    - target: {fileID: 2885417695779981367, guid: c1424f6a609dd9b4caa8273a511cab7b, type: 3}
-      propertyPath: m_Size.x
-      value: 1.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 2885417695779981367, guid: c1424f6a609dd9b4caa8273a511cab7b, type: 3}
-      propertyPath: m_Size.y
-      value: 3.27
-      objectReference: {fileID: 0}
-    - target: {fileID: 2885417695779981367, guid: c1424f6a609dd9b4caa8273a511cab7b, type: 3}
-      propertyPath: m_DrawMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2885417695779981367, guid: c1424f6a609dd9b4caa8273a511cab7b, type: 3}
-      propertyPath: m_SpriteTileMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2885417695779981367, guid: c1424f6a609dd9b4caa8273a511cab7b, type: 3}
-      propertyPath: m_AdaptiveModeThreshold
-      value: 0.339
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1424f6a609dd9b4caa8273a511cab7b, type: 3}
 --- !u!1001 &4919877591024558600
@@ -2115,18 +2059,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 710439190, guid: 8884e96514648c541b4793155b59b63c, type: 3}
-      propertyPath: m_Mass
-      value: 1000000
-      objectReference: {fileID: 0}
-    - target: {fileID: 710439190, guid: 8884e96514648c541b4793155b59b63c, type: 3}
-      propertyPath: m_Constraints
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 710439190, guid: 8884e96514648c541b4793155b59b63c, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4919877590584660761, guid: 8884e96514648c541b4793155b59b63c, type: 3}
       propertyPath: m_Name
       value: Blockade
@@ -2540,26 +2472,6 @@ PrefabInstance:
     - target: {fileID: 8913410842517109296, guid: aa33621c3269f164aabb7f12775992d4, type: 3}
       propertyPath: m_Name
       value: EnemyLaserTurret
-      objectReference: {fileID: 0}
-    - target: {fileID: 8913410842517109296, guid: aa33621c3269f164aabb7f12775992d4, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8913410842517109297, guid: aa33621c3269f164aabb7f12775992d4, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: e6103ccaa92a661479e61b151c02e6b9, type: 3}
-    - target: {fileID: 8913410842517109297, guid: aa33621c3269f164aabb7f12775992d4, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8913410842517109297, guid: aa33621c3269f164aabb7f12775992d4, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8913410842517109297, guid: aa33621c3269f164aabb7f12775992d4, type: 3}
-      propertyPath: m_Color.r
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa33621c3269f164aabb7f12775992d4, type: 3}

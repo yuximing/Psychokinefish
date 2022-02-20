@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2815826998788534446}
   - component: {fileID: 8929062921239292195}
   - component: {fileID: 1386620571343580000}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Freezer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28b969581ba3443239b09adb4bd33952, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 0}
+  explosionPrefab: {fileID: 8930567715816309760, guid: 26ecf3ba0111a43c5bd9adab3bcc779b, type: 3}
 --- !u!120 &1386620571343580000
 LineRenderer:
   m_ObjectHideFlags: 0
