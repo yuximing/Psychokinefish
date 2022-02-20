@@ -255,3 +255,4 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 58112
+  toggleActivateParticle: {fileID: 3106444593898562213, guid: 4efbfdb443fc05249ac0cadcdcfd2106, type: 3}

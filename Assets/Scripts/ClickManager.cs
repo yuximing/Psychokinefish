@@ -7,6 +7,9 @@ public class ClickManager : MonoBehaviour
     [SerializeField]
     private LayerMask layerMask;
 
+    [SerializeField]
+    private GameObject toggleActivateParticle;
+
     // Update is called once per frame
     void Update()
     {
@@ -23,6 +26,7 @@ public class ClickManager : MonoBehaviour
                 if (clickableScript != null)
                 {
                     clickableScript.ToggleActive();
+                    Instantiate(toggleActivateParticle, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
                 }
             }
         }
