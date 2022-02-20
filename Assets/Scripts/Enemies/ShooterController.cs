@@ -12,10 +12,9 @@ public class ShooterController : MonoBehaviour
     private float bulletSpeed = 15.0f;
     private float moveSpeed = 1.5f;
 
-    private float timeBetweenSeries = 1.5f;
+    Timer betweenSeriesTimer;
     private float timeBetweenBullets = 0.1f;
     private int bulletsInSeries = 5;
-    private float timestamp;
 
     bool isActive = false;
     CameraScroll cameraScript;
@@ -23,10 +22,12 @@ public class ShooterController : MonoBehaviour
     void Start()
     {
         cameraScript = Camera.main.GetComponent<CameraScroll>();
-        timestamp = Time.time + timeBetweenSeries;
+        betweenSeriesTimer = new Timer(1.5f, 0.5f);
     }
     private void Update()
     {
+        
+
         if (!CameraScroll.IsSpriteOffScreen(gameObject, 2.0f))
         {
             isActive = true;
@@ -37,23 +38,25 @@ public class ShooterController : MonoBehaviour
         }
 
         if (!isActive) return; // out of screen
-        
-        if (timestamp <= Time.time)
+
+        betweenSeriesTimer.Tick();
+
+        if (betweenSeriesTimer.ResetTimer())
         {
             Shoot();
-            timestamp += timeBetweenSeries;
         }
+
         Move();
     }
 
     void Shoot()
     {
         StartCoroutine(ShootCorutine());
-        
     }
 
     IEnumerator ShootCorutine()
     {
+        betweenSeriesTimer.Paused = true;
         int i = 0;
         while (i < bulletsInSeries)
         {
@@ -62,6 +65,7 @@ public class ShooterController : MonoBehaviour
             yield return new WaitForSeconds(timeBetweenBullets);
             i++;
         }
+        betweenSeriesTimer.Paused = false;
     }
 
     void Move()
