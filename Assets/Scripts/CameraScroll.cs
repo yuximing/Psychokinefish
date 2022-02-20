@@ -87,7 +87,6 @@ public class CameraScroll : MonoBehaviour
 
     public static bool IsSpriteOffScreen(GameObject obj, float errorFactor = 1.0f)
     {
-        Debug.Assert(errorFactor >= 1.0f);
         var sprite = obj.GetComponent<Renderer>();
         Vector2 center = sprite.bounds.center;
         Vector2 extends = sprite.bounds.extents;
