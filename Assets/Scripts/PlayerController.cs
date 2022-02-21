@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
 
     bool isAlive = true;
 
-
     void Start()
     {
         transform.position = pathCreator.path.GetPoint(currentNodeIndex);
@@ -283,6 +282,33 @@ public class PlayerController : MonoBehaviour
             rbody.MovePosition(targetPos);
         }
 
+    }
+
+    IEnumerator LevelEndCoroutine()
+    {
+        yield return new WaitForSeconds(3.0f);
+        MoveToNextLevel();
+    }
+
+    private void MoveToNextLevel()
+    {
+        int levelIndex = SceneManager.GetActiveScene().buildIndex;
+        int totalIndex = SceneManager.sceneCountInBuildSettings;
+
+        if (++levelIndex >= totalIndex)
+        {
+            levelIndex = 0;
+        }
+        SceneManager.LoadScene(levelIndex);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Food"))
+        {
+            Destroy(collision.gameObject);
+
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
