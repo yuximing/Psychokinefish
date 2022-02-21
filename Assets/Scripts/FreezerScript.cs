@@ -10,7 +10,7 @@ public class FreezerScript : ClickableGameObject
     LineRenderer lineRenderer;
 
     private Vector2 direction = Vector2.zero;
-    private float launchSpeed = 10.0f;
+    private float launchSpeed = 50.0f;
     private bool hasLaunched = false;
 
 

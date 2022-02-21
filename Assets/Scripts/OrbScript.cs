@@ -12,7 +12,7 @@ public class OrbScript : ClickableGameObject
     LineRenderer lineRenderer;
 
     private Vector2 direction = Vector2.zero;
-    readonly private float launchSpeed = 10.0f;
+    readonly private float launchSpeed = 50.0f;
     private bool hasLaunched = false;
 
     private bool toRight = true;
