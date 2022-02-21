@@ -525,8 +525,11 @@ MonoBehaviour:
       - {x: 1.6785244, y: 0.5305997, z: 0}
       - {x: 1.7160115, y: 0.52871704, z: 0}
       - {x: 1.7570395, y: 0.5266565, z: 0}
-      - {x: 3.730809, y: 0.03607267, z: 0}
+      - {x: 5.6638117, y: -0.44945142, z: 0}
       - {x: 5.7045784, y: -0.45451117, z: 0}
+      - {x: 5.9231534, y: -0.48163944, z: 0}
+      - {x: 16.826307, y: -0.52614456, z: 0}
+      - {x: 27.729462, y: -0.5706497, z: 0}
       isClosed: 0
       space: 1
       controlMode: 3
@@ -536,6 +539,7 @@ MonoBehaviour:
         m_Center: {x: 0, y: 0, z: 0}
         m_Extent: {x: 2, y: 0.14433756, z: 0}
       perAnchorNormalsAngle:
+      - 0
       - 0
       - 0
       - 0
@@ -549,12 +553,12 @@ MonoBehaviour:
     showPerSegmentBounds: 0
     displayAnchorPoints: 1
     displayControlPoints: 1
-    bezierHandleScale: 1
+    bezierHandleScale: 2.86
     globalDisplaySettingsFoldout: 0
     keepConstantHandleSize: 0
     showNormalsInVertexMode: 0
     showBezierPathInVertexMode: 0
-    showDisplayOptions: 0
+    showDisplayOptions: 1
     showPathOptions: 1
     showVertexPathDisplayOptions: 0
     showVertexPathOptions: 1

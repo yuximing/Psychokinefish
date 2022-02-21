@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public PathCreator pathCreator;
     Animator animator;
 
+    bool hasBeatenLevel = false;
+
     public float speed;
     private int currentNodeIndex = 0;  // If player is between node n and n + 1, then currentNode = n
     Rigidbody2D rbody;
@@ -67,8 +69,10 @@ public class PlayerController : MonoBehaviour
             if (transform.position.x < Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x - hitbox.radius * hitbox.transform.localScale.x) moveDirection = 1;
         }
 
+        if (hasBeatenLevel) moveDirection = 1;
+
         var cameraScript = Camera.main.GetComponent<CameraScroll>();
-        if (CameraScroll.IsSpriteOffScreen(hitbox.gameObject)) Die();
+        if (CameraScroll.IsSpriteOffScreen(hitbox.gameObject) && !hasBeatenLevel) Die();
         if (IsDerailed()) Die();
 
         ColorBlink();
@@ -308,6 +312,7 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(collision.gameObject);
             StartCoroutine(LevelEndCoroutine());
+            hasBeatenLevel = true;
         }
     }
 
@@ -316,7 +321,8 @@ public class PlayerController : MonoBehaviour
         var obj = collision.collider.gameObject;
         if (obj.GetComponent<Camera>() != null)
         {
-            CollideWithEdge();
+            if(!hasBeatenLevel) CollideWithEdge();
+            GetComponentInChildren<CircleCollider2D>().isTrigger = true;
         }
     }
 
