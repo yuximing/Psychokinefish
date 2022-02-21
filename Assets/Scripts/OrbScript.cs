@@ -66,7 +66,7 @@ public class OrbScript : ClickableGameObject
 
     protected override void OnInactive()
     {
-        Move();
+        //Move();
     }
 
     void Move()
