@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8179557336243739177}
   - component: {fileID: 8179557336243739178}
   - component: {fileID: -2247177134576725990}
+  - component: {fileID: 1082011514177054392}
   m_Layer: 8
   m_Name: Orb
   m_TagString: Orb
@@ -74,8 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 1984891751
   m_SortingLayer: -7
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 0.9245283, g: 0.53374493, b: 0.039248828, a: 1}
+  m_Sprite: {fileID: 7323508180056646182, guid: 0ef19e8cdcf589c43b3bbdd02424b3f2, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -213,3 +214,22 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!95 &1082011514177054392
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8179557336243739179}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b5db59caf6f674149a72a36f7533bb39, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
