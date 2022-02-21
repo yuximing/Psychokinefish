@@ -322,7 +322,7 @@ public class PlayerController : MonoBehaviour
         if (obj.GetComponent<Camera>() != null)
         {
             if(!hasBeatenLevel) CollideWithEdge();
-            GetComponentInChildren<CircleCollider2D>().isTrigger = true;
+            else GetComponentInChildren<CircleCollider2D>().isTrigger = true;
         }
     }
 
