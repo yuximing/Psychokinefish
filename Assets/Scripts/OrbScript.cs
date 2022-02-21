@@ -90,7 +90,7 @@ public class OrbScript : ClickableGameObject
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (isActive && hasLaunched)
         {
@@ -98,4 +98,5 @@ public class OrbScript : ClickableGameObject
             Destroy(gameObject);
         }
     }
+
 }
