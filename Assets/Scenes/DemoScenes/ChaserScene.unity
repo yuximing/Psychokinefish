@@ -1292,10 +1292,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8179557336243739178, guid: 36f095b3bfed69d43a1e1b1dee0810d9, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8179557336243739179, guid: 36f095b3bfed69d43a1e1b1dee0810d9, type: 3}
       propertyPath: m_Name
       value: Orb (1)
