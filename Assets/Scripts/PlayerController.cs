@@ -307,7 +307,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Food"))
         {
             Destroy(collision.gameObject);
-
+            StartCoroutine(LevelEndCoroutine());
         }
     }
 
