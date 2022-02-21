@@ -9,7 +9,7 @@ public class ChaserController : MonoBehaviour, IDamageable
 
     Rigidbody2D rbody;
     private int hp = 5;
-    readonly float maxSpeed = 5.0f;
+    readonly float maxSpeed = 3.0f;
     readonly float seekForce = 10.0f;
     CameraScroll cameraScript;
 

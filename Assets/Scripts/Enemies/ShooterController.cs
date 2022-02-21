@@ -21,7 +21,7 @@ public class ShooterController : MonoBehaviour, IDamageable
     bool isActive = false;
     CameraScroll cameraScript;
 
-    private int hp = 10;
+    private int hp = 7; //was 10 if need to switch back
     Timer damagedTimer;
     SpriteRenderer spriteRenderer;
 
