@@ -12,6 +12,8 @@ public class ShooterController : MonoBehaviour, IDamageable
     private float bulletSpeed = 15.0f;
     private float moveSpeed = 1.5f;
 
+    public GameObject destroyParticle;
+
     Timer betweenSeriesTimer;
     private float timeBetweenBullets = 0.1f;
     private int bulletsInSeries = 5;
@@ -19,10 +21,19 @@ public class ShooterController : MonoBehaviour, IDamageable
     bool isActive = false;
     CameraScroll cameraScript;
 
+    private int hp = 10;
+    Timer damagedTimer;
+    SpriteRenderer spriteRenderer;
+
+
     void Start()
     {
         cameraScript = Camera.main.GetComponent<CameraScroll>();
         betweenSeriesTimer = new Timer(1.5f, 0.5f);
+        damagedTimer = new Timer(0.1f);
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+
     }
     private void Update()
     {
@@ -40,10 +51,20 @@ public class ShooterController : MonoBehaviour, IDamageable
         if (!isActive) return; // out of screen
 
         betweenSeriesTimer.Tick();
+        damagedTimer.Tick();
 
         if (betweenSeriesTimer.ResetTimer())
         {
             Shoot();
+        }
+
+        if (damagedTimer.IsReady())
+        {
+            spriteRenderer.material.SetColor("_Color", Color.black);
+        }
+        else
+        {
+            spriteRenderer.material.SetColor("_Color", Color.Lerp(Color.grey, Color.white, Random.value));
         }
 
         Move();
@@ -76,12 +97,12 @@ public class ShooterController : MonoBehaviour, IDamageable
     public void InflictDamage(int dmg)
     {
         if (!isActive) return;
-        //hp -= dmg;
-        //damagedTimer.ResetTimer();
-        //if (hp <= 0)
-        //{
-        //    Instantiate(destroyParticle, transform.position, Quaternion.identity);
-        //    Destroy(gameObject);
-        //}
+        hp -= dmg;
+        damagedTimer.ResetTimer();
+        if (hp <= 0)
+        {
+            Instantiate(destroyParticle, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
     }
 }
