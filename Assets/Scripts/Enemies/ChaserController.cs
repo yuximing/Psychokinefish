@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChaserController : MonoBehaviour
+public class ChaserController : MonoBehaviour, IDamageable
 {
     GameObject targetObject;
     public GameObject destroyParticle;
@@ -63,8 +63,6 @@ public class ChaserController : MonoBehaviour
         }
     }
 
-
-
     public void InflictDamage(int dmg)
     {
         if (!isActive) return;
@@ -76,6 +74,7 @@ public class ChaserController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 
     private void OnCollisionStay2D(Collision2D collision)
     {

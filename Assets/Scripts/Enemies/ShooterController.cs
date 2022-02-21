@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShooterController : MonoBehaviour
+public class ShooterController : MonoBehaviour, IDamageable
 {
     [SerializeField]
     GameObject projectile;
@@ -71,5 +71,17 @@ public class ShooterController : MonoBehaviour
     void Move()
     {
         transform.Translate(moveSpeed * Time.deltaTime * -Vector2.right);
+    }
+
+    public void InflictDamage(int dmg)
+    {
+        if (!isActive) return;
+        //hp -= dmg;
+        //damagedTimer.ResetTimer();
+        //if (hp <= 0)
+        //{
+        //    Instantiate(destroyParticle, transform.position, Quaternion.identity);
+        //    Destroy(gameObject);
+        //}
     }
 }
