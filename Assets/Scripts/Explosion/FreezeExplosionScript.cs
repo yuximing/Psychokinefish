@@ -11,7 +11,7 @@ public class FreezeExplosionScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        explosionTimer = new Timer(1.5f, false);
+        explosionTimer = new Timer(3.0f, false);
     }
 
     // Update is called once per frame
