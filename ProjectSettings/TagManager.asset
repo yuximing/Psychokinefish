@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Turret
   - Orb
+  - Food
   layers:
   - Default
   - TransparentFX

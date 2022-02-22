@@ -40,7 +40,7 @@ public class CameraScroll : MonoBehaviour
         Camera.main.gameObject.transform.position = cameraPos;
         // Camera.main.orthographicSize -= Time.deltaTime * 0.1f;
         UpdateCollisionBorders();
-        CheckEndOfLevel();
+        //CheckEndOfLevel();
     }
 
     void CheckEndOfLevel()

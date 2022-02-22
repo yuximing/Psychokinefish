@@ -32,7 +32,8 @@ public class OrbScript : ClickableGameObject
 
     protected override void OnOffScreen()
     {
-        Destroy(gameObject);
+
+        if(isActive) Destroy(gameObject);
     }
 
     // MAKE SURE TO OVERRIDE USING 'override'!!!
@@ -66,7 +67,7 @@ public class OrbScript : ClickableGameObject
 
     protected override void OnInactive()
     {
-        Move();
+        //Move();
     }
 
     void Move()
@@ -90,7 +91,7 @@ public class OrbScript : ClickableGameObject
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (isActive && hasLaunched)
         {
@@ -98,4 +99,5 @@ public class OrbScript : ClickableGameObject
             Destroy(gameObject);
         }
     }
+
 }
