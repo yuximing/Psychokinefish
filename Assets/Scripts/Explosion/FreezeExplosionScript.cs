@@ -28,7 +28,7 @@ public class FreezeExplosionScript : MonoBehaviour
 
     Collider2D[] Freeze()
     {
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 1.0f, layerMask);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, transform.localScale.x/2.0f, layerMask);
 
         foreach (var hitCollider in hitColliders)
         {
