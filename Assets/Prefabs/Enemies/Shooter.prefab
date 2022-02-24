@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 1886172169950212741}
   - component: {fileID: 8533205137309440393}
   - component: {fileID: 1821676340}
+  - component: {fileID: 1812648369}
   m_Layer: 10
   m_Name: Shooter
   m_TagString: Untagged
@@ -146,3 +147,24 @@ MonoBehaviour:
   projectile: {fileID: 7032955060818513254, guid: d9bded6577fbc45368ed8c2403f2a314, type: 3}
   firePoint: {fileID: 1884838128}
   destroyParticle: {fileID: 5020106930815282865, guid: f8e1618ecc6ce734a8791f7081803e32, type: 3}
+--- !u!50 &1812648369
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6716445300504171034}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
