@@ -7,6 +7,7 @@ public class CameraScroll : MonoBehaviour
 {
     [SerializeField]
     float speed = 1.0f;
+    private static bool isMoving = true;
 
     readonly BoxCollider2D[] borders = new BoxCollider2D[4];
     public PathCreator cameraRail;
@@ -31,7 +32,7 @@ public class CameraScroll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        railDistance += speed * Time.deltaTime;
+        if(isMoving) railDistance += speed * Time.deltaTime;
 
         var cameraPos = Camera.main.gameObject.transform.position;
         //cameraPos += speed * Time.deltaTime * (Vector3) direction;
@@ -83,6 +84,10 @@ public class CameraScroll : MonoBehaviour
 
         borders[3].offset = new Vector2(bottomLeft.x - 1, 0);
         borders[3].size = new Vector2(2, height);
+    }
+    public static void ToggleMove()
+    {
+        isMoving = !isMoving;
     }
 
     public static bool IsSpriteOffScreen(GameObject obj, float errorFactor = 1.0f)

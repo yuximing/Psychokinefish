@@ -290,7 +290,12 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator LevelEndCoroutine()
     {
-        yield return new WaitForSeconds(3.0f);
+        CameraScroll.ToggleMove();
+        while (!CameraScroll.IsSpriteOffScreen(gameObject))
+        {
+            yield return new WaitForSeconds(1.0f);
+        }
+        CameraScroll.ToggleMove();
         MoveToNextLevel();
     }
 
