@@ -31,7 +31,11 @@ public class RailBlockScript : ClickableGameObject
         else OpenLoopUpdate();
     }
 
-    
+    protected override void OnOffScreen()
+    {
+        
+    }
+
 
     protected override void OnInactive()
     {
