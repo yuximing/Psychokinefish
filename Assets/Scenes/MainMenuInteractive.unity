@@ -504,7 +504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec827d641490bcd4cbe29f1384912e71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0
   cameraRail: {fileID: 1037010793}
 --- !u!114 &712578744
 MonoBehaviour:
