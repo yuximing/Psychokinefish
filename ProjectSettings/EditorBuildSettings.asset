@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/PlayTestScenes/EnemyScene.unity
     guid: a853e9d0c8c7b4f1e95303f439c62457
   - enabled: 1
+    path: Assets/Scenes/DemoScenes/ChaserScene.unity
+    guid: 90a1858e59ec37a40a5e4871308b3bf0
+  - enabled: 1
     path: Assets/Scenes/PlayTestScenes/PlankScene.unity
     guid: 26c13ddad81b0154ebe3b43ae41286f1
   - enabled: 1
