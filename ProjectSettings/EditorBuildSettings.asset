@@ -9,8 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenuInteractive.unity
     guid: 53777acbf65c53b4b8f7092ecd6dc36c
   - enabled: 1
-    path: Assets/Scenes/MainScene.unity
-    guid: 7cb3124712000d64cba834f8236703bf
+    path: Assets/Scenes/PlayTestScenes/PlankScene.unity
+    guid: 26c13ddad81b0154ebe3b43ae41286f1
+  - enabled: 1
+    path: Assets/Scenes/PlayTestScenes/SolidBlockIntroScene.unity
+    guid: 4f4b3636974a7b8469dbb65aaf7be9b1
   - enabled: 1
     path: Assets/Scenes/DemoScenes/FlashyEndScene.unity
     guid: 4e297785fbf8140c2809d19fa56b6d92
