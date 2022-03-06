@@ -127,6 +127,7 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
+        hitbox.isTrigger = true;
         animator.SetBool("Alive", false);
         if(isAlive) StartCoroutine(DieCoroutine());
         isAlive = false;
