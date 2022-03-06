@@ -592,11 +592,11 @@ MonoBehaviour:
       - {x: 48.876373, y: -9.997924, z: 0}
       - {x: 48.912674, y: -9.895632, z: 0}
       - {x: 48.934467, y: -9.834225, z: 0}
-      - {x: 43.80913, y: -5.8790064, z: 0}
+      - {x: 43.808964, y: -5.8789473, z: 0}
       - {x: 43.830734, y: -5.8175325, z: 0}
-      - {x: 43.90377, y: -5.6096883, z: 0}
-      - {x: 54.882416, y: -5.7091947, z: 0}
-      - {x: 65.86106, y: -5.808701, z: 0}
+      - {x: 43.975204, y: -5.4099684, z: 0}
+      - {x: 65.523285, y: -5.7231693, z: 0}
+      - {x: 87.07137, y: -6.0363708, z: 0}
       isClosed: 0
       space: 1
       controlMode: 3
@@ -1233,9 +1233,9 @@ MonoBehaviour:
     _bezierPath:
       points:
       - {x: -7.15878, y: -0.95022887, z: 0}
-      - {x: 4.4805927, y: -0.968821, z: 0}
-      - {x: 27.759338, y: -1.0060053, z: 0}
-      - {x: 39.398712, y: -1.0245974, z: 0}
+      - {x: 5.4411583, y: -0.94297, z: 0}
+      - {x: 30.641037, y: -0.9284522, z: 0}
+      - {x: 43.240974, y: -0.9211933, z: 0}
       isClosed: 0
       space: 1
       controlMode: 3
@@ -1249,7 +1249,7 @@ MonoBehaviour:
       - 0
       globalNormalsAngle: 0
       flipNormals: 0
-    vertexPathUpToDate: 1
+    vertexPathUpToDate: 0
     vertexPathMaxAngleError: 5
     vertexPathMinVertexSpacing: 1
     showTransformTool: 1
@@ -1268,7 +1268,7 @@ MonoBehaviour:
     showVertexPathOptions: 1
     showNormals: 0
     showNormalsHelpInfo: 0
-    tabIndex: 1
+    tabIndex: 0
   initialized: 1
 --- !u!4 &1590439096
 Transform:
@@ -1682,11 +1682,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7491045009225938465, guid: 41a670c41da0ef2439fad462057a5b57, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 61.7
+      value: 68.77
       objectReference: {fileID: 0}
     - target: {fileID: 7491045009225938465, guid: 41a670c41da0ef2439fad462057a5b57, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.2
+      value: -0.04
       objectReference: {fileID: 0}
     - target: {fileID: 7491045009225938465, guid: 41a670c41da0ef2439fad462057a5b57, type: 3}
       propertyPath: m_LocalPosition.z
