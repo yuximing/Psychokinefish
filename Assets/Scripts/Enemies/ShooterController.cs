@@ -18,6 +18,7 @@ public class ShooterController : MonoBehaviour, IDamageable
     private float timeBetweenBullets = 0.1f;
     private int bulletsInSeries = 5;
 
+    public bool spawnRight = true;
     bool isActive = false;
     CameraScroll cameraScript;
 
@@ -37,18 +38,19 @@ public class ShooterController : MonoBehaviour, IDamageable
     }
     private void Update()
     {
-        
 
-        if (!CameraScroll.IsSpriteOffScreen(gameObject, 2.0f))
+        if (!isActive)
         {
-            isActive = true;
-        }
-        else
-        {
-            isActive = false;
+            if (!CameraScroll.IsSpriteOffScreen(gameObject, 2.0f))
+            {
+                Spawn();
+            } else
+            {
+                return; // off screen
+            }
         }
 
-        if (!isActive) return; // out of screen
+        if (CameraScroll.IsSpriteOffScreen(gameObject, 2.0f)) isActive = false;
 
         betweenSeriesTimer.Tick();
         damagedTimer.Tick();
@@ -75,6 +77,22 @@ public class ShooterController : MonoBehaviour, IDamageable
         StartCoroutine(ShootCorutine());
     }
 
+    void Spawn()
+    {
+        isActive = true;
+        if (!spawnRight)
+        {
+            Rect screenRect = CameraScroll.GetScreenRect();
+            var sprite = GetComponent<Renderer>();
+            Vector2 center = sprite.bounds.center;
+            Vector2 extends = sprite.bounds.extents;
+
+            Vector3 oldPos = transform.position;
+            oldPos.x = screenRect.x - extends.x * 1.0f;
+            transform.position = oldPos;
+        }
+    }
+
     IEnumerator ShootCorutine()
     {
         betweenSeriesTimer.Paused = true;
@@ -82,7 +100,7 @@ public class ShooterController : MonoBehaviour, IDamageable
         while (i < bulletsInSeries)
         {
             GameObject projectileObj = Instantiate(projectile, firePoint.position, firePoint.rotation);
-            projectileObj.GetComponent<Rigidbody2D>().velocity = -transform.right * bulletSpeed;
+            projectileObj.GetComponent<Rigidbody2D>().velocity = (spawnRight ? -1 : 1) * transform.right * bulletSpeed;
             yield return new WaitForSeconds(timeBetweenBullets);
             i++;
         }
@@ -91,7 +109,7 @@ public class ShooterController : MonoBehaviour, IDamageable
 
     void Move()
     {
-        transform.Translate(moveSpeed * Time.deltaTime * -Vector2.right);
+        transform.Translate(moveSpeed * Time.deltaTime * (spawnRight ? -1 : 1) * Vector2.right);
     }
 
     public void InflictDamage(int dmg)
