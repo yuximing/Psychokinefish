@@ -34,7 +34,12 @@ public class ShooterController : MonoBehaviour, IDamageable
         damagedTimer = new Timer(0.1f);
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-
+        if (!spawnRight)
+        {
+            Vector3 tempPos = firePoint.localPosition;
+            tempPos.x = -tempPos.x;
+            firePoint.localPosition = tempPos;
+        }
     }
     private void Update()
     {
