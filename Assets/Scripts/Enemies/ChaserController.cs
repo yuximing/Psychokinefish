@@ -16,6 +16,7 @@ public class ChaserController : MonoBehaviour, IDamageable
     Timer damagedTimer;
     SpriteRenderer spriteRenderer;
 
+    public bool spawnRight = true;
     bool isActive = false;
     // Start is called before the first frame update
     void Start()
@@ -28,9 +29,11 @@ public class ChaserController : MonoBehaviour, IDamageable
     }
     private void Update()
     {
-
-        if (!CameraScroll.IsSpriteOffScreen(gameObject, 2.0f)) isActive = true;
-        if (!isActive) return;
+        if (!isActive)
+        {
+            if (!CameraScroll.IsSpriteOffScreen(gameObject, 2.0f)) Spawn();
+            else return;
+        }
         damagedTimer.Tick();
         if (damagedTimer.IsReady())
         {
@@ -38,6 +41,24 @@ public class ChaserController : MonoBehaviour, IDamageable
         } else
         {
             spriteRenderer.material.SetColor("_Color", Color.Lerp(Color.blue,Color.grey,Random.value));
+        }
+    }
+
+    private void Spawn()
+    {
+        isActive = true;
+        if(!spawnRight)
+        {
+            Rect screenRect = CameraScroll.GetScreenRect();
+            var sprite = GetComponent<Renderer>();
+            Vector2 center = sprite.bounds.center;
+            Vector2 extends = sprite.bounds.extents;
+
+            Vector3 oldPos = transform.position;
+            oldPos.x = screenRect.x - extends.x * 2.0f;
+            transform.position = oldPos;
+
+            isActive = true;
         }
     }
     private void FixedUpdate()
