@@ -9,8 +9,8 @@ public class ChaserController : MonoBehaviour, IDamageable
 
     Rigidbody2D rbody;
     private int hp = 5;
-    readonly float maxSpeed = 3.0f;
-    readonly float seekForce = 9.0f;
+    readonly float maxSpeed = 4.0f;
+    readonly float seekForce = 8.0f;
     CameraScroll cameraScript;
 
     Timer damagedTimer;
@@ -72,11 +72,12 @@ public class ChaserController : MonoBehaviour, IDamageable
         Vector2 position = transform.position;
         Vector2 forceDir = target - position;
         forceDir.Normalize();
-        forceDir *= seekForce;
-        rbody.AddForce(forceDir);
+        forceDir *= seekForce * Time.fixedDeltaTime;
+        if (rbody.bodyType != RigidbodyType2D.Static) rbody.velocity += forceDir;
+
         if(rbody.velocity.sqrMagnitude > maxSpeed * maxSpeed)
         {
-            rbody.velocity = rbody.velocity.normalized * (maxSpeed + (rbody.velocity.magnitude - maxSpeed) * 0.015f / Time.fixedDeltaTime) ;
+            rbody.velocity = rbody.velocity.normalized * maxSpeed;
         }
         if (rbody.bodyType != RigidbodyType2D.Static)
         {
