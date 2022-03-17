@@ -92,6 +92,15 @@ public class CameraScroll : MonoBehaviour
         isMoving = !isMoving;
     }
 
+    public static Rect GetScreenRect()
+    {
+
+        Vector2 bottomLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, Camera.main.transform.position.z));
+        Vector2 topRight = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+
+        return new Rect(bottomLeft, topRight - bottomLeft);
+    }
+
     public static bool IsSpriteOffScreen(GameObject obj, float errorFactor = 1.0f)
     {
         var sprite = obj.GetComponent<Renderer>();
