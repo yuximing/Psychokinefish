@@ -35,7 +35,7 @@ public class FreezerScript : ClickableGameObject
 
     protected override void OnActive()
     {
-        if (Input.GetMouseButtonUp(1) && !hasLaunched)
+        if (Input.GetMouseButtonDown(0) && !hasLaunched)
         {
             Vector2 toMouseVec = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             if (toMouseVec.sqrMagnitude > 0.0f)
