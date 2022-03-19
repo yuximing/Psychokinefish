@@ -10,6 +10,15 @@ public class ClickManager : MonoBehaviour
     [SerializeField]
     private GameObject toggleActivateParticle;
 
+    public AudioClip activateSfx;
+    public AudioClip deactivateSfx;
+    AudioManager audioManager;
+
+    private void Start()
+    {
+        audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -25,6 +34,8 @@ public class ClickManager : MonoBehaviour
                 var clickableScript = hit.collider.gameObject.GetComponent<ClickableGameObject>();
                 if (clickableScript != null)
                 {
+                    if (clickableScript.IsActive) audioManager.PlayOneShot(deactivateSfx);
+                    else audioManager.PlayOneShot(activateSfx);
                     clickableScript.ToggleActive();
                     Instantiate(toggleActivateParticle, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
                 }
