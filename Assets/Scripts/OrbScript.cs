@@ -17,10 +17,15 @@ public class OrbScript : ClickableGameObject
 
     private bool toRight = true;
 
+    public AudioClip orbExplodeSfx;
+    static AudioManager audioManager;
+
     private void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.enabled = false;
+
+        audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -96,6 +101,7 @@ public class OrbScript : ClickableGameObject
         if (isActive && hasLaunched)
         {
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            audioManager.PlayOneShot(orbExplodeSfx);
             Destroy(gameObject);
         }
     }

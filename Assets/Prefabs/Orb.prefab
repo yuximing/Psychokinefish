@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   explosionPrefab: {fileID: 3984174649791934129, guid: bc87706e94dddfd43b078da69e471c17, type: 3}
+  orbExplodeSfx: {fileID: 8300000, guid: 386b5188d777c494aa8bb1008b0f78d5, type: 3}
 --- !u!58 &8179557336243739178
 CircleCollider2D:
   m_ObjectHideFlags: 0
