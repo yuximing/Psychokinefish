@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 8930567715816309760, guid: 26ecf3ba0111a43c5bd9adab3bcc779b, type: 3}
+  freezerExplosionSfx: {fileID: 8300000, guid: 07fca46a95cb8134da792fb9acc8bcf7, type: 3}
 --- !u!120 &1386620571343580000
 LineRenderer:
   m_ObjectHideFlags: 0
