@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class ClickableGameObject : MonoBehaviour
 {
     protected bool isActive = false;
-    public bool IsActive { get; }
+    public bool IsActive { get { return isActive; } }
 
     protected virtual void Update()
     {
