@@ -28,7 +28,7 @@ public class AudioManager : MonoBehaviour
         {
             audioLatencyMap[audioClip] = 0.0f;
         }
-        volume *= 0.075f / (audioLatencyMap[audioClip] + 0.075f);
+        volume *= (0.0075f) / (audioLatencyMap[audioClip] + 0.0075f);
         StartCoroutine(PlayOneShotCoroutine(audioClip, volume, audioLatencyMap[audioClip]));
         audioLatencyMap[audioClip] += 0.015f;
     }
