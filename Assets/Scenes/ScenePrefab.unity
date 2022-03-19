@@ -314,7 +314,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec827d641490bcd4cbe29f1384912e71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
   cameraRail: {fileID: 1086407940}
 --- !u!1 &1086407939
 GameObject:
@@ -348,19 +347,10 @@ MonoBehaviour:
   editorData:
     _bezierPath:
       points:
-      - {x: -4.719083, y: 0.70464534, z: 0}
-      - {x: -0.2860961, y: -0.53653836, z: 0}
-      - {x: 4.1468906, y: -1.777722, z: 0}
-      - {x: 4.239375, y: -1.7685752, z: 0}
-      - {x: 4.3051877, y: -1.7620662, z: 0}
-      - {x: 10.079937, y: 1.2084993, z: 0}
-      - {x: 10.146025, y: 1.2060368, z: 0}
-      - {x: 10.188466, y: 1.2044554, z: 0}
-      - {x: 13.74721, y: -0.965338, z: 0}
-      - {x: 13.786586, y: -0.9812526, z: 0}
-      - {x: 13.86083, y: -1.0112596, z: 0}
-      - {x: 17.724796, y: -1.8980153, z: 0}
-      - {x: 21.588764, y: -2.784771, z: 0}
+      - {x: -3.1560583, y: -2.261743, z: 0}
+      - {x: 2.9569426, y: -2.2718976, z: 0}
+      - {x: 15.182943, y: -2.2922065, z: 0}
+      - {x: 21.295944, y: -2.302361, z: 0}
       isClosed: 0
       space: 1
       controlMode: 3
@@ -372,12 +362,9 @@ MonoBehaviour:
       perAnchorNormalsAngle:
       - 0
       - 0
-      - 0
-      - 0
-      - 0
       globalNormalsAngle: 0
       flipNormals: 0
-    vertexPathUpToDate: 1
+    vertexPathUpToDate: 0
     vertexPathMaxAngleError: 5
     vertexPathMinVertexSpacing: 0.01
     showTransformTool: 1
@@ -761,3 +748,60 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1968784887
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4047379957932407568, guid: 5068dbbfdb4764c48af22cbf30dc7117, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4047379957932407573, guid: 5068dbbfdb4764c48af22cbf30dc7117, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4047379957932407573, guid: 5068dbbfdb4764c48af22cbf30dc7117, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 26.827972
+      objectReference: {fileID: 0}
+    - target: {fileID: 4047379957932407573, guid: 5068dbbfdb4764c48af22cbf30dc7117, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.2381754
+      objectReference: {fileID: 0}
+    - target: {fileID: 4047379957932407573, guid: 5068dbbfdb4764c48af22cbf30dc7117, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -179.38469
+      objectReference: {fileID: 0}
+    - target: {fileID: 4047379957932407573, guid: 5068dbbfdb4764c48af22cbf30dc7117, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4047379957932407573, guid: 5068dbbfdb4764c48af22cbf30dc7117, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4047379957932407573, guid: 5068dbbfdb4764c48af22cbf30dc7117, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4047379957932407573, guid: 5068dbbfdb4764c48af22cbf30dc7117, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4047379957932407573, guid: 5068dbbfdb4764c48af22cbf30dc7117, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4047379957932407573, guid: 5068dbbfdb4764c48af22cbf30dc7117, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4047379957932407573, guid: 5068dbbfdb4764c48af22cbf30dc7117, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5068dbbfdb4764c48af22cbf30dc7117, type: 3}
