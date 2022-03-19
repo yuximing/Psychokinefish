@@ -26,6 +26,9 @@ public class ShooterController : MonoBehaviour, IDamageable
     Timer damagedTimer;
     SpriteRenderer spriteRenderer;
 
+    public AudioClip enemyDieSfx;
+    AudioManager audioManager;
+
 
     void Start()
     {
@@ -33,6 +36,7 @@ public class ShooterController : MonoBehaviour, IDamageable
         betweenSeriesTimer = new Timer(1.5f, 0.5f);
         damagedTimer = new Timer(0.1f);
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
 
         if (!spawnRight)
         {
@@ -125,6 +129,7 @@ public class ShooterController : MonoBehaviour, IDamageable
         if (hp <= 0)
         {
             Instantiate(destroyParticle, transform.position, Quaternion.identity);
+            audioManager.PlayOneShot(enemyDieSfx);
             Destroy(gameObject);
         }
     }
