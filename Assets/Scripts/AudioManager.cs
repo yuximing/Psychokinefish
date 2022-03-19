@@ -30,8 +30,7 @@ public class AudioManager : MonoBehaviour
         }
         volume *= 0.075f / (audioLatencyMap[audioClip] + 0.075f);
         StartCoroutine(PlayOneShotCoroutine(audioClip, volume, audioLatencyMap[audioClip]));
-        audioLatencyMap[audioClip] += Random.Range(0.01f, 0.02f);
-        Debug.Log(audioLatencyMap[audioClip]);
+        audioLatencyMap[audioClip] += 0.015f;
     }
 
     IEnumerator PlayOneShotCoroutine(AudioClip audioClip, float volume, float delay)
