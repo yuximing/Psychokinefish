@@ -98,6 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyParticle: {fileID: 5020106930815282865, guid: f8e1618ecc6ce734a8791f7081803e32, type: 3}
+  enemyDieSfx: {fileID: 8300000, guid: 6ddebab2c286d974ca8be6be657bffef, type: 3}
+  spawnRight: 1
 --- !u!50 &5780967157834259871
 Rigidbody2D:
   serializedVersion: 4

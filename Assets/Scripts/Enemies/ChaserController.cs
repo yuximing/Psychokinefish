@@ -16,6 +16,10 @@ public class ChaserController : MonoBehaviour, IDamageable
     Timer damagedTimer;
     SpriteRenderer spriteRenderer;
 
+    AudioManager audioManager;
+
+    public AudioClip enemyDieSfx;
+
     public bool spawnRight = true;
     bool isActive = false;
     // Start is called before the first frame update
@@ -26,6 +30,7 @@ public class ChaserController : MonoBehaviour, IDamageable
         spriteRenderer = GetComponent<SpriteRenderer>();
         damagedTimer = new Timer(0.1f);
         cameraScript = Camera.main.GetComponent<CameraScroll>();
+        audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
     }
     private void Update()
     {
@@ -93,6 +98,7 @@ public class ChaserController : MonoBehaviour, IDamageable
         if (hp <= 0)
         {
             Instantiate(destroyParticle, transform.position, Quaternion.identity);
+            audioManager.PlayOneShot(enemyDieSfx);
             Destroy(gameObject);
         }
     }
