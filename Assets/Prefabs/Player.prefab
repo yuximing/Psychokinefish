@@ -256,3 +256,5 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 58112
   toggleActivateParticle: {fileID: 3106444593898562213, guid: 4efbfdb443fc05249ac0cadcdcfd2106, type: 3}
+  activateSfx: {fileID: 8300000, guid: 3188a505ee4175a45ba928711e942214, type: 3}
+  deactivateSfx: {fileID: 8300000, guid: 30adaaa8794cc4d4eaeb91fe0de0bfe9, type: 3}

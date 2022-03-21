@@ -13,12 +13,15 @@ public class FreezerScript : ClickableGameObject
     private float launchSpeed = 50.0f;
     private bool hasLaunched = false;
 
+    public AudioClip freezerExplosionSfx;
+    AudioManager audioManager;
 
     // Start is called before the first frame update
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.enabled = false;
+        audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
     }
 
     protected override void OnOffScreen()
@@ -71,6 +74,7 @@ public class FreezerScript : ClickableGameObject
         if (isActive && hasLaunched)
         {
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            audioManager.PlayOneShot(freezerExplosionSfx);
             Destroy(gameObject);
         }
     }

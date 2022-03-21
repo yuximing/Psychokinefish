@@ -147,6 +147,8 @@ MonoBehaviour:
   projectile: {fileID: 7032955060818513254, guid: d9bded6577fbc45368ed8c2403f2a314, type: 3}
   firePoint: {fileID: 1884838128}
   destroyParticle: {fileID: 5020106930815282865, guid: f8e1618ecc6ce734a8791f7081803e32, type: 3}
+  spawnRight: 1
+  enemyDieSfx: {fileID: 8300000, guid: 6ddebab2c286d974ca8be6be657bffef, type: 3}
 --- !u!50 &1812648369
 Rigidbody2D:
   serializedVersion: 4
