@@ -34,13 +34,12 @@ public class ClickManager : MonoBehaviour
                     var clickableScript = hit.collider.gameObject.GetComponent<ClickableGameObject>();
                     if (clickableScript != null)
                     {
+                        if (clickableScript.IsActive) audioManager.PlayOneShot(deactivateSfx);
+                        else audioManager.PlayOneShot(activateSfx);
                         clickableScript.ToggleActive();
                         Instantiate(toggleActivateParticle, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
                     }
-                    if (clickableScript.IsActive) audioManager.PlayOneShot(deactivateSfx);
-                    else audioManager.PlayOneShot(activateSfx);
-                    clickableScript.ToggleActive();
-                    Instantiate(toggleActivateParticle, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
+                    
                 }
             }
             
