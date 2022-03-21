@@ -6,11 +6,6 @@ public class TurretScript : ClickableGameObject
 {
     [SerializeField]
     GameObject projectile;
-    [SerializeField]
-    GameObject bubble;
-
-    Animator anim;
-
     Timer projectileTimer;
     static AudioSource audioSource;
     // Start is called before the first frame update
@@ -19,7 +14,6 @@ public class TurretScript : ClickableGameObject
         
         projectileTimer = new Timer(0.1f);
         audioSource = GetComponent<AudioSource>();
-        anim = bubble.GetComponent<Animator>();
     }
 
     // Update is called once per frame
