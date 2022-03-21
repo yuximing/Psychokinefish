@@ -1283,10 +1283,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4652056875684910150, guid: 2a4632ecabefa7c4e9cd9b7c77e06784, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.6199999
-      objectReference: {fileID: 0}
     - target: {fileID: 4652056875923456114, guid: 2a4632ecabefa7c4e9cd9b7c77e06784, type: 3}
       propertyPath: m_Name
       value: RailBlockSet
