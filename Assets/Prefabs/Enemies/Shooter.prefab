@@ -41,9 +41,10 @@ GameObject:
   - component: {fileID: 8222297842223562591}
   - component: {fileID: 1886172169950212741}
   - component: {fileID: 1821676340}
-  - component: {fileID: 1812648369}
   - component: {fileID: 176570392}
+  - component: {fileID: 1812648369}
   - component: {fileID: 176570397}
+  - component: {fileID: 2703598226939629979}
   m_Layer: 10
   m_Name: Shooter
   m_TagString: Untagged
@@ -134,6 +135,22 @@ MonoBehaviour:
   destroyParticle: {fileID: 5020106930815282865, guid: f8e1618ecc6ce734a8791f7081803e32, type: 3}
   spawnRight: 1
   enemyDieSfx: {fileID: 8300000, guid: 6ddebab2c286d974ca8be6be657bffef, type: 3}
+--- !u!70 &176570392
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6716445300504171034}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -5.075833e-10, y: -0.004257918}
+  m_Size: {x: 2.5240731, y: 1.646694}
+  m_Direction: 1
 --- !u!50 &1812648369
 Rigidbody2D:
   serializedVersion: 4
@@ -155,22 +172,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 6
---- !u!70 &176570392
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6716445300504171034}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -5.075833e-10, y: -0.004257918}
-  m_Size: {x: 2.5240731, y: 1.646694}
-  m_Direction: 1
 --- !u!95 &176570397
 Animator:
   serializedVersion: 3
@@ -190,3 +191,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &2703598226939629979
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6716445300504171034}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -5.075833e-10, y: -0.004257918}
+  m_Size: {x: 2.5240731, y: 1.646694}
+  m_Direction: 1
