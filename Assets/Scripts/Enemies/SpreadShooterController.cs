@@ -28,9 +28,11 @@ public class SpreadShooterController : MonoBehaviour, IDamageable
     public AudioClip enemyDieSfx;
     AudioManager audioManager;
 
+    private Animator anim;
 
     void Start()
     {
+        anim = GetComponent<Animator>();
         cameraScript = Camera.main.GetComponent<CameraScroll>();
         betweenSeriesTimer = new Timer(2.0f, 1.0f);
         damagedTimer = new Timer(0.1f);
@@ -43,6 +45,8 @@ public class SpreadShooterController : MonoBehaviour, IDamageable
     }
     private void Update()
     {
+        if (!spawnRight) anim.SetBool("to_right", true);
+        else anim.SetBool("to_right", false);
 
         if (!isActive)
         {

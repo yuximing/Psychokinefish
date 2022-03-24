@@ -30,9 +30,11 @@ public class ShooterController : MonoBehaviour, IDamageable
     public AudioClip enemyDieSfx;
     AudioManager audioManager;
 
+    private Animator anim;
 
     void Start()
     {
+        anim = GetComponent<Animator>();
         cameraScript = Camera.main.GetComponent<CameraScroll>();
         betweenSeriesTimer = new Timer(1.5f, 0.5f);
         damagedTimer = new Timer(0.1f);
@@ -45,12 +47,14 @@ public class ShooterController : MonoBehaviour, IDamageable
     }
     private void Update()
     {
-
+        if (!spawnRight) anim.SetBool("to_right", true);
+        else anim.SetBool("to_right", false);
         if (!isActive)
         {
             if (!CameraScroll.IsSpriteOffScreen(gameObject, 2.0f))
             {
                 Spawn();
+                
             } else
             {
                 return; // off screen
