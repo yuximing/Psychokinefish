@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        hitbox.transform.Rotate(Vector3.forward, 90.0f * Time.deltaTime);
         if (!isAlive) return;
         invincibleTimer.Tick();
         colorBlinkTimer.Tick();
