@@ -717,6 +717,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1821676340, guid: 3b4a504085a604f2da78f3a8ddc10774, type: 3}
+      propertyPath: spawnRight
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6716445300504171034, guid: 3b4a504085a604f2da78f3a8ddc10774, type: 3}
       propertyPath: m_Name
       value: Shooter
