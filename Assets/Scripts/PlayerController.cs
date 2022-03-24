@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
 
     int hp = 2;
     Timer invincibleTimer;
+    Timer playerHurtTimer;
     SpriteRenderer spriteRenderer;
 
     CircleCollider2D hitbox;
@@ -38,17 +39,24 @@ public class PlayerController : MonoBehaviour
 
         invincibleTimer = new Timer(2.0f);
         colorBlinkTimer = new Timer(1.5f, false);
+        playerHurtTimer = new Timer(0.3f);
     }
 
     // Update is called once per frame
     void Update()
     {
+        hitbox.transform.Rotate(Vector3.forward, 90.0f * Time.deltaTime);
         if (!isAlive) return;
         invincibleTimer.Tick();
         colorBlinkTimer.Tick();
+        playerHurtTimer.Tick();
 
-        #if UNITY_EDITOR
-            if (Input.GetKeyDown(KeyCode.Space)) hp += 1;
+        animator.SetBool("JustHit", !playerHurtTimer.IsReady());
+        
+
+
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.Space)) hp += 1;
         #endif
 
         if (invincibleTimer.IsReady())
@@ -97,8 +105,8 @@ public class PlayerController : MonoBehaviour
     {
         if (!isAlive) return;
 
-        if (moveDirection == -1) MoveLeft(speed);
-        else if (moveDirection == 1) MoveRight(speed);
+        if (moveDirection == -1 && playerHurtTimer.IsReady()) MoveLeft(speed);
+        else if (moveDirection == 1 && playerHurtTimer.IsReady()) MoveRight(speed);
         else ClampDown();
 
         animator.SetInteger("Move X", moveDirection);
@@ -108,7 +116,12 @@ public class PlayerController : MonoBehaviour
     {
         if(healthChange < 0)
         {
-            if (invincibleTimer.ResetTimer()) hp += healthChange;
+            if (invincibleTimer.ResetTimer())
+            {
+                hp += healthChange;
+                playerHurtTimer.ResetTimerUnsafe();
+            }
+
         } else
         {
             hp += healthChange;
@@ -122,8 +135,7 @@ public class PlayerController : MonoBehaviour
             spriteRenderer.material.SetColor("_Color", new Color(0.5f, 0.0f, 0.0f));
         }
 
-        if(hp <= 0) Die();
-
+        if (hp <= 0) Die();
     }
 
     public void Die()
