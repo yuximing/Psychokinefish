@@ -64,7 +64,7 @@ public class SpreadShooterController : MonoBehaviour, IDamageable
 
         if (betweenSeriesTimer.ResetTimer())
         {
-            Shoot(transform.position, (spawnRight ? -1 : 1) * Vector2.right);
+            Shoot(transform.position + firePoint.localPosition, (spawnRight ? -1 : 1) * Vector2.right);
         }
 
         if (damagedTimer.IsReady())
