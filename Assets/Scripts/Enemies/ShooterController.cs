@@ -8,6 +8,7 @@ public class ShooterController : MonoBehaviour, IDamageable
     GameObject projectile;
     [SerializeField]
     Transform firePoint;
+    Vector3 firePointOffset;
 
     private float bulletSpeed = 15.0f;
     private float moveSpeed = 1.5f;
@@ -38,12 +39,9 @@ public class ShooterController : MonoBehaviour, IDamageable
         spriteRenderer = GetComponent<SpriteRenderer>();
         audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
 
-        if (!spawnRight)
-        {
-            Vector3 tempPos = firePoint.localPosition;
-            tempPos.x = -tempPos.x;
-            firePoint.localPosition = tempPos;
-        }
+        Vector3 tempPos = firePoint.localPosition;
+        if(!spawnRight) tempPos.x = -tempPos.x;
+        firePointOffset = tempPos;
     }
     private void Update()
     {
@@ -108,7 +106,7 @@ public class ShooterController : MonoBehaviour, IDamageable
         int i = 0;
         while (i < bulletsInSeries)
         {
-            GameObject projectileObj = Instantiate(projectile, firePoint.position, firePoint.rotation);
+            GameObject projectileObj = Instantiate(projectile, transform.position + firePointOffset, firePoint.rotation);
             projectileObj.GetComponent<Rigidbody2D>().velocity = (spawnRight ? -1 : 1) * transform.right * bulletSpeed;
             yield return new WaitForSeconds(timeBetweenBullets);
             i++;

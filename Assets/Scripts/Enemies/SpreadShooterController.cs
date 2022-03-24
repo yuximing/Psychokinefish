@@ -8,6 +8,7 @@ public class SpreadShooterController : MonoBehaviour, IDamageable
     GameObject projectile;
     [SerializeField]
     Transform firePoint;
+    Vector3 firePointOffset;
 
     private float bulletSpeed = 8.0f;
     private float moveSpeed = 1.5f;
@@ -36,12 +37,9 @@ public class SpreadShooterController : MonoBehaviour, IDamageable
         spriteRenderer = GetComponent<SpriteRenderer>();
         audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
 
-        if (!spawnRight)
-        {
-            Vector3 tempPos = firePoint.localPosition;
-            tempPos.x = -tempPos.x;
-            firePoint.localPosition = tempPos;
-        }
+        Vector3 tempPos = firePoint.localPosition;
+        if (!spawnRight) tempPos.x = -tempPos.x;
+        firePointOffset = tempPos;
     }
     private void Update()
     {
@@ -64,7 +62,7 @@ public class SpreadShooterController : MonoBehaviour, IDamageable
 
         if (betweenSeriesTimer.ResetTimer())
         {
-            Shoot(transform.position + firePoint.localPosition, (spawnRight ? -1 : 1) * Vector2.right);
+            Shoot(transform.position + firePointOffset, (spawnRight ? -1 : 1) * Vector2.right);
         }
 
         if (damagedTimer.IsReady())
