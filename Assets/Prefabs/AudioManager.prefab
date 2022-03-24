@@ -44,6 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 823e3e3fb6d01da48aec78daf547f79a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicList:
+  - {fileID: 8300000, guid: 07215d098db07d24fb699897a149ae13, type: 3}
+  - {fileID: 8300000, guid: 54fbeb6eee929bf47874f1014fcd0d5a, type: 3}
+  - {fileID: 8300000, guid: 1d682d0653c47aa419e47273a89f7a3b, type: 3}
+  - {fileID: 8300000, guid: 71a37c55d7d70d545a3600233811a841, type: 3}
+  - {fileID: 8300000, guid: c46881515e9254849973f6224db694ce, type: 3}
 --- !u!82 &4047379957932407571
 AudioSource:
   m_ObjectHideFlags: 0
@@ -55,10 +61,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

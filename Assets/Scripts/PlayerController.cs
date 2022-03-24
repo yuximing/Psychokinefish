@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     Timer colorBlinkTimer;
 
     bool isAlive = true;
+    public bool IsAlive { get { return isAlive; } }
 
     void Start()
     {
@@ -135,8 +136,10 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator DieCoroutine()
     {
+        CameraScroll.ToggleMove();
         GetComponent<ClickManager>().enabled = false;
         yield return new WaitForSeconds(5.0f);
+        CameraScroll.ToggleMove();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

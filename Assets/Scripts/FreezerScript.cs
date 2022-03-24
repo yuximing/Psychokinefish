@@ -32,8 +32,8 @@ public class FreezerScript : ClickableGameObject
 
     public override void ToggleActive()
     {
-        isActive = true;
-        lineRenderer.enabled = true;
+        isActive = hasLaunched || !isActive ? true : false;
+        lineRenderer.enabled = isActive ? true : false;
     }
 
     protected override void OnActive()

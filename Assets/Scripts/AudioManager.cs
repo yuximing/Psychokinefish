@@ -2,24 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
     AudioSource audioSource;
     Dictionary<AudioClip, float> audioLatencyMap;
+
+    PlayerController playerScript;
+
+    public List<AudioClip> musicList = new List<AudioClip>();
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
         audioLatencyMap = new Dictionary<AudioClip, float>();
+        playerScript = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        audioSource.clip = musicList[SceneManager.GetActiveScene().buildIndex % musicList.Count];
     }
 
     private void Update()
     {
-        foreach(var key in audioLatencyMap.Keys.ToList())
+        if (!audioSource.isPlaying)
+        {
+            if(SceneManager.GetActiveScene().buildIndex != 0) // not title screen
+            audioSource.Play();
+        }
+
+        if (!playerScript.IsAlive)
+        {
+            KillMusic();
+        }
+
+        foreach (var key in audioLatencyMap.Keys.ToList())
         {
             audioLatencyMap[key] -= Time.deltaTime;
             if (audioLatencyMap[key] < 0.0f) audioLatencyMap[key] = 0.0f;
         }
+    }
+
+    private void KillMusic()
+    {
+        audioSource.pitch -= Time.deltaTime;
+        if (audioSource.pitch < 0.0f) audioSource.pitch = 0.0f;
     }
 
     public void PlayOneShot(AudioClip audioClip, float volume = 1.0f)
