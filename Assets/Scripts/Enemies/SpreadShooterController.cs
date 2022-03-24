@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShooterController : MonoBehaviour, IDamageable
+public class SpreadShooterController : MonoBehaviour, IDamageable
 {
     [SerializeField]
     GameObject projectile;
@@ -10,14 +10,12 @@ public class ShooterController : MonoBehaviour, IDamageable
     Transform firePoint;
     Vector3 firePointOffset;
 
-    private float bulletSpeed = 15.0f;
+    private float bulletSpeed = 8.0f;
     private float moveSpeed = 1.5f;
 
     public GameObject destroyParticle;
 
     Timer betweenSeriesTimer;
-    private float timeBetweenBullets = 0.1f;
-    private int bulletsInSeries = 5;
 
     public bool spawnRight = true;
     bool isActive = false;
@@ -34,13 +32,13 @@ public class ShooterController : MonoBehaviour, IDamageable
     void Start()
     {
         cameraScript = Camera.main.GetComponent<CameraScroll>();
-        betweenSeriesTimer = new Timer(1.5f, 0.5f);
+        betweenSeriesTimer = new Timer(2.0f, 1.0f);
         damagedTimer = new Timer(0.1f);
         spriteRenderer = GetComponent<SpriteRenderer>();
         audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
 
         Vector3 tempPos = firePoint.localPosition;
-        if(!spawnRight) tempPos.x = -tempPos.x;
+        if (!spawnRight) tempPos.x = -tempPos.x;
         firePointOffset = tempPos;
     }
     private void Update()
@@ -64,7 +62,7 @@ public class ShooterController : MonoBehaviour, IDamageable
 
         if (betweenSeriesTimer.ResetTimer())
         {
-            Shoot();
+            Shoot(transform.position + firePointOffset, (spawnRight ? -1 : 1) * Vector2.right);
         }
 
         if (damagedTimer.IsReady())
@@ -79,9 +77,17 @@ public class ShooterController : MonoBehaviour, IDamageable
         Move();
     }
 
-    void Shoot()
+    void Shoot(Vector2 position, Vector2 direction)
     {
-        StartCoroutine(ShootCorutine());
+        if (direction.sqrMagnitude != 0.0f) direction.Normalize();
+        else direction = Vector2.right;
+
+        for (int i = 0; i < 3; ++i)
+        {
+
+            GameObject projectileObj = Instantiate(projectile, position, Quaternion.AngleAxis(Vector2.SignedAngle(Vector2.right, direction) + 20 * (i - 1), Vector3.forward));
+            projectileObj.GetComponent<Rigidbody2D>().velocity = Quaternion.AngleAxis(20 * (i - 1), Vector3.forward) * direction * bulletSpeed;
+        }
     }
 
     void Spawn()
@@ -98,20 +104,6 @@ public class ShooterController : MonoBehaviour, IDamageable
             oldPos.x = screenRect.x - extends.x * 1.0f;
             transform.position = oldPos;
         }
-    }
-
-    IEnumerator ShootCorutine()
-    {
-        betweenSeriesTimer.Paused = true;
-        int i = 0;
-        while (i < bulletsInSeries)
-        {
-            GameObject projectileObj = Instantiate(projectile, transform.position + firePointOffset, firePoint.rotation);
-            projectileObj.GetComponent<Rigidbody2D>().velocity = (spawnRight ? -1 : 1) * transform.right * bulletSpeed;
-            yield return new WaitForSeconds(timeBetweenBullets);
-            i++;
-        }
-        betweenSeriesTimer.Paused = false;
     }
 
     void Move()
