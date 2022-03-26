@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour
     CircleCollider2D hitbox;
     Timer colorBlinkTimer;
 
+    AudioManager audioManager;
+    public AudioClip foodEatSfx;
+
     bool isAlive = true;
     public bool IsAlive { get { return isAlive; } }
 
@@ -36,6 +39,7 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         hitbox = GetComponentInChildren<CircleCollider2D>();
         animator = GetComponent<Animator>();
+        audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
 
         invincibleTimer = new Timer(2.0f);
         colorBlinkTimer = new Timer(1.5f, false);
@@ -335,6 +339,7 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
             StartCoroutine(LevelEndCoroutine());
             hasBeatenLevel = true;
+            audioManager.PlayOneShot(foodEatSfx);
         }
     }
 
