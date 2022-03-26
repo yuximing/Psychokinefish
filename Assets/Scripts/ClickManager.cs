@@ -43,6 +43,7 @@ public class ClickManager : MonoBehaviour
                         audioManager.PlayOneShot(activateSfx);
                         clickableScript.ToggleActive();
                         Instantiate(toggleActivateParticle, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
+                        break;
                     }
                     else
                     {
