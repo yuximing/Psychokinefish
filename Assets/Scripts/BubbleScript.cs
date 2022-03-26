@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BubbleScript : ClickableGameObject
 {
+    [SerializeField]
+    GameObject obj;
+
     private Animator anim;
 
     void Start()
@@ -14,6 +17,12 @@ public class BubbleScript : ClickableGameObject
     public override void ToggleActive()
     {
         base.ToggleActive();
+        var clickableScript = obj.GetComponent<ClickableGameObject>();
+        if (clickableScript != null)
+        {
+            clickableScript.ToggleActive();
+            clickableScript.IsPopped = true;
+        }
     }
 
     protected override void OnActive()
