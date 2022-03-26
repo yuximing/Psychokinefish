@@ -16,22 +16,25 @@ public class BubbleScript : ClickableGameObject
 
     public override void ToggleActive()
     {
-        base.ToggleActive();
+        isActive = true;
         var clickableScript = obj.GetComponent<ClickableGameObject>();
         if (clickableScript != null)
         {
             clickableScript.ToggleActive();
             clickableScript.IsPopped = true;
         }
+        GetComponent<CircleCollider2D>().enabled = false;
     }
 
     protected override void OnActive()
     {
+
         anim.SetBool("isPopped", true);
     }
 
     protected override void OnInactive()
     {
         anim.SetBool("isPopped", false);
+        transform.position = obj.transform.position;
     }
 }
