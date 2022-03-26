@@ -21,6 +21,7 @@ public class BubbleScript : ClickableGameObject
         if (clickableScript != null)
         {
             clickableScript.ToggleActive();
+            clickableScript.IsPopped = true;
         }
     }
 

@@ -6,6 +6,8 @@ public abstract class ClickableGameObject : MonoBehaviour
 {
     protected bool isActive = false;
     public bool IsActive { get { return isActive; } }
+    protected bool isPopped = false;
+    public bool IsPopped { get { return isPopped; } set { isPopped = value; } }
 
     protected virtual void Update()
     {
