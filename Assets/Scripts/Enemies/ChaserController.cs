@@ -103,6 +103,11 @@ public class ChaserController : MonoBehaviour, IDamageable
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        var playerScript = collision.gameObject.GetComponent<PlayerController>();
+        playerScript?.ChangeHealth(-1); // Basically says: if playerScript not null, change health
+    }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
