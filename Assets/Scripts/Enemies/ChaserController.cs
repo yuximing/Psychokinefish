@@ -8,9 +8,9 @@ public class ChaserController : MonoBehaviour, IDamageable
     public GameObject destroyParticle;
 
     Rigidbody2D rbody;
-    private int hp = 5;
-    readonly float maxSpeed = 4.0f;
-    readonly float seekForce = 8.0f;
+    private int hp = 2;
+    readonly float maxSpeed = 4.5f;
+    readonly float seekForce = 7.0f;
     CameraScroll cameraScript;
 
     Timer damagedTimer;
