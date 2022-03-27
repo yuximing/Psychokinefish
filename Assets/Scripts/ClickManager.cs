@@ -37,6 +37,7 @@ public class ClickManager : MonoBehaviour
                 if (hit.collider != null)
                 {
                     var clickableScript = hit.collider.gameObject.GetComponent<ClickableGameObject>();
+                    if (clickableScript is null) continue;
                     if (spriteRenderer != null && spriteRenderer.sortingLayerName == "Poppables")
                     {
                         // pop the bubble
