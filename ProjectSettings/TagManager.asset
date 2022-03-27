@@ -8,6 +8,9 @@ TagManager:
   - Orb
   - Food
   - AudioManager
+  - Shooter
+  - Chaser
+  - EnemyProjectile
   layers:
   - Default
   - TransparentFX

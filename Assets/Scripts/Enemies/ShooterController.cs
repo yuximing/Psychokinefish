@@ -32,9 +32,12 @@ public class ShooterController : MonoBehaviour, IDamageable
 
     private Animator anim;
 
+    Rigidbody2D rb;
+
     void Start()
     {
         anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
         cameraScript = Camera.main.GetComponent<CameraScroll>();
         betweenSeriesTimer = new Timer(1.5f, 0.5f);
         damagedTimer = new Timer(0.1f);
@@ -63,13 +66,13 @@ public class ShooterController : MonoBehaviour, IDamageable
 
         if (CameraScroll.IsSpriteOffScreen(gameObject, 2.0f)) isActive = false;
 
-        betweenSeriesTimer.Tick();
+        //betweenSeriesTimer.Tick();
         damagedTimer.Tick();
 
-        if (betweenSeriesTimer.ResetTimer())
-        {
-            Shoot();
-        }
+        //if (betweenSeriesTimer.ResetTimer())
+        //{
+        //    Shoot();
+        //}
 
         if (damagedTimer.IsReady())
         {
@@ -80,7 +83,17 @@ public class ShooterController : MonoBehaviour, IDamageable
             spriteRenderer.material.SetColor("_Color", Color.Lerp(Color.grey, Color.white, Random.value));
         }
 
-        Move();
+        //Move();
+    }
+    private void FixedUpdate()
+    {
+        if (isActive) Move();
+        betweenSeriesTimer.Tick();
+
+        if (betweenSeriesTimer.ResetTimer())
+        {
+            Shoot();
+        }
     }
 
     void Shoot()
@@ -120,7 +133,9 @@ public class ShooterController : MonoBehaviour, IDamageable
 
     void Move()
     {
-        transform.Translate(moveSpeed * Time.deltaTime * (spawnRight ? -1 : 1) * Vector2.right);
+        //transform.Translate(moveSpeed * Time.deltaTime * (spawnRight ? -1 : 1) * Vector2.right);
+
+        rb.MovePosition(rb.position + moveSpeed * Time.deltaTime * (spawnRight ? -1 : 1) * Vector2.right);
     }
 
     public void InflictDamage(int dmg)

@@ -35,7 +35,8 @@ public class FreezeExplosionScript : MonoBehaviour
             var rb = hitCollider.gameObject.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                rb.bodyType = RigidbodyType2D.Static;
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                
             }
         }
         return hitColliders;
@@ -49,7 +50,17 @@ public class FreezeExplosionScript : MonoBehaviour
             var rb = hitCollider.gameObject.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                rb.bodyType = RigidbodyType2D.Dynamic;
+                //rb.bodyType = RigidbodyType2D.Dynamic;
+                rb.constraints = RigidbodyConstraints2D.None;
+                if (hitCollider.tag == "EnemyProjectile")
+                {
+                    rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+                    Destroy(hitCollider.gameObject);
+                }
+                if (hitCollider.tag == "Shooter")
+                {
+                    rb.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
+                }
             }
         }
     }
