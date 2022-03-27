@@ -106,4 +106,14 @@ public class OrbScript : ClickableGameObject
         }
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (isActive && hasLaunched)
+        {
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            audioManager.PlayOneShot(orbExplodeSfx);
+            Destroy(gameObject);
+        }
+    }
+
 }

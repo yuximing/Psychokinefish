@@ -68,7 +68,6 @@ public class FreezerScript : ClickableGameObject
     {
         
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (isActive && hasLaunched)
@@ -78,4 +77,14 @@ public class FreezerScript : ClickableGameObject
             Destroy(gameObject);
         }
     }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (isActive && hasLaunched)
+        {
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            audioManager.PlayOneShot(freezerExplosionSfx);
+            Destroy(gameObject);
+        }
+    }
+
 }
