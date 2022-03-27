@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
 
 
 #if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.Space)) hp += 1;
+        if (Input.GetKeyDown(KeyCode.Space)) ChangeHealth(1);
         #endif
 
         if (invincibleTimer.IsReady())
@@ -120,6 +120,7 @@ public class PlayerController : MonoBehaviour
     {
         if(healthChange < 0)
         {
+            if (hasBeatenLevel) return;
             if (invincibleTimer.ResetTimer())
             {
                 hp += healthChange;
@@ -344,6 +345,7 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
             StartCoroutine(LevelEndCoroutine());
             hasBeatenLevel = true;
+            if (hp == 1) ChangeHealth(1);
             audioManager.PlayOneShot(foodEatSfx);
         }
     }
