@@ -22,6 +22,9 @@ public class ChaserController : MonoBehaviour, IDamageable
 
     public bool spawnRight = true;
     bool isActive = false;
+
+    public bool IsFrozen { get; set; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -90,10 +93,22 @@ public class ChaserController : MonoBehaviour, IDamageable
         }
     }
 
+    public void Freeze()
+    {
+        IsFrozen = true;
+        //anim.enabled = false;
+    }
+
+    public void UnFreeze()
+    {
+        IsFrozen = false;
+        //anim.enabled = true;
+    }
+
     public void InflictDamage(int dmg)
     {
         if (!isActive) return;
-        hp -= dmg;
+        hp -= (IsFrozen ? 3 : 1) * dmg;
         damagedTimer.ResetTimer();
         if (hp <= 0)
         {
@@ -106,12 +121,12 @@ public class ChaserController : MonoBehaviour, IDamageable
     private void OnCollisionEnter2D(Collision2D collision)
     {
         var playerScript = collision.gameObject.GetComponent<PlayerController>();
-        playerScript?.ChangeHealth(-1); // Basically says: if playerScript not null, change health
+        if (!IsFrozen) playerScript?.ChangeHealth(-1); // Basically says: if playerScript not null, change health
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
         var playerScript = collision.gameObject.GetComponent<PlayerController>();
-        playerScript?.ChangeHealth(-1); // Basically says: if playerScript not null, change health
+        if(!IsFrozen) playerScript?.ChangeHealth(-1); // Basically says: if playerScript not null, change health
     }
 }
