@@ -30,9 +30,14 @@ public class SpreadShooterController : MonoBehaviour, IDamageable
 
     private Animator anim;
 
+    Rigidbody2D rb;
+
+    public bool IsFrozen { get; set; }
+
     void Start()
     {
         anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
         cameraScript = Camera.main.GetComponent<CameraScroll>();
         betweenSeriesTimer = new Timer(2.0f, 1.0f);
         damagedTimer = new Timer(0.1f);
@@ -61,13 +66,13 @@ public class SpreadShooterController : MonoBehaviour, IDamageable
 
         if (CameraScroll.IsSpriteOffScreen(gameObject, 2.0f)) isActive = false;
 
-        betweenSeriesTimer.Tick();
+        if(!IsFrozen) betweenSeriesTimer.Tick();
         damagedTimer.Tick();
 
-        if (betweenSeriesTimer.ResetTimer())
-        {
-            Shoot(transform.position + firePointOffset, (spawnRight ? -1 : 1) * Vector2.right);
-        }
+        //if (betweenSeriesTimer.ResetTimer())
+        //{
+        //    Shoot(transform.position + firePointOffset, (spawnRight ? -1 : 1) * Vector2.right);
+        //}
 
         if (damagedTimer.IsReady())
         {
@@ -78,9 +83,30 @@ public class SpreadShooterController : MonoBehaviour, IDamageable
             spriteRenderer.material.SetColor("_Color", Color.Lerp(Color.grey, Color.white, Random.value));
         }
 
-        Move();
+        //Move();
     }
 
+    public void Freeze()
+    {
+        IsFrozen = true;
+        anim.enabled = false;
+    }
+
+    public void UnFreeze()
+    {
+        IsFrozen = false;
+        anim.enabled = true;
+    }
+    private void FixedUpdate()
+    {
+        if (isActive) Move();
+
+        if (betweenSeriesTimer.ResetTimer())
+        {
+            Shoot(transform.position + firePointOffset, (spawnRight ? -1 : 1) * Vector2.right);
+        }
+        
+    }
     void Shoot(Vector2 position, Vector2 direction)
     {
         if (direction.sqrMagnitude != 0.0f) direction.Normalize();
@@ -112,7 +138,8 @@ public class SpreadShooterController : MonoBehaviour, IDamageable
 
     void Move()
     {
-        transform.Translate(moveSpeed * Time.deltaTime * (spawnRight ? -1 : 1) * Vector2.right);
+        //transform.Translate(moveSpeed * Time.deltaTime * (spawnRight ? -1 : 1) * Vector2.right);
+        rb.MovePosition(rb.position + moveSpeed * Time.deltaTime * (spawnRight ? -1 : 1) * Vector2.right);
     }
 
     public void InflictDamage(int dmg)

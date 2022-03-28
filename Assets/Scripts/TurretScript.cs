@@ -39,13 +39,14 @@ public class TurretScript : ClickableGameObject
 
         if (Input.GetMouseButton(0))
         {
-            if (projectileTimer.ResetTimer())FireProjectile(mousePosition- (Vector2) transform.position, 22.0f);
+            if (projectileTimer.ResetTimer())FireProjectile(mousePosition- (Vector2) transform.position, 30.0f);
         }
 
     }
 
     void FireProjectile(Vector2 direction, float speed) {
         audioSource.Play();
+        direction = Quaternion.AngleAxis(Random.Range(-3,3), Vector3.forward) * direction;
         var projectileObj = Instantiate(projectile, transform.position, Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, direction)));
         projectileObj.GetComponent<Rigidbody2D>().velocity = speed * direction.normalized;
     }

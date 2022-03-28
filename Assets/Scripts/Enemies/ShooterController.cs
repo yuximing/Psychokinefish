@@ -32,9 +32,14 @@ public class ShooterController : MonoBehaviour, IDamageable
 
     private Animator anim;
 
+    Rigidbody2D rb;
+
+    public bool IsFrozen { get; set; }
+
     void Start()
     {
         anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
         cameraScript = Camera.main.GetComponent<CameraScroll>();
         betweenSeriesTimer = new Timer(1.5f, 0.5f);
         damagedTimer = new Timer(0.1f);
@@ -63,13 +68,13 @@ public class ShooterController : MonoBehaviour, IDamageable
 
         if (CameraScroll.IsSpriteOffScreen(gameObject, 2.0f)) isActive = false;
 
-        betweenSeriesTimer.Tick();
+        if (!IsFrozen) betweenSeriesTimer.Tick();
         damagedTimer.Tick();
 
-        if (betweenSeriesTimer.ResetTimer())
-        {
-            Shoot();
-        }
+        //if (betweenSeriesTimer.ResetTimer())
+        //{
+        //    Shoot();
+        //}
 
         if (damagedTimer.IsReady())
         {
@@ -80,7 +85,29 @@ public class ShooterController : MonoBehaviour, IDamageable
             spriteRenderer.material.SetColor("_Color", Color.Lerp(Color.grey, Color.white, Random.value));
         }
 
-        Move();
+        //Move();
+    }
+    private void FixedUpdate()
+    {
+        if (isActive) Move();
+        
+
+        if (betweenSeriesTimer.ResetTimer())
+        {
+            Shoot();
+        }
+    }
+
+    public void Freeze()
+    {
+        IsFrozen = true;
+        anim.enabled = false;
+    }
+
+    public void UnFreeze()
+    {
+        IsFrozen = false;
+        anim.enabled = true;
     }
 
     void Shoot()
@@ -112,7 +139,10 @@ public class ShooterController : MonoBehaviour, IDamageable
         {
             GameObject projectileObj = Instantiate(projectile, transform.position + firePointOffset, firePoint.rotation);
             projectileObj.GetComponent<Rigidbody2D>().velocity = (spawnRight ? -1 : 1) * transform.right * bulletSpeed;
-            yield return new WaitForSeconds(timeBetweenBullets);
+            do
+            {
+                yield return new WaitForSeconds(timeBetweenBullets);
+            } while (IsFrozen); // bruh, actually used a do-while for once
             i++;
         }
         betweenSeriesTimer.Paused = false;
@@ -120,7 +150,9 @@ public class ShooterController : MonoBehaviour, IDamageable
 
     void Move()
     {
-        transform.Translate(moveSpeed * Time.deltaTime * (spawnRight ? -1 : 1) * Vector2.right);
+        //transform.Translate(moveSpeed * Time.deltaTime * (spawnRight ? -1 : 1) * Vector2.right);
+
+        rb.MovePosition(rb.position + moveSpeed * Time.deltaTime * (spawnRight ? -1 : 1) * Vector2.right);
     }
 
     public void InflictDamage(int dmg)

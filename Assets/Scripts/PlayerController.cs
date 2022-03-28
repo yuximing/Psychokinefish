@@ -22,8 +22,15 @@ public class PlayerController : MonoBehaviour
     Timer playerHurtTimer;
     SpriteRenderer spriteRenderer;
 
+
     CircleCollider2D hitbox;
     Timer colorBlinkTimer;
+
+    AudioManager audioManager;
+    public AudioClip foodEatSfx;
+
+    public AudioClip hurtSfx;
+
 
     bool isAlive = true;
     public bool IsAlive { get { return isAlive; } }
@@ -36,9 +43,10 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         hitbox = GetComponentInChildren<CircleCollider2D>();
         animator = GetComponent<Animator>();
+        audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
 
         invincibleTimer = new Timer(2.0f);
-        colorBlinkTimer = new Timer(1.5f, false);
+        colorBlinkTimer = new Timer(2.0f, false);
         playerHurtTimer = new Timer(0.3f);
     }
 
@@ -56,7 +64,7 @@ public class PlayerController : MonoBehaviour
 
 
 #if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.Space)) hp += 1;
+        if (Input.GetKeyDown(KeyCode.Space)) ChangeHealth(1);
         #endif
 
         if (invincibleTimer.IsReady())
@@ -91,8 +99,8 @@ public class PlayerController : MonoBehaviour
     {
         if(hp == 1)
         {
-            if (colorBlinkTimer.TimeRatio < 0.05f) spriteRenderer.material.SetColor("_ColorSub", new Color(0.0f, 1.0f, 1.0f, 1.0f));
-            else spriteRenderer.material.SetColor("_ColorSub", new Color(0.0f, 0.1f, 0.25f, 1.0f));
+            if (colorBlinkTimer.TimeRatio < 0.02f) spriteRenderer.material.SetColor("_ColorSub", new Color(0.0f, 0.5f, 0.5f, 1.0f));
+            else spriteRenderer.material.SetColor("_ColorSub", new Color(0.0f, 0.0f, 0.2f, 1.0f));
         } else
         {
              spriteRenderer.material.SetColor("_ColorSub", Color.black);
@@ -116,8 +124,10 @@ public class PlayerController : MonoBehaviour
     {
         if(healthChange < 0)
         {
+            if (hasBeatenLevel) return;
             if (invincibleTimer.ResetTimer())
             {
+                if(hp > 1) audioManager.PlayOneShot(hurtSfx);
                 hp += healthChange;
                 playerHurtTimer.ResetTimerUnsafe();
             }
@@ -132,7 +142,7 @@ public class PlayerController : MonoBehaviour
             spriteRenderer.material.SetColor("_Color", Color.black);
         } else if(hp == 1)
         {
-            spriteRenderer.material.SetColor("_Color", new Color(0.5f, 0.0f, 0.0f));
+            spriteRenderer.material.SetColor("_Color", new Color(0.5f, 0.05f, 0.0f));
         }
 
         if (hp <= 0) Die();
@@ -140,9 +150,14 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
+        var clickableObjects = FindObjectsOfType<ClickableGameObject>();
+        foreach (var obj in clickableObjects){
+            if (obj.IsActive) obj.ToggleActive();
+        }
         hitbox.isTrigger = true;
         animator.SetBool("Alive", false);
-        if(isAlive) StartCoroutine(DieCoroutine());
+        spriteRenderer.material.SetColor("_ColorSub", new Color(0.0f, 0.0f, 0.2f, 1.0f));
+        if (isAlive) StartCoroutine(DieCoroutine());
         isAlive = false;
     }
 
@@ -335,6 +350,8 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
             StartCoroutine(LevelEndCoroutine());
             hasBeatenLevel = true;
+            if (hp == 1) ChangeHealth(1);
+            audioManager.PlayOneShot(foodEatSfx);
         }
     }
 

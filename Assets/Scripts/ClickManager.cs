@@ -14,6 +14,8 @@ public class ClickManager : MonoBehaviour
     public AudioClip deactivateSfx;
     AudioManager audioManager;
 
+    private bool is_popped = false;
+
     private void Start()
     {
         audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
@@ -27,22 +29,36 @@ public class ClickManager : MonoBehaviour
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
             RaycastHit2D[] hits = Physics2D.RaycastAll(mousePos2D, Vector2.zero, 0, layerMask);
+
+            
             foreach (RaycastHit2D hit in hits)
             {
+                SpriteRenderer spriteRenderer = hit.transform.GetComponent<SpriteRenderer>();
                 if (hit.collider != null)
                 {
                     var clickableScript = hit.collider.gameObject.GetComponent<ClickableGameObject>();
-                    if (clickableScript != null)
+                    if (clickableScript is null) continue;
+                    if (spriteRenderer != null && spriteRenderer.sortingLayerName == "Poppables")
                     {
-                        if (clickableScript.IsActive) audioManager.PlayOneShot(deactivateSfx);
-                        else audioManager.PlayOneShot(activateSfx);
+                        // pop the bubble
+                        audioManager.PlayOneShot(activateSfx);
                         clickableScript.ToggleActive();
                         Instantiate(toggleActivateParticle, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
+                        break;
                     }
-                    
+                    else
+                    {
+                        // activate/deactive popped object
+                        if (clickableScript.IsPopped)
+                        {
+                            if (clickableScript.IsActive) audioManager.PlayOneShot(deactivateSfx);
+                            else audioManager.PlayOneShot(activateSfx);
+                            clickableScript.ToggleActive();
+                            Instantiate(toggleActivateParticle, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
+                        }
+                    }
                 }
             }
-            
         }
     }
 }
