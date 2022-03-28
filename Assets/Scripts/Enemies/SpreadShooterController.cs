@@ -32,6 +32,8 @@ public class SpreadShooterController : MonoBehaviour, IDamageable
 
     Rigidbody2D rb;
 
+    public bool IsFrozen { get; set; }
+
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -64,7 +66,7 @@ public class SpreadShooterController : MonoBehaviour, IDamageable
 
         if (CameraScroll.IsSpriteOffScreen(gameObject, 2.0f)) isActive = false;
 
-        //betweenSeriesTimer.Tick();
+        if(!IsFrozen) betweenSeriesTimer.Tick();
         damagedTimer.Tick();
 
         //if (betweenSeriesTimer.ResetTimer())
@@ -83,10 +85,21 @@ public class SpreadShooterController : MonoBehaviour, IDamageable
 
         //Move();
     }
+
+    public void Freeze()
+    {
+        IsFrozen = true;
+        anim.enabled = false;
+    }
+
+    public void UnFreeze()
+    {
+        IsFrozen = false;
+        anim.enabled = true;
+    }
     private void FixedUpdate()
     {
         if (isActive) Move();
-        betweenSeriesTimer.Tick();
 
         if (betweenSeriesTimer.ResetTimer())
         {

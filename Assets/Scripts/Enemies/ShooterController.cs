@@ -34,6 +34,8 @@ public class ShooterController : MonoBehaviour, IDamageable
 
     Rigidbody2D rb;
 
+    public bool IsFrozen { get; set; }
+
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -66,7 +68,7 @@ public class ShooterController : MonoBehaviour, IDamageable
 
         if (CameraScroll.IsSpriteOffScreen(gameObject, 2.0f)) isActive = false;
 
-        //betweenSeriesTimer.Tick();
+        if (!IsFrozen) betweenSeriesTimer.Tick();
         damagedTimer.Tick();
 
         //if (betweenSeriesTimer.ResetTimer())
@@ -88,12 +90,24 @@ public class ShooterController : MonoBehaviour, IDamageable
     private void FixedUpdate()
     {
         if (isActive) Move();
-        betweenSeriesTimer.Tick();
+        
 
         if (betweenSeriesTimer.ResetTimer())
         {
             Shoot();
         }
+    }
+
+    public void Freeze()
+    {
+        IsFrozen = true;
+        anim.enabled = false;
+    }
+
+    public void UnFreeze()
+    {
+        IsFrozen = false;
+        anim.enabled = true;
     }
 
     void Shoot()
@@ -125,7 +139,10 @@ public class ShooterController : MonoBehaviour, IDamageable
         {
             GameObject projectileObj = Instantiate(projectile, transform.position + firePointOffset, firePoint.rotation);
             projectileObj.GetComponent<Rigidbody2D>().velocity = (spawnRight ? -1 : 1) * transform.right * bulletSpeed;
-            yield return new WaitForSeconds(timeBetweenBullets);
+            do
+            {
+                yield return new WaitForSeconds(timeBetweenBullets);
+            } while (IsFrozen); // bruh, actually used a do-while for once
             i++;
         }
         betweenSeriesTimer.Paused = false;

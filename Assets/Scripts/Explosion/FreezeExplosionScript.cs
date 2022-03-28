@@ -36,7 +36,11 @@ public class FreezeExplosionScript : MonoBehaviour
             if (rb != null)
             {
                 rb.constraints = RigidbodyConstraints2D.FreezeAll;
-                
+                if (hitCollider.tag == "Shooter")
+                {
+                    hitCollider.gameObject.GetComponent<SpreadShooterController>()?.Freeze();
+                    hitCollider.gameObject.GetComponent<ShooterController>()?.Freeze();
+                }
             }
         }
         return hitColliders;
@@ -60,6 +64,8 @@ public class FreezeExplosionScript : MonoBehaviour
                 if (hitCollider.tag == "Shooter")
                 {
                     rb.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
+                    hitCollider.gameObject.GetComponent<SpreadShooterController>()?.UnFreeze();
+                    hitCollider.gameObject.GetComponent<ShooterController>()?.UnFreeze();
                 }
             }
         }
