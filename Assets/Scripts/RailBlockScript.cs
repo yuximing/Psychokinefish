@@ -39,6 +39,7 @@ public class RailBlockScript : ClickableGameObject
 
     protected override void OnInactive()
     {
+        transform.position = pathCreator.path.GetPointAtDistance(distance, endOfPathInstruction: EndOfPathInstruction.Stop);
     }
 
     void OpenLoopUpdate()
