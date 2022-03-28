@@ -11,7 +11,7 @@ public class FreezeExplosionScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        explosionTimer = new Timer(3.0f, false);
+        explosionTimer = new Timer(4.0f, false);
     }
 
     // Update is called once per frame
@@ -36,6 +36,8 @@ public class FreezeExplosionScript : MonoBehaviour
             if (rb != null)
             {
                 rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                hitCollider.gameObject.GetComponent<ChaserController>()?.Freeze();
+
                 if (hitCollider.tag == "Shooter")
                 {
                     hitCollider.gameObject.GetComponent<SpreadShooterController>()?.Freeze();
@@ -56,6 +58,8 @@ public class FreezeExplosionScript : MonoBehaviour
             {
                 //rb.bodyType = RigidbodyType2D.Dynamic;
                 rb.constraints = RigidbodyConstraints2D.None;
+                hitCollider.gameObject.GetComponent<ChaserController>()?.UnFreeze();
+
                 if (hitCollider.tag == "EnemyProjectile")
                 {
                     rb.constraints = RigidbodyConstraints2D.FreezeRotation;
