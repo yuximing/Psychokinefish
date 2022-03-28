@@ -4,24 +4,45 @@ using UnityEngine;
 
 public class BlockadeScript : MonoBehaviour, IDamageable
 {
-    int hp = 10;
-    const int BREAK_FRAMES = 4;
-    Animator animator;
+    int hp = 8;
+    Timer damagedTimer;
+    SpriteRenderer spriteRenderer;
+
+    public GameObject destroyParticle;
+
+    public AudioClip boxBreakSfx;
+    AudioManager audioManager;
+
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        damagedTimer = new Timer(0.1f);
+        audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
+
+
     }
 
     private void Update()
     {
-        const float d = 10 / (0.0f + BREAK_FRAMES);
-        animator.SetInteger("Ratio", (int) (hp / d));
+        damagedTimer.Tick();
+
+        if (damagedTimer.IsReady())
+        {
+            spriteRenderer.material.SetColor("_Color", Color.black);
+        }
+        else
+        {
+            spriteRenderer.material.SetColor("_Color", Color.Lerp(Color.black, Color.white, damagedTimer.TimeRatio));
+        }
     }
     public void InflictDamage(int dmg)
     {
         hp -= dmg;
+        damagedTimer.ResetTimer();
         if (hp <= 0)
         {
+            Instantiate(destroyParticle, transform.position, Quaternion.identity);
+            audioManager.PlayOneShot(boxBreakSfx);
             Destroy(gameObject);
         }
     }
