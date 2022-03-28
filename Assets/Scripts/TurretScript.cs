@@ -12,7 +12,7 @@ public class TurretScript : ClickableGameObject
     void Start()
     {
         
-        projectileTimer = new Timer(0.1f);
+        projectileTimer = new Timer(0.15f);
         audioSource = GetComponent<AudioSource>();
     }
 
