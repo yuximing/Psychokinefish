@@ -102,6 +102,7 @@ public class OrbScript : ClickableGameObject
         {
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             audioManager.PlayOneShot(orbExplodeSfx);
+            isActive = false;
             Destroy(gameObject);
         }
     }
@@ -112,6 +113,7 @@ public class OrbScript : ClickableGameObject
         {
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             audioManager.PlayOneShot(orbExplodeSfx);
+            isActive = false;
             Destroy(gameObject);
         }
     }

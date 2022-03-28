@@ -74,6 +74,7 @@ public class FreezerScript : ClickableGameObject
         {
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             audioManager.PlayOneShot(freezerExplosionSfx);
+            isActive = false;
             Destroy(gameObject);
         }
     }
@@ -83,6 +84,7 @@ public class FreezerScript : ClickableGameObject
         {
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             audioManager.PlayOneShot(freezerExplosionSfx);
+            isActive = false;
             Destroy(gameObject);
         }
     }
