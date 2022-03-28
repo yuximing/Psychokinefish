@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2231897742866720519}
   - component: {fileID: 5780967157834259871}
   - component: {fileID: 5780967157834259870}
+  - component: {fileID: 6775342587579912359}
   m_Layer: 10
   m_Name: Chaser
   m_TagString: Chaser
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 5780967157834259869}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7712916, y: 0.8915852, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 556737737
   m_SortingLayer: -5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c39805adbed6e4e4ea99dd90e0902252, type: 3}
+  m_Sprite: {fileID: -7822231473254092506, guid: c39805adbed6e4e4ea99dd90e0902252, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -134,6 +135,25 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.028065957, y: 0.0000000028943148}
-  m_Size: {x: 0.8347389, y: 0.2232544}
+  m_Offset: {x: -0.010217611, y: -0.017846033}
+  m_Size: {x: 0.7276556, y: 0.2232548}
   m_Direction: 1
+--- !u!95 &6775342587579912359
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5780967157834259869}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2371d6f29fa8bab43a0990651206cb54, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

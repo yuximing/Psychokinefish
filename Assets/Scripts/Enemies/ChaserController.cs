@@ -71,6 +71,8 @@ public class ChaserController : MonoBehaviour, IDamageable
         if (!isActive) return;
         Vector2 target = targetObject.transform.position;
         Seek(target);
+        spriteRenderer.flipY = Vector2.SignedAngle(Vector2.up, rbody.velocity) > 0.0f;
+        
     }
     void Seek(Vector2 target)
     {
