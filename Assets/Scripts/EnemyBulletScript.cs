@@ -18,7 +18,7 @@ public class EnemyBulletScript : MonoBehaviour
     {
         var playerScript = collision.gameObject.GetComponent<PlayerController>();
         playerScript?.ChangeHealth(-1);
-
+        collision.gameObject.GetComponent<BlockadeScript>()?.InflictDamage(1);
         Destroy(gameObject);
     }
 }
