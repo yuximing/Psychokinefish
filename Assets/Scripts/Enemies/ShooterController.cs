@@ -41,7 +41,7 @@ public class ShooterController : MonoBehaviour, IDamageable
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         cameraScript = Camera.main.GetComponent<CameraScroll>();
-        betweenSeriesTimer = new Timer(1.5f, 0.5f);
+        betweenSeriesTimer = new Timer(1.5f, 1.0f);
         damagedTimer = new Timer(0.1f);
         spriteRenderer = GetComponent<SpriteRenderer>();
         audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
