@@ -22,11 +22,15 @@ public class PlayerController : MonoBehaviour
     Timer playerHurtTimer;
     SpriteRenderer spriteRenderer;
 
+
     CircleCollider2D hitbox;
     Timer colorBlinkTimer;
 
     AudioManager audioManager;
     public AudioClip foodEatSfx;
+
+    public AudioClip hurtSfx;
+
 
     bool isAlive = true;
     public bool IsAlive { get { return isAlive; } }
@@ -123,6 +127,7 @@ public class PlayerController : MonoBehaviour
             if (hasBeatenLevel) return;
             if (invincibleTimer.ResetTimer())
             {
+                if(hp > 1) audioManager.PlayOneShot(hurtSfx);
                 hp += healthChange;
                 playerHurtTimer.ResetTimerUnsafe();
             }

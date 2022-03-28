@@ -201,6 +201,7 @@ MonoBehaviour:
   pathCreator: {fileID: 0}
   speed: 5
   foodEatSfx: {fileID: 8300000, guid: 1fb670a4fa4b7c64f9ee653cf756d2a9, type: 3}
+  hurtSfx: {fileID: 8300000, guid: 38457a986006b124c9debd9d5358a2a9, type: 3}
 --- !u!50 &1236424087
 Rigidbody2D:
   serializedVersion: 4
