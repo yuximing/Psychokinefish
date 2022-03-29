@@ -17,6 +17,7 @@ public class ChaserController : MonoBehaviour, IDamageable
     SpriteRenderer spriteRenderer;
 
     AudioManager audioManager;
+    Animator anim;
 
     public AudioClip enemyDieSfx;
 
@@ -34,6 +35,7 @@ public class ChaserController : MonoBehaviour, IDamageable
         damagedTimer = new Timer(0.1f);
         cameraScript = Camera.main.GetComponent<CameraScroll>();
         audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
+        anim = GetComponent<Animator>();
     }
     private void Update()
     {
@@ -98,13 +100,13 @@ public class ChaserController : MonoBehaviour, IDamageable
     public void Freeze()
     {
         IsFrozen = true;
-        //anim.enabled = false;
+        anim.enabled = false;
     }
 
     public void UnFreeze()
     {
         IsFrozen = false;
-        //anim.enabled = true;
+        anim.enabled = true;
     }
 
     public void InflictDamage(int dmg)
