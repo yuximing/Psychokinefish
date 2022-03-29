@@ -10,20 +10,20 @@ public class ShooterController : MonoBehaviour, IDamageable
     Transform firePoint;
     Vector3 firePointOffset;
 
-    private float bulletSpeed = 15.0f;
+    private float bulletSpeed = 8.0f;
     private float moveSpeed = 1.5f;
 
     public GameObject destroyParticle;
 
     Timer betweenSeriesTimer;
-    private float timeBetweenBullets = 0.1f;
-    private int bulletsInSeries = 5;
+    private float timeBetweenBullets = 0.15f;
+    private int bulletsInSeries = 3;
 
     public bool spawnRight = true;
     bool isActive = false;
     CameraScroll cameraScript;
 
-    private int hp = 7; //was 10 if need to switch back
+    private int hp = 5; //was 10 if need to switch back
     Timer damagedTimer;
     SpriteRenderer spriteRenderer;
 
@@ -41,7 +41,7 @@ public class ShooterController : MonoBehaviour, IDamageable
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         cameraScript = Camera.main.GetComponent<CameraScroll>();
-        betweenSeriesTimer = new Timer(1.5f, 0.5f);
+        betweenSeriesTimer = new Timer(1.5f, 1.0f);
         damagedTimer = new Timer(0.1f);
         spriteRenderer = GetComponent<SpriteRenderer>();
         audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
@@ -158,7 +158,7 @@ public class ShooterController : MonoBehaviour, IDamageable
     public void InflictDamage(int dmg)
     {
         if (!isActive) return;
-        hp -= dmg;
+        hp -= (IsFrozen ? 3 : 1) * dmg;
         damagedTimer.ResetTimer();
         if (hp <= 0)
         {

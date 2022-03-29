@@ -16,9 +16,13 @@ public class EnemyBulletScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        
         var playerScript = collision.gameObject.GetComponent<PlayerController>();
+
         playerScript?.ChangeHealth(-1);
         collision.gameObject.GetComponent<BlockadeScript>()?.InflictDamage(1);
+        if (GetComponent<Rigidbody2D>().constraints != RigidbodyConstraints2D.FreezeAll) playerScript?.ChangeHealth(-1);
+
         Destroy(gameObject);
     }
 }

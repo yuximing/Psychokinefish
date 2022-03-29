@@ -21,7 +21,7 @@ public class SpreadShooterController : MonoBehaviour, IDamageable
     bool isActive = false;
     CameraScroll cameraScript;
 
-    private int hp = 7; //was 10 if need to switch back
+    private int hp = 5; //was 10 if need to switch back
     Timer damagedTimer;
     SpriteRenderer spriteRenderer;
 
@@ -145,7 +145,7 @@ public class SpreadShooterController : MonoBehaviour, IDamageable
     public void InflictDamage(int dmg)
     {
         if (!isActive) return;
-        hp -= dmg;
+        hp -= (IsFrozen ? 3 : 1) * dmg;
         damagedTimer.ResetTimer();
         if (hp <= 0)
         {
