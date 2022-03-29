@@ -47,7 +47,10 @@ public class TurretScript : ClickableGameObject
     void FireProjectile(Vector2 direction, float speed) {
         audioSource.Play();
         direction = Quaternion.AngleAxis(Random.Range(-3,3), Vector3.forward) * direction;
-        var projectileObj = Instantiate(projectile, transform.position, Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, direction)));
+        if (direction != Vector2.zero) direction.Normalize();
+        else direction = Vector2.right;
+
+        var projectileObj = Instantiate(projectile, transform.position + (Vector3) direction, Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, direction)));
         projectileObj.GetComponent<Rigidbody2D>().velocity = speed * direction.normalized;
     }
 
