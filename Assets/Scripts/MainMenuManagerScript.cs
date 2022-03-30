@@ -17,8 +17,8 @@ public class MainMenuManagerScript : MonoBehaviour
     string[] instructionTexts = 
         { 
         "Use A and D to move along the rail",
-        "Right click bubble objects to take control of them",
-        "Left click to use the object and destroy the box",
+        "Right click bubble objects to take/release control of them",
+        "Left click to use the bubble objects",
         "Eat the food to finish the level",
         "Good luck!"
         };
@@ -43,7 +43,7 @@ public class MainMenuManagerScript : MonoBehaviour
     void Update()
     {
 
-        timeElapsed += Time.deltaTime;
+        timeElapsed += Time.deltaTime * 0.8f;
         switch ((int) timeElapsed)
         {
             case 1:
@@ -65,7 +65,7 @@ public class MainMenuManagerScript : MonoBehaviour
             if (Input.GetKey(KeyCode.D)) StartCoroutine(CheckCoroutine(0));
             if (turretScript.IsActive) StartCoroutine(CheckCoroutine(1));
             if (gameObjectGroup.transform.Find("Blockade") == null) StartCoroutine(CheckCoroutine(2));
-            if (gameObjectGroup.transform.Find("Food") == null) StartCoroutine(CheckCoroutine(3));
+            if (gameObjectGroup.transform.Find("Food") == null) instructionCheck[3] = true;
 
             while (instructionCheck[instructionIndex]) ++instructionIndex;
 
