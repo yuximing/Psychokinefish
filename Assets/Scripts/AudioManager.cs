@@ -44,7 +44,11 @@ public class AudioManager : MonoBehaviour
     private void KillMusic()
     {
         audioSource.pitch -= Time.deltaTime;
-        if (audioSource.pitch < 0.0f) audioSource.pitch = 0.0f;
+        if (audioSource.pitch < 0.0f)
+        {
+            audioSource.pitch = 0.0f;
+            audioSource.volume = 0.0f;
+        }
     }
 
     public void PlayOneShot(AudioClip audioClip, float volume = 1.0f)
