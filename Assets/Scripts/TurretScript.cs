@@ -49,7 +49,7 @@ public class TurretScript : ClickableGameObject
         direction = Quaternion.AngleAxis(Random.Range(-3,3), Vector3.forward) * direction;
         if (direction != Vector2.zero) direction.Normalize();
         else direction = Vector2.right;
-
+        direction *= 0.8f;
         var projectileObj = Instantiate(projectile, transform.position + (Vector3) direction, Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, direction)));
         projectileObj.GetComponent<Rigidbody2D>().velocity = speed * direction.normalized;
     }
