@@ -6,10 +6,8 @@ using PathCreation;
 public class CameraScroll : MonoBehaviour
 {
     [SerializeField]
-    static float speed = 1.0f;
+    float speed = 1.0f;
     private static bool isMoving = true;
-
-    static public float Speed { get { return speed; } set { speed = value > 0.0f ? value : 0.0f; } }
 
     readonly BoxCollider2D[] borders = new BoxCollider2D[4];
     public PathCreator cameraRail;
