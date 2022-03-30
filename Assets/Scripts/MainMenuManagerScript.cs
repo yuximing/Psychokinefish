@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class MainMenuManagerScript : MonoBehaviour
 {
@@ -61,15 +62,21 @@ public class MainMenuManagerScript : MonoBehaviour
 
         if (gameObjectGroup.activeSelf)
         {
-            if (Input.GetKey(KeyCode.D)) instructionCheck[0] = true;
-            if (turretScript.IsActive) instructionCheck[1] = true;
-            if (gameObjectGroup.transform.Find("Blockade") == null) instructionCheck[2] = true;
-            if (gameObjectGroup.transform.Find("Food") == null) instructionCheck[3] = true;
+            if (Input.GetKey(KeyCode.D)) StartCoroutine(CheckCoroutine(0));
+            if (turretScript.IsActive) StartCoroutine(CheckCoroutine(1));
+            if (gameObjectGroup.transform.Find("Blockade") == null) StartCoroutine(CheckCoroutine(2));
+            if (gameObjectGroup.transform.Find("Food") == null) StartCoroutine(CheckCoroutine(3));
 
             while (instructionCheck[instructionIndex]) ++instructionIndex;
 
             if (instructions.activeSelf) instructions.GetComponent<UnityEngine.UI.Text>().text = instructionTexts[instructionIndex];
         }
 
+    }
+
+    IEnumerator CheckCoroutine(int index)
+    {
+        yield return new WaitForSeconds(0.2f);
+        instructionCheck[index] = true;
     }
 }
