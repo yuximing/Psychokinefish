@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
     PlayerController playerScript;
 
     public List<AudioClip> musicList = new List<AudioClip>();
-    void Start()
+    void Awake()
     {
         audioSource = GetComponent<AudioSource>();
         audioLatencyMap = new Dictionary<AudioClip, float>();
@@ -22,6 +22,7 @@ public class AudioManager : MonoBehaviour
 
     private void Update()
     {
+
         if (!audioSource.isPlaying)
         {
             if(SceneManager.GetActiveScene().buildIndex != 0) // not title screen
