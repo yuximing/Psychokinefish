@@ -127,7 +127,7 @@ public class PlayerController : MonoBehaviour
             if (hasBeatenLevel) return;
             if (invincibleTimer.ResetTimer())
             {
-                if(hp > 1) audioManager.PlayOneShot(hurtSfx);
+                audioManager.PlayOneShot(hurtSfx);
                 hp += healthChange;
                 playerHurtTimer.ResetTimerUnsafe();
             }
