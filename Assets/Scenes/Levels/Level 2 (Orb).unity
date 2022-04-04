@@ -1457,11 +1457,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6955893439328389882, guid: e6be78f474fb14dd583f3bc05c7844ba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.58
+      value: 4.86
       objectReference: {fileID: 0}
     - target: {fileID: 6955893439328389882, guid: e6be78f474fb14dd583f3bc05c7844ba, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.4
+      value: -1.54
       objectReference: {fileID: 0}
     - target: {fileID: 6955893439328389882, guid: e6be78f474fb14dd583f3bc05c7844ba, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2054,11 +2054,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5780967157834259865, guid: be7b3aed9ecd8d343b0cbd6ee4e1dd42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.58
+      value: 18.09
       objectReference: {fileID: 0}
     - target: {fileID: 5780967157834259865, guid: be7b3aed9ecd8d343b0cbd6ee4e1dd42, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.83
+      value: -3.6
       objectReference: {fileID: 0}
     - target: {fileID: 5780967157834259865, guid: be7b3aed9ecd8d343b0cbd6ee4e1dd42, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2313,11 +2313,11 @@ MonoBehaviour:
   editorData:
     _bezierPath:
       points:
-      - {x: -15.986293, y: -1.9526429, z: 0}
-      - {x: 10.257786, y: -2.344747, z: 0}
-      - {x: 36.501865, y: -2.7368512, z: 0}
+      - {x: -5.9349327, y: -2.046373, z: 0}
+      - {x: 15.332619, y: -2.4020984, z: 0}
+      - {x: 36.60017, y: -2.757824, z: 0}
       - {x: 37.019913, y: -2.849432, z: 0}
-      - {x: 37.257538, y: -2.901072, z: 0}
+      - {x: 37.257492, y: -2.901283, z: 0}
       - {x: 59.07358, y: -12.514694, z: 0}
       - {x: 59.311245, y: -12.566157, z: 0}
       - {x: 59.56984, y: -12.622153, z: 0}
@@ -2586,14 +2586,14 @@ MonoBehaviour:
   editorData:
     _bezierPath:
       points:
-      - {x: -15.062549, y: -3.0479608, z: 0}
-      - {x: -10.402364, y: -3.070789, z: 0}
-      - {x: -5.7421784, y: -3.0936174, z: 0}
-      - {x: -5.651377, y: -3.1183686, z: 0}
-      - {x: -5.5668116, y: -3.1414201, z: 0}
-      - {x: 1.8471941, y: -7.5190806, z: 0}
+      - {x: -7.3116684, y: -3.0569472, z: 0}
+      - {x: -5.060438, y: -3.0672739, z: 0}
+      - {x: -2.809208, y: -3.0776005, z: 0}
+      - {x: -2.7670212, y: -3.0945063, z: 0}
+      - {x: -2.7071533, y: -3.1184976, z: 0}
+      - {x: 1.8698547, y: -7.5092382, z: 0}
       - {x: 1.9343486, y: -7.509761, z: 0}
-      - {x: 2.0307987, y: -7.4994473, z: 0}
+      - {x: 2.0313454, y: -7.510547, z: 0}
       - {x: 9.017315, y: -1.0069262, z: 0}
       - {x: 9.111766, y: -0.98483527, z: 0}
       - {x: 9.15802, y: -0.974017, z: 0}
@@ -2663,7 +2663,7 @@ MonoBehaviour:
       - 0
       globalNormalsAngle: 0
       flipNormals: 0
-    vertexPathUpToDate: 1
+    vertexPathUpToDate: 0
     vertexPathMaxAngleError: 5
     vertexPathMinVertexSpacing: 0.01
     showTransformTool: 1
