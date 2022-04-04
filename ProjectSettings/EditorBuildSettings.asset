@@ -9,21 +9,21 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenuInteractive.unity
     guid: 53777acbf65c53b4b8f7092ecd6dc36c
   - enabled: 1
-    path: Assets/Scenes/Intro Level.unity
+    path: Assets/Scenes/Levels/Level 1 (Turret).unity
     guid: 7e52d14f12e66ae4a9359d8787e2240b
   - enabled: 1
-    path: Assets/Scenes/Level 2.unity
+    path: Assets/Scenes/Levels/Level 2 (Orb).unity
     guid: db410eae5ba29754cb2870e6a64bf7d7
   - enabled: 1
-    path: Assets/Scenes/Level3.unity
+    path: Assets/Scenes/Levels/Level 3 (Enemy).unity
     guid: 7ded7875fabfd4dc38d1fc582cfafd89
   - enabled: 1
-    path: Assets/Scenes/Plank Level.unity
+    path: Assets/Scenes/Levels/Level 5 (Laser).unity
     guid: 3ab95c9c290e5d542a28eee5f890d804
   - enabled: 1
-    path: Assets/Scenes/Level5.unity
+    path: Assets/Scenes/Levels/Level 4 (Plank).unity
     guid: fe8ef0b69ff8d43029ab1b4a6baf26f0
   - enabled: 1
-    path: Assets/Scenes/Level 6.unity
+    path: Assets/Scenes/Levels/Level 6 (End).unity
     guid: 0b4fe4b7fd507f444b264ed70b35aef4
   m_configObjects: {}
