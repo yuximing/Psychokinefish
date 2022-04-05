@@ -1615,9 +1615,9 @@ MonoBehaviour:
     _bezierPath:
       points:
       - {x: -3.1560583, y: -2.261743, z: 0}
-      - {x: 24.669281, y: -1.912252, z: 0}
-      - {x: 80.319954, y: -1.2132697, z: 0}
-      - {x: 108.145294, y: -0.86377865, z: 0}
+      - {x: 26.47649, y: -1.8731632, z: 0}
+      - {x: 85.74159, y: -1.0960035, z: 0}
+      - {x: 115.37414, y: -0.70742375, z: 0}
       isClosed: 0
       space: 1
       controlMode: 3
@@ -1822,11 +1822,11 @@ MonoBehaviour:
       - {x: 101.729225, y: -5.884932, z: 0}
       - {x: 101.766235, y: -5.895117, z: 0}
       - {x: 101.82376, y: -5.910948, z: 0}
-      - {x: 106.67385, y: -2.6031523, z: 0}
+      - {x: 106.67379, y: -2.6029716, z: 0}
       - {x: 106.73081, y: -2.5854, z: 0}
-      - {x: 106.86636, y: -2.543157, z: 0}
-      - {x: 113.89676, y: -2.4493299, z: 0}
-      - {x: 120.92715, y: -2.3555026, z: 0}
+      - {x: 107.05205, y: -2.4864092, z: 0}
+      - {x: 123.6977, y: -2.3704438, z: 0}
+      - {x: 140.34335, y: -2.2544785, z: 0}
       isClosed: 0
       space: 1
       controlMode: 3
@@ -1862,7 +1862,7 @@ MonoBehaviour:
       - 0
       globalNormalsAngle: 0
       flipNormals: 0
-    vertexPathUpToDate: 1
+    vertexPathUpToDate: 0
     vertexPathMaxAngleError: 5
     vertexPathMinVertexSpacing: 0.01
     showTransformTool: 1
