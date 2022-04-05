@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour
     Dictionary<AudioClip, float> audioLatencyMap;
 
     PlayerController playerScript;
+    bool havePlayed = false;
 
     public List<AudioClip> musicList = new List<AudioClip>();
     void Awake()
@@ -23,10 +24,14 @@ public class AudioManager : MonoBehaviour
     private void Update()
     {
 
-        if (!audioSource.isPlaying)
+        if (!audioSource.isPlaying && !havePlayed)
         {
-            if(SceneManager.GetActiveScene().buildIndex != 0) // not title screen
-            audioSource.Play();
+            if (SceneManager.GetActiveScene().buildIndex != 0)
+            { // not title screen
+
+                audioSource.Play();
+                havePlayed = true;
+            }   
         }
 
         if (!playerScript.IsAlive)
