@@ -6,6 +6,9 @@ public class FireExplosionScript : MonoBehaviour
 {
     Timer explosionTimer;
 
+    [SerializeField]
+    LayerMask layerMask;
+
     private void Start()
     {
         explosionTimer = new Timer(0.2f, false);
@@ -14,6 +17,14 @@ public class FireExplosionScript : MonoBehaviour
     void Update()
     {
         explosionTimer.Tick();
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, transform.localScale.x / 2.0f, layerMask);
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.tag == "EnemyProjectile")
+            {
+                Destroy(hitCollider.gameObject);
+            }
+        }
         if (explosionTimer.IsReady())
         {
             Destroy(gameObject);
