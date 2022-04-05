@@ -1884,9 +1884,9 @@ MonoBehaviour:
     _bezierPath:
       points:
       - {x: -3.1560583, y: -2.261743, z: 0}
-      - {x: 27.432446, y: -1.9177241, z: 0}
-      - {x: 88.60945, y: -1.2296863, z: 0}
-      - {x: 119.19795, y: -0.8856674, z: 0}
+      - {x: 23.516304, y: -1.9629135, z: 0}
+      - {x: 76.86103, y: -1.3652542, z: 0}
+      - {x: 103.533394, y: -1.0664246, z: 0}
       isClosed: 0
       space: 1
       controlMode: 3
@@ -2154,11 +2154,11 @@ MonoBehaviour:
       - {x: 90.412605, y: -9.24005, z: 0}
       - {x: 90.50999, y: -9.25248, z: 0}
       - {x: 90.6024, y: -9.264275, z: 0}
-      - {x: 97.80811, y: -3.6052341, z: 0}
+      - {x: 97.80801, y: -3.6049023, z: 0}
       - {x: 97.89617, y: -3.5748124, z: 0}
-      - {x: 98.12866, y: -3.494489, z: 0}
-      - {x: 110.310715, y: -3.4123774, z: 0}
-      - {x: 122.492775, y: -3.3302655, z: 0}
+      - {x: 98.213776, y: -3.4664228, z: 0}
+      - {x: 114.83437, y: -3.4802527, z: 0}
+      - {x: 131.45497, y: -3.494083, z: 0}
       isClosed: 0
       space: 1
       controlMode: 3
@@ -2196,7 +2196,7 @@ MonoBehaviour:
       - 0
       globalNormalsAngle: 0
       flipNormals: 0
-    vertexPathUpToDate: 0
+    vertexPathUpToDate: 1
     vertexPathMaxAngleError: 5
     vertexPathMinVertexSpacing: 0.01
     showTransformTool: 1
@@ -2618,17 +2618,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7700282189919300212, guid: 41a670c41da0ef2439fad462057a5b57, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2d5b2b79dbd20b54ca90c33f0443f11b, type: 3}
     - target: {fileID: 7491045009225938465, guid: 41a670c41da0ef2439fad462057a5b57, type: 3}
       propertyPath: m_RootOrder
       value: 67
       objectReference: {fileID: 0}
     - target: {fileID: 7491045009225938465, guid: 41a670c41da0ef2439fad462057a5b57, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 112.86
+      value: 113.29
       objectReference: {fileID: 0}
     - target: {fileID: 7491045009225938465, guid: 41a670c41da0ef2439fad462057a5b57, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.32
+      value: -2.15
       objectReference: {fileID: 0}
     - target: {fileID: 7491045009225938465, guid: 41a670c41da0ef2439fad462057a5b57, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2852,11 +2856,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2935478576083958131, guid: 800d2dc631cfc46a3bd7e0f23117e02f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.15
+      value: 14.54
       objectReference: {fileID: 0}
     - target: {fileID: 2935478576083958131, guid: 800d2dc631cfc46a3bd7e0f23117e02f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.95
+      value: -1.74
       objectReference: {fileID: 0}
     - target: {fileID: 2935478576083958131, guid: 800d2dc631cfc46a3bd7e0f23117e02f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2970,11 +2974,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8222297842223562591, guid: 3b4a504085a604f2da78f3a8ddc10774, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 110.9296
+      value: 109.95
       objectReference: {fileID: 0}
     - target: {fileID: 8222297842223562591, guid: 3b4a504085a604f2da78f3a8ddc10774, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.9375374
+      value: -2.08
       objectReference: {fileID: 0}
     - target: {fileID: 8222297842223562591, guid: 3b4a504085a604f2da78f3a8ddc10774, type: 3}
       propertyPath: m_LocalPosition.z
