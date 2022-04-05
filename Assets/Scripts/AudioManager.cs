@@ -26,7 +26,7 @@ public class AudioManager : MonoBehaviour
 
         if (!audioSource.isPlaying && !havePlayed)
         {
-            if (SceneManager.GetActiveScene().buildIndex != 0)
+            if (SceneManager.GetActiveScene().buildIndex != 0 || SceneManager.GetActiveScene().buildIndex != 1)
             { // not title screen
 
                 audioSource.Play();
