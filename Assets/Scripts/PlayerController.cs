@@ -336,10 +336,27 @@ public class PlayerController : MonoBehaviour
         int levelIndex = SceneManager.GetActiveScene().buildIndex;
         int totalIndex = SceneManager.sceneCountInBuildSettings;
 
+        
+
         if (++levelIndex >= totalIndex)
         {
             levelIndex = 0;
         }
+
+        // cheat: skip level
+        if (SceneManager.GetActiveScene().name == "_Main Menu")
+        {
+            if (Input.GetKey(KeyCode.S))
+            {
+                if (Input.GetKey(KeyCode.Alpha1)) levelIndex = 2;
+                else if (Input.GetKey(KeyCode.Alpha2)) levelIndex = 3;
+                else if (Input.GetKey(KeyCode.Alpha3)) levelIndex = 4;
+                else if (Input.GetKey(KeyCode.Alpha4)) levelIndex = 5;
+                else if (Input.GetKey(KeyCode.Alpha5)) levelIndex = 6;
+                else if (Input.GetKey(KeyCode.Alpha6)) levelIndex = 7;
+            }
+        }
+
         SceneManager.LoadScene(levelIndex);
     }
 
