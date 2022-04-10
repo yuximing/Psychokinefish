@@ -65,8 +65,9 @@ public class SpreadShooterController : MonoBehaviour, IDamageable
         }
 
         if (CameraScroll.IsSpriteOffScreen(gameObject, 2.0f)) isActive = false;
+        if (CameraScroll.IsSpriteOffScreen(gameObject, 2.0f) && !spawnRight) Destroy(gameObject);
 
-        if(!IsFrozen) betweenSeriesTimer.Tick();
+        if (!IsFrozen) betweenSeriesTimer.Tick();
         damagedTimer.Tick();
 
         //if (betweenSeriesTimer.ResetTimer())
