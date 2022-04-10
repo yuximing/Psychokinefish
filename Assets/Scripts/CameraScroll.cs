@@ -6,7 +6,7 @@ using PathCreation;
 public class CameraScroll : MonoBehaviour
 {
     [SerializeField]
-    float speed = 1.0f;
+    public float speed = 1.0f;
     private static bool isMoving = true;
 
     readonly BoxCollider2D[] borders = new BoxCollider2D[4];

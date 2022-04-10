@@ -138,7 +138,15 @@ public class ShooterController : MonoBehaviour, IDamageable
         while (i < bulletsInSeries)
         {
             GameObject projectileObj = Instantiate(projectile, transform.position + firePointOffset, firePoint.rotation);
-            projectileObj.GetComponent<Rigidbody2D>().velocity = (spawnRight ? -1 : 1) * transform.right * bulletSpeed;
+            if (!spawnRight)
+            {
+                var cameraScript = Camera.main.GetComponent<CameraScroll>();
+                var speed_adjusted = bulletSpeed + 2 * cameraScript.speed;
+                projectileObj.GetComponent<Rigidbody2D>().velocity = (spawnRight ? -1 : 1) * transform.right * speed_adjusted;
+
+            }
+            else projectileObj.GetComponent<Rigidbody2D>().velocity = (spawnRight ? -1 : 1) * transform.right * bulletSpeed;
+            //projectileObj.GetComponent<Rigidbody2D>().velocity = (spawnRight ? -1 : 1) * transform.right * bulletSpeed;
             do
             {
                 yield return new WaitForSeconds(timeBetweenBullets);
@@ -151,8 +159,14 @@ public class ShooterController : MonoBehaviour, IDamageable
     void Move()
     {
         //transform.Translate(moveSpeed * Time.deltaTime * (spawnRight ? -1 : 1) * Vector2.right);
+        if (!spawnRight)
+        {
+            var cameraScript = Camera.main.GetComponent<CameraScroll>();
+            var speed_adjusted = moveSpeed + 2 * cameraScript.speed;
+            rb.MovePosition(rb.position + speed_adjusted * Time.deltaTime * (spawnRight ? -1 : 1) * Vector2.right);
 
-        rb.MovePosition(rb.position + moveSpeed * Time.deltaTime * (spawnRight ? -1 : 1) * Vector2.right);
+        }
+        else rb.MovePosition(rb.position + moveSpeed * Time.deltaTime * (spawnRight ? -1 : 1) * Vector2.right);
     }
 
     public void InflictDamage(int dmg)
