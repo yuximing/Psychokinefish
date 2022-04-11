@@ -11,8 +11,11 @@ public abstract class ClickableGameObject : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (isActive) OnActive();
-        else OnInactive();
+        if (!PauseMenuScript.isPaused)
+        {
+            if (isActive) OnActive();
+            else OnInactive();
+        }
     }
 
     protected virtual void FixedUpdate()
