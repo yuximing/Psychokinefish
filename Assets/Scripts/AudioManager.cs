@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
 
     PlayerController playerScript;
     bool havePlayed = false;
+    bool havePaused = false;
 
     public List<AudioClip> musicList = new List<AudioClip>();
     void Awake()
@@ -32,6 +33,17 @@ public class AudioManager : MonoBehaviour
                 audioSource.Play();
                 havePlayed = true;
             }   
+        }
+
+        if (PauseMenuScript.isPaused && !havePaused)
+        {
+            audioSource.volume *= .5f;
+            havePaused = true;
+        }
+        else if (!PauseMenuScript.isPaused && havePaused)
+        {
+            audioSource.volume *= 2f;
+            havePaused = false;
         }
 
         if (!playerScript.IsAlive)
