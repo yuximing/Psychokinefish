@@ -9,11 +9,11 @@ public class Chaser2Controller : MonoBehaviour, IDamageable
 
     Rigidbody2D rbody;
     private int hp = 2;
-    float speed = 4f;
+    float speed = 0f;
     float speedIncrease = 7f;
     float currentTime;
     float timeIncrease = 1.0f;
-    readonly float seekForce = 7.0f;
+    float seekForce = 7.0f;
     CameraScroll cameraScript;
 
     Timer damagedTimer;
@@ -43,11 +43,6 @@ public class Chaser2Controller : MonoBehaviour, IDamageable
     }
     private void Update()
     {
-        if (Time.time >= currentTime)
-        {
-            speed += speedIncrease;
-            currentTime = Time.time + timeIncrease;
-        }
         if (!isActive)
         {
             if (!CameraScroll.IsSpriteOffScreen(gameObject, 2.0f)) Spawn();
@@ -87,7 +82,17 @@ public class Chaser2Controller : MonoBehaviour, IDamageable
         Vector2 target = targetObject.transform.position;
         Seek(target);
         spriteRenderer.flipY = Vector2.SignedAngle(Vector2.up, rbody.velocity) > 0.0f;
-
+        if (Time.time >= currentTime)
+        {
+            speed = 0;
+            speed += speedIncrease;
+            currentTime = Time.deltaTime + timeIncrease;
+            Seek(target);
+            seekForce = 7.5f;
+        }
+        //speed -= speedIncrease;
+        //seekForce = 7f;
+        currentTime -= Time.deltaTime + timeIncrease;
     }
     void Seek(Vector2 target)
     {
