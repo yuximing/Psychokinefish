@@ -9,10 +9,11 @@ public class Chaser2Controller : MonoBehaviour, IDamageable
 
     Rigidbody2D rbody;
     private int hp = 2;
-    float speed = 4f;
+    float maxSpeed = 10f;
     float speedIncrease = 7f;
     float currentTime;
-    float timeIncrease = 1.0f;
+    float timeIncrease = 2.0f;
+    float timeToWait = 4f;
     readonly float seekForce = 7.0f;
     CameraScroll cameraScript;
 
@@ -45,7 +46,9 @@ public class Chaser2Controller : MonoBehaviour, IDamageable
     {
         if (Time.time >= currentTime)
         {
-            speed += speedIncrease;
+            rbody.velocity = Vector2.zero;
+            currentTime = Time.time + timeToWait;
+            maxSpeed += speedIncrease;
             currentTime = Time.time + timeIncrease;
         }
         if (!isActive)
@@ -77,7 +80,6 @@ public class Chaser2Controller : MonoBehaviour, IDamageable
             Vector3 oldPos = transform.position;
             oldPos.x = screenRect.x - extends.x * 2.0f;
             transform.position = oldPos;
-
             isActive = true;
         }
     }
@@ -87,7 +89,6 @@ public class Chaser2Controller : MonoBehaviour, IDamageable
         Vector2 target = targetObject.transform.position;
         Seek(target);
         spriteRenderer.flipY = Vector2.SignedAngle(Vector2.up, rbody.velocity) > 0.0f;
-
     }
     void Seek(Vector2 target)
     {
@@ -97,14 +98,17 @@ public class Chaser2Controller : MonoBehaviour, IDamageable
         forceDir *= seekForce * Time.fixedDeltaTime;
         if (rbody.bodyType != RigidbodyType2D.Static) rbody.velocity += forceDir;
 
-        if (rbody.velocity.sqrMagnitude > speed * speed)
+        if (rbody.velocity.sqrMagnitude > maxSpeed * maxSpeed)
         {
-            rbody.velocity = rbody.velocity.normalized * speed;
+            rbody.velocity = rbody.velocity.normalized * maxSpeed;
         }
         if (rbody.bodyType != RigidbodyType2D.Static)
         {
-            rbody.MoveRotation(Vector2.SignedAngle(Vector2.right, rbody.velocity));
-        }
+            if (rbody.velocity != Vector2.zero)
+            {
+                rbody.MoveRotation(Vector2.SignedAngle(Vector2.right, rbody.velocity));
+            }
+        } 
     }
 
     public void Freeze()
