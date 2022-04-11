@@ -37,12 +37,12 @@ public class AudioManager : MonoBehaviour
 
         if (PauseMenuScript.isPaused && !havePaused)
         {
-            audioSource.volume *= .5f;
+            AudioListener.pause = true;
             havePaused = true;
         }
         else if (!PauseMenuScript.isPaused && havePaused)
         {
-            audioSource.volume *= 2f;
+            AudioListener.pause = false;
             havePaused = false;
         }
 
