@@ -117,15 +117,15 @@ public class SpreadShooterController : MonoBehaviour, IDamageable
         {
 
             GameObject projectileObj = Instantiate(projectile, position, Quaternion.AngleAxis(Vector2.SignedAngle(Vector2.right, direction) + 20 * (i - 1), Vector3.forward));
-            if (!spawnRight)
-            {
-                var cameraScript = Camera.main.GetComponent<CameraScroll>();
-                var speed_adjusted = bulletSpeed + 2 * cameraScript.speed;
-                projectileObj.GetComponent<Rigidbody2D>().velocity = Quaternion.AngleAxis(20 * (i - 1), Vector3.forward) * direction * speed_adjusted;
+            //if (!spawnRight)
+            //{
+            //    var cameraScript = Camera.main.GetComponent<CameraScroll>();
+            //    var speed_adjusted = bulletSpeed + 2 * cameraScript.speed;
+            //    projectileObj.GetComponent<Rigidbody2D>().velocity = Quaternion.AngleAxis(20 * (i - 1), Vector3.forward) * direction * speed_adjusted;
 
-            }
-            else projectileObj.GetComponent<Rigidbody2D>().velocity = Quaternion.AngleAxis(20 * (i - 1), Vector3.forward) * direction * bulletSpeed;
-            //projectileObj.GetComponent<Rigidbody2D>().velocity = Quaternion.AngleAxis(20 * (i - 1), Vector3.forward) * direction * bulletSpeed;
+            //}
+            //else projectileObj.GetComponent<Rigidbody2D>().velocity = Quaternion.AngleAxis(20 * (i - 1), Vector3.forward) * direction * bulletSpeed;
+            projectileObj.GetComponent<Rigidbody2D>().velocity = Quaternion.AngleAxis(20 * (i - 1), Vector3.forward) * direction * bulletSpeed;
         }
     }
 
@@ -148,14 +148,14 @@ public class SpreadShooterController : MonoBehaviour, IDamageable
     void Move()
     {
         //transform.Translate(moveSpeed * Time.deltaTime * (spawnRight ? -1 : 1) * Vector2.right);
-        if (!spawnRight)
-        {
-            var cameraScript = Camera.main.GetComponent<CameraScroll>();
-            var speed_adjusted = moveSpeed + 2 * cameraScript.speed;
-            rb.MovePosition(rb.position + speed_adjusted * Time.deltaTime * (spawnRight ? -1 : 1) * Vector2.right);
+        //if (!spawnRight)
+        //{
+        //    var cameraScript = Camera.main.GetComponent<CameraScroll>();
+        //    var speed_adjusted = moveSpeed + 2 * cameraScript.speed;
+        //    rb.MovePosition(rb.position + speed_adjusted * Time.deltaTime * (spawnRight ? -1 : 1) * Vector2.right);
 
-        }
-        else rb.MovePosition(rb.position + moveSpeed * Time.deltaTime * (spawnRight ? -1 : 1) * Vector2.right);
+        //}
+        rb.MovePosition(rb.position + moveSpeed * Time.deltaTime * (spawnRight ? -1 : 1) * Vector2.right);
     }
 
     public void InflictDamage(int dmg)
