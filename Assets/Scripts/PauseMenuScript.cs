@@ -48,6 +48,7 @@ public class PauseMenuScript : MonoBehaviour
 
     public void LoadMenu()
     {
+        if (!CameraScroll.isMoving) CameraScroll.isMoving = true;
         if (isPaused) isPaused = false;
         Time.timeScale = 1f;
         SceneManager.LoadScene(1);

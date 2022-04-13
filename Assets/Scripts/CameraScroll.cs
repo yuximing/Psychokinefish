@@ -7,7 +7,7 @@ public class CameraScroll : MonoBehaviour
 {
     [SerializeField]
     public float speed = 1.0f;
-    private static bool isMoving = true;
+    public static bool isMoving = true;
 
     readonly BoxCollider2D[] borders = new BoxCollider2D[4];
     public PathCreator cameraRail;
