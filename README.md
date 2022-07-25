@@ -1,6 +1,6 @@
 # Group 11 - Psychokinefish
 
-This is Group 11's Unity Project for CISC 226 W22.
+This is Group 11's Unity Project for CISC 226 W22 at Queen's University.
 
 Developed by Abbey Cameron, Brian Cho, and Ximing Yu.
 
