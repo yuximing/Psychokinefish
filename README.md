@@ -15,5 +15,16 @@ Use Left Click to use the activated bubble objects.<br />
 
 The player can take up to 2 hits from most enemies.
 
+## Tools and Technologies ##
+- Unity
+- C#
+- Photoshop
+- The Unity Asset Store
+
+## Team ##
+- Abbey Cameron
+- Brian Cho
+- Ximing Yu
+
 ## Play the Game ##
 Link to the game: https://creative.caslab.queensu.ca/~GDP11/
