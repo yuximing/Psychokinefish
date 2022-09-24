@@ -1,0 +1,27 @@
+Psychokinefish is by:
+Abbey Cameron
+Brian Cho
+Ximing Yu
+
+Assets used
+-----------------------------
+Fonts:
+Feast Of Flesh BB Font - Blambot ; https://blambot.com/collections/all-fonts/products/feast-of-flesh
+
+Art:
+Fish Pack - Kenney Vleugels ; https://www.kenney.nl/assets/fish-pack
+Stone and Ice Blocks - Gamertose ; https://assetstore.unity.com/packages/2d/textures-materials/brick/stone-and-ice-blocks-by-gamertose-50490
+Tower Defense (top-down) Pack - Kenney Vleugels ; https://www.kenney.nl/assets/tower-defense-top-down
+Underwater Fantasy - Luis Zuno ; https://assetstore.unity.com/packages/2d/textures-materials/water/underwater-fantasy-87457
+2D Hodgepodge Pack - Gamertose ; https://assetstore.unity.com/packages/2d/gui/icons/2d-hodgepodge-pack-by-gamertose-15710
+Fish Sprite - Robert Brooks ; https://www.gamedeveloperstudio.com/graphics/viewgraphic.php?page-name=Fish-sprite&item=134a143f33661k3o0l
+Bubble popping animation - Robert Brooks ; https://www.gamedeveloperstudio.com/graphics/viewgraphic.php?page-name=Bubble-popping-animation&item=1u5l0o9z5m3s6b612j
+FOOD free - Sev_4 ; https://assetstore.unity.com/packages/2d/textures-materials/food/food-free-145841
+
+Music:
+Blazer Rail - DL Sounds ; https://www.dl-sounds.com/royalty-free/blazer-rail/
+Game music, action, urban groove, electro breakbeat with a funky electronic bass and record scratching - ZapSplat ; https://www.zapsplat.com/sound-effect-category/game-music-and-loops/
+All That - Benjamin Tissot ; https://www.bensound.com/royalty-free-music/track/all-that-chill-hop
+Kraft Twerk - Alejandro Magaña (A. M.) ; https://mixkit.co/free-stock-music/house-and-electronica/
+Game music – repetitive quiz style music bed, light tension, electronic, passing of time - ZapSplat ; https://www.zapsplat.com/sound-effect-category/game-music-and-loops/
+Game music – repetitive dark electronic action music bed, lightly dramatic and tense - ZapSplat ; https://www.zapsplat.com/sound-effect-category/game-music-and-loops/
