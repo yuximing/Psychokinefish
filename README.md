@@ -27,4 +27,4 @@ The player can take up to 2 hits from most enemies.
 - Ximing Yu
 
 ## Play the Game ##
-Link to the game: https://creative.caslab.queensu.ca/~GDP11/
+Link to the game: https://chobbri.itch.io/psychokinefish
